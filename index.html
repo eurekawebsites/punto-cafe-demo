@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#6E2637">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Punto Café — Demo interactiva</title>
+  <meta name="description" content="Demo interactiva de Punto Café para conocer la experiencia del cliente, el punto de venta y la administración.">
+  <link rel="icon" type="image/png" href="./assets/punto-cafe-icon.png?v=1">
+  <link rel="shortcut icon" type="image/png" href="./assets/punto-cafe-icon.png?v=1">
+  <link rel="apple-touch-icon" href="./assets/punto-cafe-icon.png?v=1">
+  <style>
+    :root {
+      --wine: #6e2637;
+      --wine-deep: #4d1826;
+      --wine-soft: #8e3f52;
+      --rose: #d98b7a;
+      --rose-soft: #f2c9c0;
+      --cream: #faede3;
+      --paper: #fffaf6;
+      --ink: #2f2024;
+      --muted: #78676b;
+      --line: rgba(110, 38, 55, .14);
+      --green: #2f7d5c;
+      --amber: #bd7a24;
+      --red: #b64251;
+      --shadow: 0 18px 50px rgba(77, 24, 38, .14);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--cream); }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 5%, rgba(217,139,122,.24), transparent 30rem),
+        linear-gradient(145deg, #fff8f2 0%, var(--cream) 58%, #f6ded7 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    .hidden { display: none !important; }
+    .icon { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .eyebrow { margin: 0 0 .35rem; color: var(--rose); font-size: .78rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .serif { font-family: Georgia, "Times New Roman", serif; }
+
+    /* Role gate */
+    .role-gate {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(1rem, 3vw, 2.4rem);
+      background:
+        linear-gradient(120deg, rgba(77,24,38,.97), rgba(110,38,55,.93)),
+        radial-gradient(circle at 80% 10%, rgba(217,139,122,.65), transparent 26rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .role-gate::before,
+    .role-gate::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(250,237,227,.16);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .role-gate::before { width: 34rem; height: 34rem; right: -13rem; top: -16rem; }
+    .role-gate::after { width: 22rem; height: 22rem; left: -9rem; bottom: -12rem; }
+    .gate-card {
+      width: min(100%, 1040px);
+      padding: clamp(1.2rem, 3.4vw, 2.5rem);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 32px;
+      background: rgba(255,250,246,.98);
+      box-shadow: 0 30px 90px rgba(25,4,10,.28);
+      position: relative;
+      z-index: 1;
+    }
+    .gate-brand {
+      display: grid;
+      grid-template-columns: 110px 1fr auto;
+      gap: 1.2rem;
+      align-items: center;
+      margin-bottom: 1.65rem;
+    }
+    .gate-logo { width: 110px; aspect-ratio: 1; object-fit: contain; }
+    .gate-brand h1 { margin: 0; color: var(--wine-deep); font-size: clamp(2rem, 4vw, 3rem); line-height: 1; }
+    .gate-brand p { margin: .45rem 0 0; color: var(--muted); }
+    .demo-pill {
+      padding: .5rem .8rem;
+      color: var(--wine);
+      background: var(--rose-soft);
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .gate-intro { margin: 0 0 1rem; font-weight: 700; }
+    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .role-card {
+      min-height: 190px;
+      padding: 1.25rem;
+      text-align: left;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      color: var(--ink);
+      background: #fff;
+      box-shadow: 0 10px 25px rgba(77,24,38,.05);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .role-card:hover, .role-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: var(--rose);
+      box-shadow: var(--shadow);
+      outline: none;
+    }
+    .role-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      color: #fff;
+      background: var(--wine);
+      border-radius: 15px;
+    }
+    .role-card:nth-child(2) .role-icon { background: var(--rose); color: var(--wine-deep); }
+    .role-card:nth-child(3) .role-icon { background: var(--wine-deep); }
+    .role-title { display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin-bottom: .4rem; font-size: 1.15rem; font-weight: 850; }
+    .role-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+    .gate-note {
+      display: flex;
+      gap: .55rem;
+      align-items: center;
+      margin: 1.2rem 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    /* App shell */
+    .app { min-height: 100vh; background: var(--paper); }
+    .app-shell { min-height: 100vh; display: grid; grid-template-columns: 248px minmax(0, 1fr); }
+    .sidebar {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 1.2rem 1rem;
+      color: #fff7f2;
+      background:
+        linear-gradient(180deg, rgba(77,24,38,.98), rgba(62,15,28,.99)),
+        var(--wine-deep);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .sidebar::-webkit-scrollbar { display: none; }
+    .side-brand { display: flex; align-items: center; gap: .75rem; padding: .25rem .3rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .side-brand img { width: 48px; height: 48px; object-fit: contain; }
+    .side-brand strong { display: block; font-family: Georgia, serif; font-size: 1.08rem; }
+    .side-brand span { display: block; color: var(--rose-soft); font-size: .74rem; }
+    .side-profile {
+      display: flex;
+      gap: .75rem;
+      align-items: center;
+      margin: 1rem 0;
+      padding: .8rem;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 15px;
+      background: rgba(255,255,255,.06);
+    }
+    .side-profile .avatar { width: 36px; height: 36px; display: grid; place-items: center; flex: 0 0 auto; color: var(--wine-deep); background: var(--rose-soft); border-radius: 12px; font-weight: 900; }
+    .side-profile strong { display: block; font-size: .9rem; }
+    .side-profile span { color: #d9bec5; font-size: .74rem; }
+    .nav-label { margin: .5rem .65rem .45rem; color: #c89ca7; font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .side-nav { display: grid; gap: .35rem; }
+    .nav-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: .72rem;
+      padding: .72rem .8rem;
+      border: 0;
+      border-radius: 12px;
+      color: #e8d7db;
+      background: transparent;
+      text-align: left;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,.07); }
+    .nav-btn.active { color: var(--wine-deep); background: var(--rose-soft); }
+    .side-actions { margin-top: auto; display: grid; gap: .45rem; padding-top: 1rem; }
+    .side-action {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      min-height: 42px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 12px;
+      color: #fff7f2;
+      background: transparent;
+      font-weight: 750;
+    }
+    .side-action:hover { background: rgba(255,255,255,.08); }
+    .side-action.primary { border-color: transparent; color: var(--wine-deep); background: var(--rose); }
+    .main { min-width: 0; background: var(--paper); }
+    .topbar {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .9rem clamp(1rem, 3vw, 2rem);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,250,246,.92);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .topbar h2 { margin: 0; color: var(--wine-deep); font-family: Georgia, serif; font-size: 1.45rem; }
+    .top-actions { display: flex; align-items: center; gap: .65rem; }
+    .sim-badge { padding: .42rem .65rem; border: 1px solid rgba(110,38,55,.18); border-radius: 999px; color: var(--wine); background: var(--cream); font-size: .76rem; font-weight: 800; }
+    .mobile-menu { display: none; }
+    .content { padding: clamp(1rem, 3vw, 2rem); }
+    .page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+    .page-head h1 { margin: 0; color: var(--wine-deep); font-family: Georgia, serif; font-size: clamp(1.7rem, 3vw, 2.25rem); }
+    .page-head p { margin: .25rem 0 0; color: var(--muted); }
+    .toolbar { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+    .btn {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .62rem .9rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--wine-deep);
+      background: #fff;
+      font-weight: 800;
+    }
+    .btn:hover { border-color: var(--rose); }
+    .btn.primary { border-color: var(--wine); color: #fff; background: var(--wine); }
+    .btn.rose { border-color: var(--rose); color: var(--wine-deep); background: var(--rose); }
+    .btn.ghost { background: transparent; }
+    .btn.small { min-height: 35px; padding: .4rem .65rem; font-size: .82rem; }
+
+    .metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    .metric {
+      min-height: 142px;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(77,24,38,.04);
+    }
+    .metric .label { color: var(--muted); font-size: .75rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+    .metric .value { margin: .4rem 0 .1rem; color: var(--wine); font-family: Georgia, serif; font-size: 2rem; }
+    .metric .detail { color: var(--muted); font-size: .84rem; }
+    .metric .trend { display: inline-block; margin-top: .65rem; padding: .22rem .45rem; border-radius: 999px; color: var(--green); background: #e4f3ec; font-size: .72rem; font-weight: 850; }
+
+    .grid-2 { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); gap: 1rem; }
+    .panel {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 28px rgba(77,24,38,.04);
+      overflow: hidden;
+    }
+    .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.05rem; border-bottom: 1px solid var(--line); }
+    .panel-head h3 { margin: 0; font-size: 1rem; }
+    .panel-body { padding: 1rem 1.05rem; }
+    .empty { padding: 2.5rem 1rem; color: var(--muted); text-align: center; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 640px; }
+    th, td { padding: .78rem .75rem; border-bottom: 1px solid var(--line); text-align: left; }
+    th { color: var(--muted); font-size: .73rem; letter-spacing: .07em; text-transform: uppercase; }
+    td { font-size: .9rem; }
+    tr:last-child td { border-bottom: 0; }
+    .status { display: inline-flex; align-items: center; gap: .35rem; padding: .28rem .5rem; border-radius: 999px; font-size: .72rem; font-weight: 850; }
+    .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .status.green { color: var(--green); background: #e4f3ec; }
+    .status.amber { color: var(--amber); background: #fff0d6; }
+    .status.red { color: var(--red); background: #fae1e5; }
+    .status.wine { color: var(--wine); background: var(--cream); }
+
+    .chart { height: 215px; display: flex; align-items: end; gap: .75rem; padding: 1.25rem .25rem .25rem; border-bottom: 1px solid var(--line); }
+    .bar-col { flex: 1; min-width: 0; display: grid; gap: .4rem; justify-items: center; }
+    .bar { width: min(42px, 75%); min-height: 8px; border-radius: 8px 8px 3px 3px; background: linear-gradient(180deg, var(--rose), var(--wine)); }
+    .bar-col span { color: var(--muted); font-size: .72rem; }
+
+    /* Customer menu */
+    .customer-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 1rem; align-items: start; }
+    .category-row { display: flex; gap: .5rem; overflow-x: auto; padding-bottom: .5rem; scrollbar-width: thin; }
+    .chip { flex: 0 0 auto; padding: .48rem .75rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: #fff; font-weight: 750; }
+    .chip.active { border-color: var(--wine); color: #fff; background: var(--wine); }
+    .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; margin-top: .8rem; }
+    .product-card { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+    .product-art { height: 122px; display: grid; place-items: center; position: relative; overflow: hidden; background: linear-gradient(145deg, var(--cream), var(--rose-soft)); }
+    .product-art::before { content: ""; width: 90px; height: 62px; border-radius: 15px 15px 28px 28px; background: rgba(110,38,55,.88); box-shadow: 0 10px 20px rgba(77,24,38,.14); }
+    .product-art::after { content: ""; width: 30px; height: 32px; position: absolute; margin-left: 88px; border: 9px solid var(--rose); border-left: 0; border-radius: 0 22px 22px 0; }
+    .product-art.cold { background: linear-gradient(145deg, #f8e7ed, #e8aeba); }
+    .product-art.food { background: linear-gradient(145deg, #fff2d7, #e8b979); }
+    .product-art.food::before { width: 96px; height: 58px; border-radius: 50%; background: #c78635; transform: rotate(-5deg); }
+    .product-art.food::after { display: none; }
+    .product-info { padding: .85rem; }
+    .product-info h3 { margin: 0 0 .15rem; font-size: .95rem; }
+    .product-info p { min-height: 36px; margin: 0 0 .7rem; color: var(--muted); font-size: .77rem; }
+    .product-foot { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+    .price { color: var(--wine); font-weight: 900; }
+    .add-btn { width: 34px; height: 34px; display: grid; place-items: center; border: 0; border-radius: 11px; color: #fff; background: var(--wine); font-weight: 900; }
+    .cart { position: sticky; top: 88px; }
+    .cart-items { display: grid; gap: .6rem; }
+    .cart-row { display: grid; grid-template-columns: 1fr auto; gap: .5rem; align-items: center; padding-bottom: .65rem; border-bottom: 1px solid var(--line); }
+    .cart-row strong { display: block; font-size: .86rem; }
+    .cart-row span { color: var(--muted); font-size: .76rem; }
+    .qty { display: flex; align-items: center; gap: .4rem; }
+    .qty button { width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 9px; color: var(--wine); background: var(--paper); }
+    .cart-totals { display: grid; gap: .35rem; padding-top: .75rem; }
+    .total-line { display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); }
+    .total-line.grand { color: var(--ink); font-size: 1.12rem; font-weight: 900; }
+    .segmented { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin: .8rem 0; padding: .3rem; border-radius: 12px; background: var(--cream); }
+    .segment { padding: .5rem; border: 0; border-radius: 9px; color: var(--muted); background: transparent; font-weight: 800; }
+    .segment.active { color: #fff; background: var(--wine); }
+    .pay-note { margin: .65rem 0 0; color: var(--muted); font-size: .75rem; text-align: center; }
+
+    /* POS */
+    .pos-layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 1rem; align-items: start; }
+    .pos-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .7rem; }
+    .pos-item { min-height: 100px; padding: .85rem; border: 1px solid var(--line); border-radius: 16px; color: var(--ink); background: #fff; text-align: left; }
+    .pos-item:hover { border-color: var(--rose); background: #fff8f5; }
+    .pos-item strong { display: block; margin-bottom: .3rem; }
+    .pos-item span { color: var(--wine); font-weight: 850; }
+    .ticket { position: sticky; top: 88px; }
+    .payment-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4rem; margin: .8rem 0; }
+    .payment-row button { padding: .55rem .25rem; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); background: #fff; font-size: .78rem; font-weight: 800; }
+    .payment-row button.active { border-color: var(--wine); color: var(--wine); background: var(--cream); }
+
+    /* Cards/forms */
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .85rem; }
+    label { display: grid; gap: .35rem; color: var(--muted); font-size: .78rem; font-weight: 800; }
+    input, select {
+      width: 100%;
+      min-height: 44px;
+      padding: .65rem .75rem;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+    }
+    input:focus, select:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(217,139,122,.18); }
+    .cash-summary { padding: .85rem; margin-top: .8rem; border: 1px dashed rgba(110,38,55,.3); border-radius: 14px; background: var(--cream); }
+    .cash-summary strong { color: var(--wine); }
+    .toggle { width: 44px; height: 24px; padding: 2px; border: 0; border-radius: 99px; background: #cdbdc0; }
+    .toggle::after { content: ""; display: block; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+    .toggle.on { background: var(--green); }
+    .toggle.on::after { transform: translateX(20px); }
+
+    .report-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
+    .report-card { padding: 1rem; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+    .report-card h3 { margin: 0; font-size: .88rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+    .report-card strong { display: block; margin: .3rem 0; color: var(--wine); font-family: Georgia, serif; font-size: 1.8rem; }
+    .progress { height: 9px; margin-top: .8rem; overflow: hidden; border-radius: 99px; background: var(--cream); }
+    .progress span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--wine), var(--rose)); }
+
+    .toast-region { position: fixed; right: 1rem; bottom: 1rem; z-index: 80; display: grid; gap: .6rem; width: min(360px, calc(100vw - 2rem)); pointer-events: none; }
+    .toast { padding: .85rem 1rem; border-radius: 14px; color: #fff; background: var(--wine-deep); box-shadow: var(--shadow); animation: toast-in .25s ease; }
+    .toast strong { display: block; }
+    .toast span { color: #ead9dd; font-size: .82rem; }
+    @keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
+
+    .modal-backdrop { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 1rem; background: rgba(33,10,16,.62); }
+    .modal { width: min(100%, 500px); max-height: calc(100vh - 2rem); overflow-y: auto; padding: 1.2rem; border-radius: 22px; background: var(--paper); box-shadow: 0 30px 80px rgba(0,0,0,.3); }
+    .modal h2 { margin: 0 0 .25rem; color: var(--wine-deep); font-family: Georgia, serif; }
+    .modal p { margin: 0 0 1rem; color: var(--muted); }
+    .modal-actions { display: flex; justify-content: flex-end; gap: .6rem; margin-top: 1rem; }
+
+    .mobile-nav { display: none; }
+    .mobile-cart-btn { display: none; }
+
+    @media (max-width: 1100px) {
+      .metric-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .product-grid, .pos-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .report-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 860px) {
+      .gate-brand { grid-template-columns: 82px 1fr; }
+      .gate-logo { width: 82px; }
+      .demo-pill { grid-column: 1 / -1; justify-self: start; }
+      .role-grid { grid-template-columns: 1fr; }
+      .role-card { min-height: 0; }
+      .app-shell { display: block; }
+      .sidebar { display: none; }
+      .main { padding-bottom: 76px; }
+      .mobile-menu { display: inline-grid; }
+      .customer-layout, .pos-layout, .grid-2 { grid-template-columns: 1fr; }
+      .cart, .ticket { position: static; }
+      .mobile-nav {
+        position: fixed;
+        left: .65rem;
+        right: .65rem;
+        bottom: max(.65rem, env(safe-area-inset-bottom));
+        z-index: 40;
+        display: grid;
+        grid-template-columns: repeat(var(--nav-count, 4), minmax(0,1fr));
+        gap: .25rem;
+        padding: .38rem;
+        border: 1px solid rgba(255,255,255,.14);
+        border-radius: 18px;
+        background: rgba(77,24,38,.96);
+        box-shadow: 0 15px 35px rgba(77,24,38,.3);
+        backdrop-filter: blur(14px);
+      }
+      .mobile-nav .nav-btn { justify-content: center; padding: .55rem .25rem; color: #ead9dd; }
+      .mobile-nav .nav-btn span { display: none; }
+      .mobile-nav .nav-btn.active { color: var(--wine-deep); background: var(--rose-soft); }
+      .top-actions .sim-badge { display: none; }
+    }
+    @media (max-width: 580px) {
+      .gate-card { border-radius: 24px; }
+      .gate-brand { gap: .8rem; }
+      .gate-brand h1 { font-size: 2rem; }
+      .content { padding: 1rem .8rem; }
+      .topbar { padding: .75rem .8rem; }
+      .topbar h2 { font-size: 1.15rem; }
+      .page-head { align-items: flex-start; flex-direction: column; }
+      .metric-grid, .report-grid, .form-grid { grid-template-columns: 1fr; }
+      .product-grid, .pos-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem; }
+      .product-art { height: 100px; }
+      .product-info { padding: .72rem; }
+      .product-info p { display: none; }
+      .panel-head, .panel-body { padding-left: .85rem; padding-right: .85rem; }
+      .btn { min-height: 44px; }
+    }
+  </style>
+</head>
+<body>
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9h18l-2-6H5L3 9Z"/><path d="M5 9v12h14V9M9 21v-7h6v7"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M9 21v-7h6v7"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1"/><circle cx="19" cy="20" r="1"/><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 8H6"/></symbol>
+    <symbol id="i-orders" viewBox="0 0 24 24"><path d="M9 5h11M9 12h11M9 19h11"/><path d="m3 5 1 1 2-2m-3 8 1 1 2-2m-3 8 1 1 2-2"/></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9v6m12-6v6"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m21 8-9 5-9-5 9-5 9 5Z"/><path d="m3 8 9 5 9-5v9l-9 5-9-5V8Z"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 5h11v12H3zM14 9h4l3 4v4h-7z"/><circle cx="7" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></symbol>
+    <symbol id="i-switch" viewBox="0 0 24 24"><path d="m16 3 4 4-4 4M20 7H8a4 4 0 0 0-4 4M8 21l-4-4 4-4M4 17h12a4 4 0 0 0 4-4"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  </svg>
+
+  <section id="roleGate" class="role-gate">
+    <div class="gate-card">
+      <div class="gate-brand">
+        <img class="gate-logo" src="./assets/punto-cafe-logo.png" alt="Punto Café">
+        <div>
+          <p class="eyebrow">Demo interactiva</p>
+          <h1 class="serif">Punto Café</h1>
+          <p>Todo tu café en un solo punto.</p>
+        </div>
+        <span class="demo-pill">Datos de muestra</span>
+      </div>
+      <p class="gate-intro">Elige qué experiencia quieres conocer:</p>
+      <div class="role-grid">
+        <button class="role-card" data-role="customer">
+          <span class="role-icon"><svg class="icon"><use href="#i-user"/></svg></span>
+          <span class="role-title">Cliente <svg class="icon"><use href="#i-arrow"/></svg></span>
+          <p>Explora el menú, arma un pedido y simula el pago en línea.</p>
+        </button>
+        <button class="role-card" data-role="staff">
+          <span class="role-icon"><svg class="icon"><use href="#i-store"/></svg></span>
+          <span class="role-title">Personal de cafetería <svg class="icon"><use href="#i-arrow"/></svg></span>
+          <p>Usa el punto de venta, atiende pedidos y realiza el corte de caja.</p>
+        </button>
+        <button class="role-card" data-role="admin">
+          <span class="role-icon"><svg class="icon"><use href="#i-chart"/></svg></span>
+          <span class="role-title">Administración <svg class="icon"><use href="#i-arrow"/></svg></span>
+          <p>Revisa ventas, productos, proveedores, compras y reportes.</p>
+        </button>
+      </div>
+      <p class="gate-note"><svg class="icon"><use href="#i-info"/></svg> No necesitas usuario ni contraseña. Todo lo que hagas aquí es una simulación segura.</p>
+    </div>
+  </section>
+
+  <section id="app" class="app hidden">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="side-brand">
+          <img src="./assets/punto-cafe-icon.png" alt="">
+          <div><strong>Punto Café</strong><span>Demo interactiva</span></div>
+        </div>
+        <div id="sideProfile" class="side-profile"></div>
+        <p class="nav-label">Navegación</p>
+        <nav id="sideNav" class="side-nav" aria-label="Secciones"></nav>
+        <div class="side-actions">
+          <button class="side-action" data-action="reset"><svg class="icon"><use href="#i-reset"/></svg> Reiniciar demo</button>
+          <button class="side-action primary" data-action="switch"><svg class="icon"><use href="#i-switch"/></svg> Cambiar perfil</button>
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="topRole">Perfil</p>
+            <h2 id="topTitle">Inicio</h2>
+          </div>
+          <div class="top-actions">
+            <span class="sim-badge">Simulación · sin cobros reales</span>
+            <button class="btn small mobile-menu" data-action="switch"><svg class="icon"><use href="#i-switch"/></svg> Perfil</button>
+          </div>
+        </header>
+        <div id="content" class="content"></div>
+      </main>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Navegación móvil"></nav>
+  </section>
+
+  <div id="modalRoot"></div>
+  <div id="toasts" class="toast-region" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const PRODUCTS = [
+        { id: 1, name: "Latte Vainilla", desc: "Espresso, leche y un toque de vainilla.", price: 68, cat: "Calientes", art: "" },
+        { id: 2, name: "Americano", desc: "Café de especialidad, intenso y balanceado.", price: 45, cat: "Calientes", art: "" },
+        { id: 3, name: "Capuchino", desc: "Espresso con leche cremosa y espuma.", price: 62, cat: "Calientes", art: "" },
+        { id: 4, name: "Moka Frío", desc: "Café, chocolate, leche y hielo.", price: 72, cat: "Fríos", art: "cold" },
+        { id: 5, name: "Cold Brew", desc: "Extracción en frío por 18 horas.", price: 65, cat: "Fríos", art: "cold" },
+        { id: 6, name: "Té Rosa", desc: "Infusión frutal con notas florales.", price: 55, cat: "Fríos", art: "cold" },
+        { id: 7, name: "Croissant Almendra", desc: "Horneado del día con crema de almendra.", price: 58, cat: "Alimentos", art: "food" },
+        { id: 8, name: "Panini Caprese", desc: "Mozzarella, jitomate y pesto.", price: 96, cat: "Alimentos", art: "food" },
+        { id: 9, name: "Galleta Chocolate", desc: "Galleta suave con chocolate amargo.", price: 38, cat: "Alimentos", art: "food" }
+      ];
+
+      const INITIAL_ORDERS = [
+        { id: 1042, time: "12:18", customer: "Mariana R.", channel: "En línea", total: 175, status: "Preparando" },
+        { id: 1041, time: "12:04", customer: "Mesa 4", channel: "Punto de venta", total: 226, status: "Listo" },
+        { id: 1040, time: "11:51", customer: "Luis G.", channel: "En línea", total: 130, status: "Entregado" },
+        { id: 1039, time: "11:33", customer: "Mostrador", channel: "Punto de venta", total: 96, status: "Entregado" }
+      ];
+
+      const ROLE_INFO = {
+        customer: { name: "Cliente", short: "CL", detail: "Pedido en línea", start: "menu" },
+        staff: { name: "Personal de cafetería", short: "PC", detail: "Ventas y operación", start: "pos" },
+        admin: { name: "Administración", short: "AD", detail: "Control del negocio", start: "dashboard" }
+      };
+
+      const NAV = {
+        customer: [
+          ["menu", "Menú", "i-home"],
+          ["my-order", "Mi pedido", "i-cart"]
+        ],
+        staff: [
+          ["pos", "Punto de venta", "i-store"],
+          ["orders", "Pedidos", "i-orders"],
+          ["cash", "Caja", "i-cash"]
+        ],
+        admin: [
+          ["dashboard", "Resumen", "i-home"],
+          ["orders", "Pedidos", "i-orders"],
+          ["products", "Productos", "i-box"],
+          ["suppliers", "Proveedores", "i-truck"],
+          ["cash", "Caja", "i-cash"],
+          ["reports", "Reportes", "i-chart"]
+        ]
+      };
+
+      let state = freshState();
+      let currentRole = null;
+      let currentView = null;
+
+      function freshState() {
+        return {
+          cart: {},
+          ticket: {},
+          delivery: "pickup",
+          payment: "Tarjeta",
+          orders: INITIAL_ORDERS.map(o => ({ ...o })),
+          products: PRODUCTS.map((p, i) => ({ ...p, active: i !== 5, stock: [18, 35, 12, 9, 7, 0, 8, 6, 15][i] })),
+          suppliers: [
+            { name: "Tostador Sierra", provides: "Café en grano", contact: "55 1234 8801" },
+            { name: "Lácteos del Valle", provides: "Leche y crema", contact: "55 2211 4040" },
+            { name: "Pan de la Casa", provides: "Pan y repostería", contact: "55 7741 0902" }
+          ],
+          purchases: [
+            { id: "C-018", supplier: "Tostador Sierra", date: "Hoy", amount: 2450, status: "Pendiente" },
+            { id: "C-017", supplier: "Lácteos del Valle", date: "Ayer", amount: 980, status: "Pagada" }
+          ],
+          expenses: [
+            { desc: "Hielo y agua", source: "Caja chica", amount: 185 },
+            { desc: "Gasolina reparto", source: "Caja del día", amount: 320 }
+          ],
+          opening: 1000,
+          counted: "",
+          cashOpen: true,
+          productCategory: "Todos",
+          lastCustomerOrder: null
+        };
+      }
+
+      function money(value) {
+        return new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN", maximumFractionDigits: 0 }).format(value);
+      }
+
+      function icon(id) {
+        return `<svg class="icon" aria-hidden="true"><use href="#${id}"/></svg>`;
+      }
+
+      function enterRole(role) {
+        currentRole = role;
+        currentView = ROLE_INFO[role].start;
+        document.getElementById("roleGate").classList.add("hidden");
+        document.getElementById("app").classList.remove("hidden");
+        renderShell();
+      }
+
+      function switchRole() {
+        currentRole = null;
+        currentView = null;
+        document.getElementById("app").classList.add("hidden");
+        document.getElementById("roleGate").classList.remove("hidden");
+        window.scrollTo(0, 0);
+      }
+
+      function resetDemo() {
+        state = freshState();
+        if (currentRole) {
+          currentView = ROLE_INFO[currentRole].start;
+          renderShell();
+          toast("Demo reiniciada", "Los datos de muestra volvieron a su estado inicial.");
+        }
+      }
+
+      function renderShell() {
+        const info = ROLE_INFO[currentRole];
+        document.getElementById("sideProfile").innerHTML = `<span class="avatar">${info.short}</span><div><strong>${info.name}</strong><span>${info.detail}</span></div>`;
+        document.getElementById("topRole").textContent = info.name;
+        renderNav();
+        renderView();
+      }
+
+      function renderNav() {
+        const buttons = NAV[currentRole].map(([id, label, iconId]) =>
+          `<button class="nav-btn ${currentView === id ? "active" : ""}" data-view="${id}">${icon(iconId)}<span>${label}</span></button>`
+        ).join("");
+        document.getElementById("sideNav").innerHTML = buttons;
+        const mobile = document.getElementById("mobileNav");
+        mobile.innerHTML = buttons;
+        mobile.style.setProperty("--nav-count", String(Math.min(NAV[currentRole].length, 6)));
+      }
+
+      function setView(view) {
+        currentView = view;
+        renderNav();
+        renderView();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function renderView() {
+        const titleMap = {
+          menu: "Menú y pedido", "my-order": "Mi pedido", pos: "Punto de venta",
+          orders: "Pedidos", cash: "Caja", dashboard: "Resumen del negocio",
+          products: "Productos", suppliers: "Proveedores", reports: "Reportes"
+        };
+        document.getElementById("topTitle").textContent = titleMap[currentView] || "Punto Café";
+        const renderers = {
+          menu: renderMenu,
+          "my-order": renderMyOrder,
+          pos: renderPOS,
+          orders: renderOrders,
+          cash: renderCash,
+          dashboard: renderDashboard,
+          products: renderProducts,
+          suppliers: renderSuppliers,
+          reports: renderReports
+        };
+        document.getElementById("content").innerHTML = renderers[currentView]();
+      }
+
+      function pageHead(title, subtitle, actions = "") {
+        return `<div class="page-head"><div><h1>${title}</h1><p>${subtitle}</p></div>${actions ? `<div class="toolbar">${actions}</div>` : ""}</div>`;
+      }
+
+      function renderMenu() {
+        const cats = ["Todos", "Calientes", "Fríos", "Alimentos"];
+        const shown = state.products.filter(p => p.active && (state.productCategory === "Todos" || p.cat === state.productCategory));
+        return `
+          ${pageHead("Haz tu pedido", "Elige tus favoritos y revisa el total antes de simular el pago.")}
+          <div class="customer-layout">
+            <section>
+              <div class="category-row">${cats.map(c => `<button class="chip ${state.productCategory === c ? "active" : ""}" data-category="${c}">${c}</button>`).join("")}</div>
+              <div class="product-grid">
+                ${shown.map(p => `
+                  <article class="product-card">
+                    <div class="product-art ${p.art}"></div>
+                    <div class="product-info">
+                      <h3>${p.name}</h3><p>${p.desc}</p>
+                      <div class="product-foot"><span class="price">${money(p.price)}</span><button class="add-btn" data-add-cart="${p.id}" aria-label="Agregar ${p.name}">${icon("i-plus")}</button></div>
+                    </div>
+                  </article>`).join("")}
+              </div>
+            </section>
+            ${renderCart()}
+          </div>`;
+      }
+
+      function cartEntries(source = "cart") {
+        return Object.entries(state[source]).map(([id, qty]) => {
+          const p = state.products.find(x => x.id === Number(id));
+          return { ...p, qty, subtotal: p.price * qty };
+        });
+      }
+
+      function renderCart() {
+        const items = cartEntries();
+        const subtotal = items.reduce((s, i) => s + i.subtotal, 0);
+        const delivery = state.delivery === "delivery" ? 35 : 0;
+        const total = subtotal + delivery;
+        return `
+          <aside class="panel cart">
+            <div class="panel-head"><h3>Tu pedido</h3><span class="status wine">${items.reduce((s,i)=>s+i.qty,0)} productos</span></div>
+            <div class="panel-body">
+              <div class="segmented"><button class="segment ${state.delivery === "pickup" ? "active" : ""}" data-delivery="pickup">Recoger</button><button class="segment ${state.delivery === "delivery" ? "active" : ""}" data-delivery="delivery">Entrega</button></div>
+              <div class="cart-items">
+                ${items.length ? items.map(i => `<div class="cart-row"><div><strong>${i.name}</strong><span>${money(i.subtotal)}</span></div><div class="qty"><button data-cart-qty="${i.id}" data-delta="-1">−</button><b>${i.qty}</b><button data-cart-qty="${i.id}" data-delta="1">+</button></div></div>`).join("") : `<div class="empty">Agrega productos para comenzar.</div>`}
+              </div>
+              <div class="cart-totals">
+                <div class="total-line"><span>Subtotal</span><b>${money(subtotal)}</b></div>
+                <div class="total-line"><span>Entrega</span><b>${delivery ? money(delivery) : "Sin costo"}</b></div>
+                <div class="total-line grand"><span>Total</span><span>${money(total)}</span></div>
+              </div>
+              <button class="btn primary" style="width:100%;margin-top:.85rem" data-action="checkout" ${items.length ? "" : "disabled"}>${icon("i-check")} Simular pago</button>
+              <p class="pay-note">Demostración únicamente. No se realizará ningún cobro.</p>
+            </div>
+          </aside>`;
+      }
+
+      function renderMyOrder() {
+        const order = state.lastCustomerOrder;
+        if (!order) return `${pageHead("Mi pedido", "Aquí aparecerá el seguimiento de tu pedido de muestra.")}<div class="panel"><div class="empty">Todavía no has realizado un pedido. <button class="btn small" data-view="menu" style="margin-left:.5rem">Ver menú</button></div></div>`;
+        return `
+          ${pageHead("Pedido #${order.id}", "Tu pedido de muestra fue recibido correctamente.")}
+          <div class="grid-2">
+            <section class="panel"><div class="panel-head"><h3>Seguimiento</h3><span class="status amber">Preparando</span></div><div class="panel-body">
+              <div style="display:grid;gap:1rem">
+                <div><strong>Pedido recibido</strong><p style="margin:.2rem 0;color:var(--muted)">La cafetería recibió los productos seleccionados.</p></div>
+                <div><strong>Preparando ahora</strong><p style="margin:.2rem 0;color:var(--muted)">Tiempo estimado: 12–18 minutos.</p></div>
+                <div style="opacity:.48"><strong>${state.delivery === "delivery" ? "En camino" : "Listo para recoger"}</strong></div>
+              </div>
+            </div></section>
+            <aside class="panel"><div class="panel-head"><h3>Resumen</h3></div><div class="panel-body">
+              <div class="total-line"><span>Forma de entrega</span><b>${state.delivery === "delivery" ? "Entrega" : "Recoger"}</b></div>
+              <div class="total-line grand" style="margin-top:.8rem"><span>Total</span><span>${money(order.total)}</span></div>
+              <p class="pay-note">Pago simulado · no hubo cargo real</p>
+            </div></aside>
+          </div>`;
+      }
+
+      function renderPOS() {
+        const items = cartEntries("ticket");
+        const total = items.reduce((s,i)=>s+i.subtotal,0);
+        return `
+          ${pageHead("Punto de venta", "Registra una venta de mostrador con datos de muestra.")}
+          <div class="pos-layout">
+            <section class="pos-grid">${state.products.filter(p=>p.active).map(p => `<button class="pos-item" data-add-ticket="${p.id}"><strong>${p.name}</strong><span>${money(p.price)}</span></button>`).join("")}</section>
+            <aside class="panel ticket">
+              <div class="panel-head"><h3>Venta actual</h3><button class="btn small ghost" data-action="clear-ticket">Limpiar</button></div>
+              <div class="panel-body">
+                <div class="cart-items">${items.length ? items.map(i => `<div class="cart-row"><div><strong>${i.name}</strong><span>${money(i.subtotal)}</span></div><div class="qty"><button data-ticket-qty="${i.id}" data-delta="-1">−</button><b>${i.qty}</b><button data-ticket-qty="${i.id}" data-delta="1">+</button></div></div>`).join("") : `<div class="empty">Selecciona productos.</div>`}</div>
+                <div class="total-line grand" style="margin-top:.8rem"><span>Total</span><span>${money(total)}</span></div>
+                <div class="payment-row">${["Efectivo","Tarjeta","Transferencia"].map(p => `<button class="${state.payment===p?"active":""}" data-payment="${p}">${p}</button>`).join("")}</div>
+                <button class="btn primary" style="width:100%" data-action="charge" ${items.length ? "" : "disabled"}>Registrar venta simulada</button>
+                <p class="pay-note">No procesa tarjetas ni genera movimientos reales.</p>
+              </div>
+            </aside>
+          </div>`;
+      }
+
+      function renderOrders() {
+        return `
+          ${pageHead("Pedidos", currentRole === "customer" ? "Seguimiento de tu pedido." : "Atiende pedidos del mostrador y del sitio en un solo lugar.")}
+          <section class="panel">
+            <div class="panel-head"><h3>Pedidos de hoy</h3><span class="status green">${state.orders.filter(o=>o.status!=="Entregado").length} activos</span></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Pedido</th><th>Hora</th><th>Cliente</th><th>Canal</th><th>Total</th><th>Estado</th><th></th></tr></thead>
+              <tbody>${state.orders.map(o => `<tr><td><strong>#${o.id}</strong></td><td>${o.time}</td><td>${o.customer}</td><td>${o.channel}</td><td>${money(o.total)}</td><td><span class="status ${o.status==="Entregado"?"green":o.status==="Listo"?"wine":"amber"}">${o.status}</span></td><td>${o.status!=="Entregado" ? `<button class="btn small" data-advance-order="${o.id}">${o.status==="Preparando"?"Marcar listo":"Entregar"}</button>` : ""}</td></tr>`).join("")}</tbody>
+            </table></div>
+          </section>`;
+      }
+
+      function renderCash() {
+        const paidSales = 5680;
+        const expenses = state.expenses.reduce((s,e)=>s+e.amount,0);
+        const expected = state.opening + paidSales - expenses;
+        const diff = state.counted === "" ? null : Number(state.counted) - expected;
+        return `
+          ${pageHead("Caja", "Registra gastos y compara el efectivo esperado con el contado.", `<button class="btn rose" data-action="expense">${icon("i-plus")} Agregar gasto</button>`)}
+          <div class="metric-grid">
+            <div class="metric"><span class="label">Ventas pagadas</span><div class="value">${money(paidSales)}</div><span class="detail">42 ventas · ${money(3100)} en efectivo</span></div>
+            <div class="metric"><span class="label">Gastos</span><div class="value">${money(expenses)}</div><span class="detail">${state.expenses.length} movimientos registrados</span></div>
+            <div class="metric"><span class="label">Efectivo esperado</span><div class="value">${money(expected)}</div><span class="detail">Fondo + ventas en efectivo − gastos</span></div>
+            <div class="metric"><span class="label">Diferencia</span><div class="value">${diff === null ? "—" : money(diff)}</div><span class="detail">${diff === null ? "Captura el efectivo contado" : diff === 0 ? "La caja coincide" : "Revisa los movimientos"}</span></div>
+          </div>
+          <div class="grid-2">
+            <section class="panel"><div class="panel-head"><h3>Corte de caja</h3><span class="status ${state.cashOpen?"green":"wine"}">${state.cashOpen?"Abierta":"Cerrada"}</span></div><div class="panel-body">
+              <div class="form-grid">
+                <label>Fondo inicial<input type="number" id="openingInput" value="${state.opening}" min="0" ${state.cashOpen?"":"disabled"}></label>
+                <label>Efectivo contado<input type="number" id="countedInput" value="${state.counted}" min="0" placeholder="0.00" ${state.cashOpen?"":"disabled"}></label>
+              </div>
+              <div class="cash-summary">Efectivo esperado: <strong>${money(expected)}</strong>${diff === null ? ". Captura el efectivo contado para ver la diferencia." : ` · Diferencia: <strong>${money(diff)}</strong>`}</div>
+              <div class="toolbar" style="margin-top:1rem"><button class="btn" data-action="save-cash" ${state.cashOpen?"":"disabled"}>Guardar datos</button><button class="btn primary" data-action="close-cash" ${state.cashOpen?"":"disabled"}>Cerrar caja</button></div>
+            </div></section>
+            <section class="panel"><div class="panel-head"><h3>Movimientos del día</h3></div><div class="table-wrap"><table style="min-width:420px"><thead><tr><th>Descripción</th><th>Origen</th><th>Monto</th></tr></thead><tbody>${state.expenses.map(e=>`<tr><td>${e.desc}</td><td>${e.source}</td><td>${money(e.amount)}</td></tr>`).join("")}</tbody></table></div></section>
+          </div>`;
+      }
+
+      function renderDashboard() {
+        return `
+          ${pageHead("Resumen del negocio", "Así se vería el día de una cafetería desde administración.")}
+          <div class="metric-grid">
+            <div class="metric"><span class="label">Ventas hoy</span><div class="value">${money(5680)}</div><span class="detail">42 órdenes pagadas</span><span class="trend">+12% vs. ayer</span></div>
+            <div class="metric"><span class="label">Órdenes hoy</span><div class="value">42</div><span class="detail">3 en proceso</span><span class="trend">Hora pico 11:00</span></div>
+            <div class="metric"><span class="label">Ticket promedio</span><div class="value">${money(135)}</div><span class="detail">Incluye mostrador y pedidos web</span></div>
+            <div class="metric"><span class="label">En línea</span><div class="value">11</div><span class="detail">6 recoger · 5 entrega</span></div>
+          </div>
+          <div class="grid-2">
+            <section class="panel"><div class="panel-head"><h3>Ventas de la semana</h3><span class="status green">Semana actual</span></div><div class="panel-body">
+              <div class="chart">${[58,74,61,88,96,77,42].map((h,i)=>`<div class="bar-col"><div class="bar" style="height:${h}%"></div><span>${["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"][i]}</span></div>`).join("")}</div>
+            </div></section>
+            <section class="panel"><div class="panel-head"><h3>Más vendidos</h3></div><div class="panel-body">
+              ${[["Latte Vainilla",34],["Americano",28],["Croissant Almendra",19],["Cold Brew",15]].map(([n,v],i)=>`<div style="display:grid;grid-template-columns:24px 1fr auto;gap:.65rem;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--line)"><b style="color:var(--rose)">${i+1}</b><span>${n}</span><strong>${v}</strong></div>`).join("")}
+            </div></section>
+          </div>`;
+      }
+
+      function renderProducts() {
+        return `
+          ${pageHead("Productos", "Controla qué aparece disponible en el punto de venta y el menú en línea.", `<button class="btn rose" data-action="add-product">${icon("i-plus")} Agregar producto</button>`)}
+          <section class="panel"><div class="table-wrap"><table>
+            <thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Existencia</th><th>Disponible</th></tr></thead>
+            <tbody>${state.products.map(p=>`<tr><td><strong>${p.name}</strong></td><td>${p.cat}</td><td>${money(p.price)}</td><td><span class="status ${p.stock===0?"red":p.stock<8?"amber":"green"}">${p.stock===0?"Agotado":p.stock+" disponibles"}</span></td><td><button class="toggle ${p.active?"on":""}" data-toggle-product="${p.id}" aria-label="${p.active?"Desactivar":"Activar"} ${p.name}"></button></td></tr>`).join("")}</tbody>
+          </table></div></section>`;
+      }
+
+      function renderSuppliers() {
+        return `
+          ${pageHead("Proveedores", "Directorio, compras recientes y estado de pago.", `<button class="btn rose" data-action="add-supplier">${icon("i-plus")} Agregar proveedor</button>`)}
+          <div class="grid-2">
+            <section class="panel"><div class="panel-head"><h3>Directorio</h3></div><div class="table-wrap"><table style="min-width:560px"><thead><tr><th>Proveedor</th><th>Productos</th><th>Contacto</th></tr></thead><tbody>${state.suppliers.map(s=>`<tr><td><strong>${s.name}</strong></td><td>${s.provides}</td><td>${s.contact}</td></tr>`).join("")}</tbody></table></div></section>
+            <section class="panel"><div class="panel-head"><h3>Compras recientes</h3><button class="btn small" data-action="purchase">${icon("i-plus")} Nueva compra</button></div><div class="panel-body">
+              ${state.purchases.map(p=>`<div style="display:grid;grid-template-columns:1fr auto;gap:.75rem;padding:.8rem 0;border-bottom:1px solid var(--line)"><div><strong>${p.supplier}</strong><div style="color:var(--muted);font-size:.78rem">${p.id} · ${p.date}</div></div><div style="text-align:right"><strong>${money(p.amount)}</strong><div>${p.status==="Pendiente"?`<button class="btn small" data-pay-purchase="${p.id}">Marcar pagada</button>`:`<span class="status green">Pagada</span>`}</div></div></div>`).join("")}
+            </div></section>
+          </div>`;
+      }
+
+      function renderReports() {
+        return `
+          ${pageHead("Reportes", "Ventas y operación del mes con datos de muestra.")}
+          <div class="report-grid">
+            <div class="report-card"><h3>Ventas del mes</h3><strong>${money(126480)}</strong><span style="color:var(--muted)">936 órdenes pagadas</span><div class="progress"><span style="width:82%"></span></div></div>
+            <div class="report-card"><h3>Ticket promedio</h3><strong>${money(135)}</strong><span style="color:var(--muted)">Meta mensual: ${money(145)}</span><div class="progress"><span style="width:72%"></span></div></div>
+            <div class="report-card"><h3>Gastos del mes</h3><strong>${money(28640)}</strong><span style="color:var(--muted)">23 movimientos</span><div class="progress"><span style="width:44%"></span></div></div>
+            <div class="report-card"><h3>Resultado operativo</h3><strong>${money(97840)}</strong><span style="color:var(--muted)">Ventas + propinas − gastos</span></div>
+            <div class="report-card"><h3>Ventas en línea</h3><strong>27%</strong><span style="color:var(--muted)">Recoger y entrega</span></div>
+            <div class="report-card"><h3>Producto líder</h3><strong style="font-size:1.4rem">Latte Vainilla</strong><span style="color:var(--muted)">214 vendidos este mes</span></div>
+          </div>
+          <section class="panel" style="margin-top:1rem"><div class="panel-head"><h3>Ventas por día</h3><span class="status wine">Septiembre</span></div><div class="panel-body"><div class="chart">${[44,67,82,59,91,73,86,51,78,63].map((h,i)=>`<div class="bar-col"><div class="bar" style="height:${h}%"></div><span>${i+1}</span></div>`).join("")}</div></div></section>`;
+      }
+
+      function updateQty(bucket, id, delta) {
+        const next = Math.max(0, (state[bucket][id] || 0) + Number(delta));
+        if (next) state[bucket][id] = next; else delete state[bucket][id];
+        renderView();
+      }
+
+      function checkout() {
+        const items = cartEntries();
+        if (!items.length) return;
+        const subtotal = items.reduce((s,i)=>s+i.subtotal,0);
+        const total = subtotal + (state.delivery === "delivery" ? 35 : 0);
+        const id = Math.max(...state.orders.map(o=>o.id)) + 1;
+        state.lastCustomerOrder = { id, total };
+        state.orders.unshift({ id, time: "Ahora", customer: "Cliente demo", channel: "En línea", total, status: "Preparando" });
+        state.cart = {};
+        modal("Pago simulado", `<div style="display:grid;place-items:center;text-align:center;padding:1rem"><span class="role-icon" style="background:var(--green)">${icon("i-check")}</span><h3>Pedido #${id} recibido</h3><p>No se realizó ningún cobro. Puedes seguir el pedido desde “Mi pedido”.</p></div>`, `<button class="btn primary" data-modal-close data-view-after="my-order">Ver mi pedido</button>`);
+      }
+
+      function chargeTicket() {
+        const items = cartEntries("ticket");
+        if (!items.length) return;
+        const total = items.reduce((s,i)=>s+i.subtotal,0);
+        const id = Math.max(...state.orders.map(o=>o.id)) + 1;
+        state.orders.unshift({ id, time: "Ahora", customer: "Mostrador", channel: "Punto de venta", total, status: "Preparando" });
+        state.ticket = {};
+        renderView();
+        toast("Venta registrada", `${money(total)} por ${state.payment}. Movimiento simulado.`);
+      }
+
+      function advanceOrder(id) {
+        const order = state.orders.find(o=>o.id===Number(id));
+        if (!order) return;
+        order.status = order.status === "Preparando" ? "Listo" : "Entregado";
+        renderView();
+        toast("Pedido actualizado", `#${order.id} ahora está ${order.status.toLowerCase()}.`);
+      }
+
+      function saveCash(close = false) {
+        const opening = document.getElementById("openingInput");
+        const counted = document.getElementById("countedInput");
+        if (opening) state.opening = Number(opening.value || 0);
+        if (counted) state.counted = counted.value;
+        if (close) {
+          if (state.counted === "") return toast("Falta el efectivo contado", "Captura el monto antes de cerrar la caja.");
+          state.cashOpen = false;
+          toast("Caja cerrada", "El corte quedó guardado dentro de esta simulación.");
+        } else toast("Datos guardados", "La caja de muestra se actualizó.");
+        renderView();
+      }
+
+      function showExpenseModal() {
+        modal("Nuevo gasto", `
+          <div class="form-grid">
+            <label>Monto<input id="expenseAmount" type="number" min="1" placeholder="0.00"></label>
+            <label>Pagado desde<select id="expenseSource"><option>Caja del día</option><option>Caja chica</option><option>Banco / Tarjeta</option></select></label>
+          </div>
+          <label style="margin-top:.85rem">Descripción<input id="expenseDesc" placeholder="Ej. Insumos, gasolina…"></label>
+        `, `<button class="btn" data-modal-close>Cancelar</button><button class="btn primary" data-save-expense>Guardar</button>`);
+      }
+
+      function saveExpense() {
+        const amount = Number(document.getElementById("expenseAmount").value || 0);
+        const desc = document.getElementById("expenseDesc").value.trim();
+        const source = document.getElementById("expenseSource").value;
+        if (!amount || !desc) return toast("Completa el gasto", "Agrega monto y descripción.");
+        state.expenses.unshift({ amount, desc, source });
+        closeModal();
+        renderView();
+        toast("Gasto agregado", `${money(amount)} desde ${source}. Movimiento simulado.`);
+      }
+
+      function genericForm(title, fields, onSave) {
+        modal(title, fields, `<button class="btn" data-modal-close>Cancelar</button><button class="btn primary" data-generic-save="${onSave}">Guardar</button>`);
+      }
+
+      function modal(title, body, actions) {
+        document.getElementById("modalRoot").innerHTML = `<div class="modal-backdrop" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><h2 id="modalTitle">${title}</h2><p>Los cambios se guardan solamente durante esta demostración.</p>${body}<div class="modal-actions">${actions}</div></section></div>`;
+      }
+      function closeModal() { document.getElementById("modalRoot").innerHTML = ""; }
+      function toast(title, detail) {
+        const el = document.createElement("div");
+        el.className = "toast";
+        el.innerHTML = `<strong>${title}</strong><span>${detail}</span>`;
+        document.getElementById("toasts").appendChild(el);
+        setTimeout(() => el.remove(), 3600);
+      }
+
+      document.addEventListener("click", (event) => {
+        const button = event.target.closest("button");
+        if (!button || button.disabled) return;
+        if (button.dataset.role) return enterRole(button.dataset.role);
+        if (button.dataset.view) return setView(button.dataset.view);
+        if (button.dataset.category) { state.productCategory = button.dataset.category; return renderView(); }
+        if (button.dataset.addCart) { updateQty("cart", button.dataset.addCart, 1); return toast("Agregado al pedido", "Puedes cambiar la cantidad desde el resumen."); }
+        if (button.dataset.cartQty) return updateQty("cart", button.dataset.cartQty, button.dataset.delta);
+        if (button.dataset.delivery) { state.delivery = button.dataset.delivery; return renderView(); }
+        if (button.dataset.addTicket) return updateQty("ticket", button.dataset.addTicket, 1);
+        if (button.dataset.ticketQty) return updateQty("ticket", button.dataset.ticketQty, button.dataset.delta);
+        if (button.dataset.payment) { state.payment = button.dataset.payment; return renderView(); }
+        if (button.dataset.advanceOrder) return advanceOrder(button.dataset.advanceOrder);
+        if (button.dataset.toggleProduct) { const p=state.products.find(x=>x.id===Number(button.dataset.toggleProduct)); p.active=!p.active; renderView(); return toast("Disponibilidad actualizada", `${p.name}: ${p.active?"disponible":"oculto"}.`); }
+        if (button.dataset.payPurchase) { const p=state.purchases.find(x=>x.id===button.dataset.payPurchase); p.status="Pagada"; renderView(); return toast("Compra actualizada", `${p.id} marcada como pagada.`); }
+        if (button.hasAttribute("data-modal-close")) {
+          const next = button.dataset.viewAfter;
+          closeModal();
+          if (next) setView(next);
+          return;
+        }
+        if (button.dataset.saveExpense !== undefined) return saveExpense();
+        if (button.dataset.genericSave) { closeModal(); return toast("Guardado en la demo", "El registro de muestra fue agregado."); }
+        const action = button.dataset.action;
+        if (action === "switch") return switchRole();
+        if (action === "reset") return resetDemo();
+        if (action === "checkout") return checkout();
+        if (action === "charge") return chargeTicket();
+        if (action === "clear-ticket") { state.ticket={}; return renderView(); }
+        if (action === "save-cash") return saveCash(false);
+        if (action === "close-cash") return saveCash(true);
+        if (action === "expense") return showExpenseModal();
+        if (action === "add-product") return genericForm("Nuevo producto", `<div class="form-grid"><label>Nombre<input placeholder="Nombre del producto"></label><label>Precio<input type="number" placeholder="0.00"></label></div><label style="margin-top:.85rem">Categoría<select><option>Calientes</option><option>Fríos</option><option>Alimentos</option></select></label>`, "product");
+        if (action === "add-supplier") return genericForm("Nuevo proveedor", `<label>Nombre<input placeholder="Nombre del proveedor"></label><label style="margin-top:.85rem">Productos que provee<input placeholder="Ej. Café, leche, pan…"></label><label style="margin-top:.85rem">Teléfono / contacto<input placeholder="55 0000 0000"></label>`, "supplier");
+        if (action === "purchase") return genericForm("Nueva compra", `<div class="form-grid"><label>Proveedor<select>${state.suppliers.map(s=>`<option>${s.name}</option>`).join("")}</select></label><label>Monto<input type="number" placeholder="0.00"></label></div><label style="margin-top:.85rem">Estado<select><option>Pendiente</option><option>Pagada</option></select></label>`, "purchase");
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && document.querySelector(".modal-backdrop")) closeModal();
+      });
+    })();
+  </script>
+</body>
+</html>
