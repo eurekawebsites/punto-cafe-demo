@@ -849,7 +849,7 @@
         <div class="order-steps">
           <article class="order-step"><b>01</b><h3>Elige</h3><p>Explora la colección y agrega tus piezas favoritas al pedido.</p></article>
           <article class="order-step"><b>02</b><h3>Programa</h3><p>Selecciona el día y horario disponible para recoger o recibir.</p></article>
-          <article class="order-step"><b>03</b><h3>Confirma</h3><p>Elige transferencia o efectivo y continúa con mensajes preparados para WhatsApp.</p></article>
+          <article class="order-step"><b>03</b><h3>Paga</h3><p>Completa el pago seguro con tarjeta; el negocio recibe únicamente pedidos pagados.</p></article>
         </div>
       </section>
 
@@ -943,7 +943,7 @@
       ];
 
       const INITIAL_ORDERS = [
-        { id: 1042, time: "Mañana · 12:30", customer: "Mariana R.", phone: "5512345678", channel: "Entrega", total: 175, status: "Preparando", payment: "Transferencia" },
+        { id: 1042, time: "Mañana · 12:30", customer: "Mariana R.", phone: "5512345678", channel: "Entrega", total: 175, status: "Preparando", payment: "Tarjeta en línea" },
         { id: 1041, time: "Mañana · 11:00", customer: "Sofía M.", phone: "5587654321", channel: "Recoger", total: 226, status: "Listo", payment: "Efectivo" },
         { id: 1040, time: "Hoy · 16:00", customer: "Luis G.", phone: "5534567890", channel: "Entrega", total: 130, status: "Entregado", payment: "Transferencia" },
         { id: 1039, time: "Mañana · 09:30", customer: "Ana P.", phone: "5556789012", channel: "Recoger", total: 96, status: "Pendiente de pago", payment: "Transferencia" }
@@ -997,6 +997,7 @@
           cashOpen: true,
           productCategory: "Todos",
           lastCustomerOrder: null,
+          pendingCardOrder: null,
           customer: { name: "", phone: "", email: "", date: "", time: "" },
           business: {
             name: "Mignon Pâtisserie",
@@ -1154,7 +1155,7 @@
                 <div class="total-line grand"><span>Total</span><span>${money(total)}</span></div>
               </div>
               <button class="btn primary" style="width:100%;margin-top:.85rem" data-action="checkout" ${items.length ? "" : "disabled"}>${icon("i-check")} Continuar pedido</button>
-              <p class="pay-note">El pedido se registra primero; la transferencia se confirma por WhatsApp.</p>
+              <p class="pay-note">Con tarjeta, el pedido entra a preparación únicamente después de confirmar el pago.</p>
             </div>
           </aside>`;
       }
@@ -1373,10 +1374,10 @@
             <label>Correo<input id="checkoutEmail" type="email" autocomplete="email" placeholder="nombre@correo.com"></label>
             <label>Fecha<input id="checkoutDate" type="date" min="${tomorrow}" value="${tomorrow}"></label>
             <label>Horario<select id="checkoutTime"><option>09:00–11:00</option><option>11:00–13:00</option><option>13:00–15:00</option><option>15:00–17:00</option><option>17:00–19:00</option></select></label>
-            <label>Pago<select id="checkoutPayment"><option>Transferencia</option><option>Efectivo</option></select></label>
+            <label>Pago<select id="checkoutPayment"><option>Tarjeta en línea</option><option>Transferencia</option><option>Efectivo</option></select></label>
           </div>
           ${state.delivery === "delivery" ? `<label style="margin-top:.85rem">Dirección de entrega<input id="checkoutAddress" placeholder="Calle, número, colonia y referencias"></label>` : `<div class="cash-summary">Recogerás tu pedido en <strong>${state.business.name}</strong><br>${state.business.address}</div>`}
-          <div class="cash-summary"><strong>Transferencia:</strong> el pedido queda pendiente hasta enviar el comprobante por WhatsApp.<br><strong>Efectivo:</strong> se paga al recoger o recibir, según la configuración del negocio.</div>
+          <div class="cash-summary"><strong>Tarjeta:</strong> el pedido se confirma después del pago seguro.<br><strong>Transferencia:</strong> queda pendiente hasta validar el comprobante.<br><strong>Efectivo:</strong> se paga al recoger o recibir, si el negocio lo habilita.</div>
         `, `<button class="btn" data-modal-close>Cancelar</button><button class="btn primary" data-confirm-order>Confirmar pedido</button>`);
       }
 
@@ -1396,17 +1397,41 @@
         const total = subtotal + (state.delivery === "delivery" ? 35 : 0);
         const id = Math.max(...state.orders.map(o=>o.id)) + 1;
         const fulfillment = state.delivery === "delivery" ? "Entrega a domicilio" : "Recoger en tienda";
-        const status = payment === "Transferencia" ? "Pendiente de pago" : "Confirmado";
+        const status = payment === "Transferencia" || payment === "Tarjeta en línea" ? "Pendiente de pago" : "Confirmado";
         const schedule = `${formatDate(date)} · ${time}`;
         const order = { id, total, items, customer:name, phone, email, address, payment, fulfillment, schedule, time:schedule, channel:state.delivery === "delivery" ? "Entrega" : "Recoger", status };
+        if (payment === "Tarjeta en línea") {
+          state.pendingCardOrder = order;
+          closeModal();
+          return modal("Pago seguro · demostración", `
+            <div class="cash-summary"><strong>En la versión del cliente</strong><br>El comprador continúa a Stripe Checkout y Punto Café registra el pedido solamente después de verificar el pago.</div>
+            <p>Esta demostración no solicita datos bancarios ni realiza cargos reales. Usa el botón para simular la confirmación segura del procesador.</p>
+            <div class="total-line grand"><span>Total a pagar</span><span>${money(total)}</span></div>
+          `, `<button class="btn" data-modal-close>Cancelar</button><button class="btn primary" data-simulate-card-payment>Simular pago aprobado</button>`);
+        }
+        completeOrder(order);
+      }
+
+      function completeOrder(order) {
         state.lastCustomerOrder = order;
         state.orders.unshift(order);
         state.cart = {};
         closeModal();
-        const paymentContent = payment === "Transferencia"
-            ? `<div class="cash-summary"><strong>Datos de transferencia de ${state.business.name}</strong><br>Banco: Banco de ejemplo<br>CLABE: •••• •••• •••• 4821<br>Referencia: Pedido ${id}</div><p>Después envía tu comprobante al WhatsApp ${state.business.whatsapp} para confirmar el pedido.</p>`
-          : `<div class="cash-summary"><strong>Pago en efectivo seleccionado</strong><br>Pagarás al ${state.delivery === "delivery" ? "recibir tu pedido" : "recogerlo"}.</div>`;
-        modal("Pedido recibido", `<div style="display:grid;place-items:center;text-align:center;padding:.5rem"><span class="role-icon" style="background:var(--green)">${icon("i-check")}</span><h3>Pedido #${id}</h3><p>${schedule} · ${money(total)}</p></div>${paymentContent}`, `<button class="btn" data-modal-close data-view-after="my-order">Ver seguimiento</button><button class="btn primary" data-customer-whatsapp="${id}">${payment === "Transferencia" ? "Enviar comprobante" : "Confirmar por WhatsApp"}</button>`);
+        const paymentContent = order.payment === "Transferencia"
+            ? `<div class="cash-summary"><strong>Datos de transferencia de ${state.business.name}</strong><br>Banco: Banco de ejemplo<br>CLABE: •••• •••• •••• 4821<br>Referencia: Pedido ${order.id}</div><p>Después envía tu comprobante al WhatsApp ${state.business.whatsapp} para confirmar el pedido.</p>`
+          : order.payment === "Tarjeta en línea"
+            ? `<div class="cash-summary"><strong>Pago aprobado</strong><br>El pedido entró al panel después de la confirmación del procesador.</div>`
+            : `<div class="cash-summary"><strong>Pago en efectivo seleccionado</strong><br>Pagarás al ${state.delivery === "delivery" ? "recibir tu pedido" : "recogerlo"}.</div>`;
+        modal("Pedido recibido", `<div style="display:grid;place-items:center;text-align:center;padding:.5rem"><span class="role-icon" style="background:var(--green)">${icon("i-check")}</span><h3>Pedido #${order.id}</h3><p>${order.schedule} · ${money(order.total)}</p></div>${paymentContent}`, `<button class="btn" data-modal-close data-view-after="my-order">Ver seguimiento</button><button class="btn primary" data-customer-whatsapp="${order.id}">${order.payment === "Transferencia" ? "Enviar comprobante" : "Avisar por WhatsApp"}</button>`);
+      }
+
+      function simulateCardPayment() {
+        const order = state.pendingCardOrder;
+        if (!order) return;
+        order.status = "Pago confirmado";
+        order.paymentStatus = "Pagado";
+        state.pendingCardOrder = null;
+        completeOrder(order);
       }
 
       function formatDate(value) {
@@ -1425,7 +1450,9 @@
         if (customerInitiated) {
           return order.payment === "Transferencia"
             ? `Hola, envío mi comprobante del pedido #${order.id} por ${money(order.total)} a nombre de ${order.customer}. Está programado para ${order.schedule}.`
-            : `Hola, confirmo mi pedido #${order.id} por ${money(order.total)} a nombre de ${order.customer}. Pagaré en efectivo. Está programado para ${order.schedule}.`;
+            : order.payment === "Tarjeta en línea"
+              ? `Hola, mi pedido #${order.id} por ${money(order.total)} a nombre de ${order.customer} quedó pagado con tarjeta. Está programado para ${order.schedule}.`
+              : `Hola, confirmo mi pedido #${order.id} por ${money(order.total)} a nombre de ${order.customer}. Pagaré en efectivo. Está programado para ${order.schedule}.`;
         }
         const messages = {
           "Pendiente de pago": `Hola ${order.customer}, recibimos tu pedido #${order.id}. Falta tu comprobante de transferencia para confirmarlo.`,
@@ -1543,6 +1570,7 @@
         if (button.dataset.advanceOrder) return advanceOrder(button.dataset.advanceOrder);
         if (button.dataset.whatsappOrder) return openWhatsApp(button.dataset.whatsappOrder, false);
         if (button.dataset.customerWhatsapp) { openWhatsApp(button.dataset.customerWhatsapp, true); closeModal(); return setView("my-order"); }
+        if (button.hasAttribute("data-simulate-card-payment")) return simulateCardPayment();
         if (button.hasAttribute("data-confirm-order")) return confirmOrder();
         if (button.dataset.toggleProduct) { const p=state.products.find(x=>x.id===Number(button.dataset.toggleProduct)); p.active=!p.active; renderView(); return toast("Disponibilidad actualizada", `${p.name}: ${p.active?"disponible":"oculto"}.`); }
         if (button.dataset.payPurchase) { const p=state.purchases.find(x=>x.id===button.dataset.payPurchase); p.status="Pagada"; renderView(); return toast("Compra actualizada", `${p.id} marcada como pagada.`); }
