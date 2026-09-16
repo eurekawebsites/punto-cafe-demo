@@ -25,7 +25,8 @@ Este checklist es obligatorio antes de compartir cualquier demo comercial de Eur
 ## Alcance comercial
 
 - Todas las funciones incluidas aparecen de manera consistente en demo, guía y propuesta.
-- Las integraciones futuras se identifican como cotizadas por separado.
+- Stripe Checkout se presenta como incluido y el demo se identifica claramente como simulación sin cobro real.
+- Las integraciones futuras distintas de Stripe Checkout se identifican como cotizadas por separado.
 - WhatsApp asistido se describe como enlaces con mensajes prellenados que una persona revisa y envía.
 - WhatsApp Business API y los mensajes automáticos no se presentan como incluidos.
 - Precio, implementación, mensualidad, permanencia e impuestos se revisan antes de compartir.

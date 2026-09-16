@@ -2,7 +2,7 @@
 
 - Last updated: 2026-09-16
 - Lifecycle state: active
-- Workflow status: sales package ready
+- Workflow status: online-payment upgrade in development
 - Product: reusable online-ordering package for small food businesses
 
 ## Current scope
@@ -15,7 +15,8 @@ and basic technical/local SEO (metadata, social previews, local-business structu
 data, sitemap/robots, image alt text, and mobile performance). Ongoing SEO campaigns,
 recurring content, and ranking guarantees are excluded. The demo presents two roles: customer and administration. The customer can browse
 an expandable catalog, build a cart, select pickup or delivery, schedule at least
-one day ahead, choose transfer or cash, receive an order number, and open a
+one day ahead, choose online card payment (with optional transfer/cash when the
+business enables them), receive an order number, and open a
 prewritten WhatsApp message. Administration can review orders, advance statuses,
 open status-specific WhatsApp messages, add products, and control availability
 with a simple Available/Sold-out switch. Numeric inventory and ingredient
@@ -25,9 +26,11 @@ The sales package also contains a quick guide and a scope/pricing page.
 
 ## Commercial baseline
 
-- Implementation: $6,900 MXN once.
-- Service: $590 MXN/month from publication.
-- Alternative: $1,490 MXN/month with a 12-month minimum and no setup payment.
+- Implementation: $8,900 MXN once.
+- Service: $990 MXN/month from publication.
+- Alternative: $2,190 MXN/month with a 12-month minimum and no setup payment.
+- Mignon exception: preserve the previously offered $6,900 MXN implementation
+  plus $890 MXN/month and include the standard Stripe Checkout integration.
 - Launch includes configuration, import of the complete catalog supplied in one
   organized Excel/CSV or equivalent file, one revision round, deployment, and a
   quick guide. The client also supplies the matching product images in one folder.
@@ -36,17 +39,19 @@ The sales package also contains a quick guide and a scope/pricing page.
 
 Point of sale, cash closing, numeric inventory, ingredient tracking, suppliers,
 purchasing, and advanced operational reports belong to Punto Café Standard and
-require a version upgrade. Card processing, Uber Direct, automated WhatsApp
-Business API messages, and other third-party connections are integrations quoted
-separately; provider fees remain independent.
+require a version upgrade. Stripe Checkout is the standard included card-payment
+integration. Uber Direct, automated WhatsApp Business API messages, other payment
+processors, and other third-party connections are quoted separately; all provider
+fees remain independent.
 
 ## Validation
 
 - HTML parses with unique IDs and valid local asset paths.
 - Inline JavaScript passes syntax compilation.
 - `tests/static-check.py` asserts the required ordering and commercial markers.
-- Public customer QA passed: catalog, cart, delivery selection, next-day date,
-  transfer selection, order creation, transfer instructions, and tracking.
+- Automated customer-flow QA passes: cancelled card checkout creates no order;
+  approved simulated payment creates one paid order visible to administration.
+- Visual desktop/mobile QA remains required before publication.
 - Public-site demo includes business information, social links, and a simulated contact form.
 - Public admin QA passed: order visibility, payment-status transition, product
   availability, product creation, business identity, color, and typography.
@@ -54,6 +59,7 @@ separately; provider fees remain independent.
 
 ## Next
 
-Review the proposed price internally, then send the prepared client outreach.
-Before client configuration, confirm transfer, cash, or both; pickup/delivery
-rules; bank details; the WhatsApp destination number; and final brand assets.
+Finish and verify the Stripe production starter and the public card-payment
+simulation before merging or resuming outreach. Before client configuration,
+confirm the Stripe merchant account, optional transfer/cash methods,
+pickup/delivery rules, the WhatsApp destination number, and final brand assets.
