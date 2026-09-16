@@ -49,7 +49,11 @@ for required in (
     assert required in index, f"index.html: missing required flow marker {required!r}"
 
 quote = (ROOT / "quote.html").read_text(encoding="utf-8")
-for required in ("$6,900 MXN", "$890 MXN", "$1,890 MXN", "Uber Direct", "WhatsApp Business API", "Formulario de contacto", "redes sociales", "SEO técnico básico", "catálogo completo", "Punto Café Standard", "Se cotizan por separado"):
+for required in ("$6,900 MXN", "$890 MXN", "$1,890 MXN", "Uber Direct", "WhatsApp Business API", "no incluye API ni envíos automáticos", "Formulario de contacto", "redes sociales", "SEO técnico básico", "catálogo completo", "Punto Café Standard", "Se cotizan por separado"):
     assert required in quote, f"quote.html: missing commercial marker {required!r}"
+
+guide = (ROOT / "guide.html").read_text(encoding="utf-8")
+assert ".proof-copy span" in guide, "guide.html: proof descriptions must not restyle proof icons"
+assert ".proof-item span{" not in guide, "guide.html: broad selector would break proof icon centering"
 
 print("Static checks passed for Punto Café Lite.")

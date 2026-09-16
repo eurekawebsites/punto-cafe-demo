@@ -839,7 +839,7 @@
         <div class="order-steps">
           <article class="order-step"><b>01</b><h3>Elige</h3><p>Explora la colección y agrega tus piezas favoritas al pedido.</p></article>
           <article class="order-step"><b>02</b><h3>Programa</h3><p>Selecciona el día y horario disponible para recoger o recibir.</p></article>
-          <article class="order-step"><b>03</b><h3>Confirma</h3><p>Elige transferencia o efectivo y recibe el seguimiento por WhatsApp.</p></article>
+          <article class="order-step"><b>03</b><h3>Confirma</h3><p>Elige transferencia o efectivo y continúa con mensajes preparados para WhatsApp.</p></article>
         </div>
       </section>
 
@@ -1158,7 +1158,7 @@
               <div style="display:grid;gap:1rem">
                 <div><strong>Pedido recibido</strong><p style="margin:.2rem 0;color:var(--muted)">El negocio recibió los productos seleccionados.</p></div>
                 <div><strong>Programado</strong><p style="margin:.2rem 0;color:var(--muted)">${order.schedule} · ${order.fulfillment}</p></div>
-                <div style="opacity:.55"><strong>Recibirás actualizaciones por WhatsApp</strong></div>
+                <div style="opacity:.55"><strong>El negocio podrá enviarte actualizaciones por WhatsApp</strong></div>
               </div>
             </div></section>
             <aside class="panel"><div class="panel-head"><h3>Resumen</h3></div><div class="panel-body">
@@ -1192,7 +1192,7 @@
 
       function renderOrders() {
         return `
-          ${pageHead("Pedidos", "Atiende los pedidos programados y avisa cada cambio por WhatsApp.")}
+          ${pageHead("Pedidos", "Atiende los pedidos programados y abre en WhatsApp un mensaje preparado para cada cambio.")}
           <section class="panel">
             <div class="panel-head"><h3>Pedidos próximos</h3><span class="status green">${state.orders.filter(o=>o.status!=="Entregado").length} activos</span></div>
             <div class="table-wrap"><table>
