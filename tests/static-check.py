@@ -35,7 +35,9 @@ index = (ROOT / "index.html").read_text(encoding="utf-8")
 for required in (
     "Transferencia",
     "Efectivo",
+    "Tarjeta en línea",
     "data-confirm-order",
+    "data-simulate-card-payment",
     "data-whatsapp-order",
     "Pendiente de pago",
     "Agregar producto",
@@ -50,7 +52,7 @@ for required in (
     assert required in index, f"index.html: missing required flow marker {required!r}"
 
 quote = (ROOT / "quote.html").read_text(encoding="utf-8")
-for required in ("$6,900 MXN", "$890 MXN", "$1,890 MXN", "Uber Direct", "WhatsApp Business API", "no incluye API ni envíos automáticos", "Formulario de contacto", "redes sociales", "SEO técnico básico", "catálogo completo", "Punto Café Standard", "Se cotizan por separado"):
+for required in ("$8,900 MXN", "$990 MXN", "$2,190 MXN", "Stripe Checkout", "Uber Direct", "WhatsApp Business API", "no incluye API ni envíos automáticos", "Formulario de contacto", "redes sociales", "SEO técnico básico", "catálogo completo", "Punto Café Standard", "Se cotizan por separado"):
     assert required in quote, f"quote.html: missing commercial marker {required!r}"
 
 guide = (ROOT / "guide.html").read_text(encoding="utf-8")
