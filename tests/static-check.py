@@ -29,6 +29,7 @@ for page in PAGES:
     assert not duplicates, f"{page.name}: duplicate IDs: {sorted(duplicates)}"
     for asset in parser.local_assets:
         assert (page.parent / asset).resolve().exists(), f"{page.name}: missing local asset {asset}"
+    assert "Powered by Eureka Websites" in page.read_text(encoding="utf-8"), f"{page.name}: missing Eureka Websites footer credit"
 
 index = (ROOT / "index.html").read_text(encoding="utf-8")
 for required in (
@@ -55,5 +56,10 @@ for required in ("$6,900 MXN", "$890 MXN", "$1,890 MXN", "Uber Direct", "WhatsAp
 guide = (ROOT / "guide.html").read_text(encoding="utf-8")
 assert ".proof-copy span" in guide, "guide.html: proof descriptions must not restyle proof icons"
 assert ".proof-item span{" not in guide, "guide.html: broad selector would break proof icon centering"
+
+sales_css = (ROOT / "sales.css").read_text(encoding="utf-8")
+assert ".eureka-credit{position:fixed" not in sales_css, "sales.css: Eureka credit must remain in the footer"
+assert (ROOT / "assets" / "mignon-social-card.jpg").exists(), "missing branded social preview"
+assert (ROOT / "assets" / "punto-cafe-mark.png").exists(), "missing text-free Punto Café mark"
 
 print("Static checks passed for Punto Café Lite.")

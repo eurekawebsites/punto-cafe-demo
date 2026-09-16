@@ -404,7 +404,7 @@
       background: var(--cream);
       box-shadow: 0 6px 18px rgba(25,4,10,.24);
     }
-    .side-brand-mark img { position: absolute; top: -3px; left: -8px; width: 68px; height: 68px; max-width: none; object-fit: contain; }
+    .side-brand-mark img { position: absolute; inset: 5px; width: calc(100% - 10px); height: calc(100% - 10px); object-fit: contain; }
     .side-brand strong { display: block; font-family: Georgia, serif; font-size: 1.08rem; }
     .side-brand span { display: block; color: var(--rose-soft); font-size: .74rem; }
     .side-profile {
@@ -454,7 +454,7 @@
     }
     .side-action:hover { background: rgba(255,255,255,.08); }
     .side-action.primary { border-color: transparent; color: var(--wine-deep); background: var(--rose); }
-    .main { min-width: 0; background: var(--paper); }
+    .main { min-width: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--paper); }
     .topbar {
       min-height: 72px;
       display: flex;
@@ -473,7 +473,7 @@
     .top-actions { display: flex; align-items: center; gap: .65rem; }
     .sim-badge { padding: .42rem .65rem; border: 1px solid rgba(110,38,55,.18); border-radius: 999px; color: var(--wine); background: var(--cream); font-size: .76rem; font-weight: 800; }
     .mobile-menu { display: none; }
-    .content { padding: clamp(1rem, 3vw, 2rem); }
+    .content { flex: 1; padding: clamp(1rem, 3vw, 2rem); }
     .page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
     .page-head h1 { margin: 0; color: var(--wine-deep); font-family: Georgia, serif; font-size: clamp(1.7rem, 3vw, 2.25rem); }
     .page-head p { margin: .25rem 0 0; color: var(--muted); }
@@ -577,7 +577,7 @@
     .customer-mode .nav-btn.active { color: #fff; background: #5f5663; }
     .admin-mode .sidebar { color: #f7f4f7; background: linear-gradient(180deg, #47404a 0%, #342f37 100%); }
     .admin-mode .side-brand-mark { width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: #f7f4f0; box-shadow: none; }
-    .admin-mode .side-brand-mark img { top: -3px; left: -7px; width: 59px; height: 59px; }
+    .admin-mode .side-brand-mark img { inset: 5px; width: calc(100% - 10px); height: calc(100% - 10px); }
     .admin-mode .side-brand strong { font-family: var(--brand-heading); font-size: 1.2rem; font-weight: 500; }
     .admin-mode .side-brand span, .admin-mode .side-profile span { color: #cfc5d2; }
     .admin-mode .side-profile { border-radius: 3px; background: rgba(255,255,255,.045); }
@@ -726,35 +726,19 @@
     }
   
     .eureka-credit {
-      position: fixed;
-      right: max(12px, env(safe-area-inset-right));
-      bottom: max(12px, env(safe-area-inset-bottom));
-      z-index: 120;
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 8px 11px;
-      border: 1px solid rgba(255,255,255,.55);
-      border-radius: 999px;
-      color: #fff;
-      background: rgba(63,57,66,.92);
-      box-shadow: 0 8px 24px rgba(45,41,48,.18);
+      color: inherit;
       font-size: 12px;
       font-weight: 800;
       text-decoration: none;
-      backdrop-filter: blur(10px);
     }
-    .eureka-credit img { width: 20px; height: 20px; }
-    @media (max-width: 860px) {
-      body:has(#app:not(.hidden)) .eureka-credit { bottom: max(82px, calc(env(safe-area-inset-bottom) + 72px)); }
-    }
+    .eureka-credit img { width: 18px; height: 18px; }
+    .app-footer { display: flex; justify-content: center; padding: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); background: #f5f1ec; }
   </style>
 </head>
 <body>
-  <a id="eurekaCredit" class="eureka-credit" href="https://eurekawebsites.tech" target="_blank" rel="noopener" aria-label="Powered by Eureka Tech">
-    <img src="https://eurekawebsites.tech/eureka-tech-favicon-32.png?v=20260912" alt=""> Powered by Eureka Tech
-  </a>
-
   <svg aria-hidden="true" width="0" height="0" style="position:absolute">
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></symbol>
@@ -876,7 +860,7 @@
     <footer class="landing-footer">
       <p>Río Nazas 100<br>Ciudad de México</p>
       <a class="landing-wordmark" href="#inicio">mignon<small>pâtisserie</small></a>
-      <p><a href="./guide.html">Guía del demo</a> · <a href="./quote.html">Alcance y precio</a><br>Sitio de muestra · Fotografías conceptuales</p>
+      <p><a href="./guide.html">Guía del demo</a> · <a href="./quote.html">Alcance y precio</a><br>Sitio de muestra · Fotografías conceptuales<br><a class="eureka-credit" href="https://eurekawebsites.tech" target="_blank" rel="noopener"><img src="https://eurekawebsites.tech/eureka-tech-favicon-32.png?v=20260912" alt=""> Powered by Eureka Websites</a></p>
     </footer>
   </section>
 
@@ -884,7 +868,7 @@
     <div class="app-shell">
       <aside class="sidebar">
         <div class="side-brand">
-          <span class="side-brand-mark"><img src="./assets/punto-cafe-icon.png" alt=""></span>
+          <span class="side-brand-mark"><img src="./assets/punto-cafe-mark.png" alt=""></span>
           <div><strong id="sideBrandName">Punto Café Lite</strong><span id="sideBrandSubtitle">Administración</span></div>
         </div>
         <div id="sideProfile" class="side-profile"></div>
@@ -909,6 +893,7 @@
           </div>
         </header>
         <div id="content" class="content"></div>
+        <footer class="app-footer"><a class="eureka-credit" href="https://eurekawebsites.tech" target="_blank" rel="noopener"><img src="https://eurekawebsites.tech/eureka-tech-favicon-32.png?v=20260912" alt=""> Powered by Eureka Websites</a></footer>
       </main>
     </div>
     <nav id="mobileNav" class="mobile-nav" aria-label="Navegación móvil"></nav>
