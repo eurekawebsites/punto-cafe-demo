@@ -49,7 +49,7 @@ for required in (
     assert required in index, f"index.html: missing required flow marker {required!r}"
 
 quote = (ROOT / "quote.html").read_text(encoding="utf-8")
-for required in ("$6,900 MXN", "$590 MXN", "$1,490 MXN", "Uber Direct", "WhatsApp Business API", "Formulario de contacto", "Redes sociales", "SEO técnico local"):
+for required in ("$6,900 MXN", "$590 MXN", "$1,490 MXN", "Uber Direct", "WhatsApp Business API", "Formulario de contacto", "redes sociales", "SEO técnico básico", "catálogo completo", "Punto Café Standard", "Se cotizan por separado"):
     assert required in quote, f"quote.html: missing commercial marker {required!r}"
 
 print("Static checks passed for Punto Café Lite.")

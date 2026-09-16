@@ -16,7 +16,8 @@ site does not display Punto Café Lite branding. It also includes an expandable 
 transfer or cash selection, order management, product availability, and
 WhatsApp-assisted customer messages. The public site includes standard business
 content, a contact form, links to every social profile supplied by the client,
-and basic technical/local SEO. It deliberately excludes POS, cash drawer,
+and basic technical/local SEO. Launch imports the client's complete catalog from
+one organized Excel/CSV or equivalent file with matching images. Lite deliberately excludes POS, cash drawer,
 suppliers, automated WhatsApp Business API messaging, card processing, and
 Uber Direct from the base package.
 

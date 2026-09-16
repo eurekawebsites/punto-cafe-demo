@@ -28,14 +28,17 @@ The sales package also contains a quick guide and a scope/pricing page.
 - Implementation: $6,900 MXN once.
 - Service: $590 MXN/month from publication.
 - Alternative: $1,490 MXN/month with a 12-month minimum and no setup payment.
-- Launch includes configuration, up to 10 initial products, one revision round,
-  deployment, and a quick guide.
+- Launch includes configuration, import of the complete catalog supplied in one
+  organized Excel/CSV or equivalent file, one revision round, deployment, and a
+  quick guide. The client also supplies the matching product images in one folder.
 
 ## Explicit exclusions
 
-Card processing, Uber Direct, automated WhatsApp Business API messages, point of
-sale, cash closing, suppliers, and purchasing are not part of the base package.
-They require separate scope and pricing.
+Point of sale, cash closing, numeric inventory, ingredient tracking, suppliers,
+purchasing, and advanced operational reports belong to Punto Café Standard and
+require a version upgrade. Card processing, Uber Direct, automated WhatsApp
+Business API messages, and other third-party connections are integrations quoted
+separately; provider fees remain independent.
 
 ## Validation
 
