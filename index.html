@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#6E2637">
   <meta name="robots" content="noindex,nofollow">
-  <title>Punto Café — Demo interactiva</title>
-  <meta name="description" content="Demo interactiva de Punto Café para conocer la experiencia del cliente, el punto de venta y la administración.">
+  <title>Punto Café Lite — Demo interactiva</title>
+  <meta name="description" content="Demo de pedidos en línea, administración y seguimiento por WhatsApp para negocios de alimentos.">
   <link rel="icon" type="image/png" href="./assets/punto-cafe-icon.png?v=1">
   <link rel="shortcut icon" type="image/png" href="./assets/punto-cafe-icon.png?v=1">
   <link rel="apple-touch-icon" href="./assets/punto-cafe-icon.png?v=1">
@@ -105,7 +105,10 @@
       white-space: nowrap;
     }
     .gate-intro { margin: 0 0 1rem; font-weight: 700; }
-    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .gate-links { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1rem; }
+    .gate-link { padding: .65rem .9rem; border: 1px solid var(--line); border-radius: 12px; color: var(--wine); background: #fff; font-size: .82rem; font-weight: 850; text-decoration: none; }
+    .gate-link:hover { border-color: var(--rose); background: #fff8f5; }
     .role-card {
       min-height: 190px;
       padding: 1.25rem;
@@ -512,9 +515,9 @@
       <div class="gate-brand">
         <img class="gate-logo" src="./assets/punto-cafe-logo.png" alt="Punto Café">
         <div>
-          <p class="eyebrow">Demo interactiva</p>
-          <h1 class="serif">Punto Café</h1>
-          <p>Todo tu café en un solo punto.</p>
+          <p class="eyebrow">Pedidos en línea para negocios de alimentos</p>
+          <h1 class="serif">Punto Café Lite</h1>
+          <p>Catálogo, pedidos y seguimiento por WhatsApp en un solo lugar.</p>
         </div>
         <span class="demo-pill">Datos de muestra</span>
       </div>
@@ -523,18 +526,17 @@
         <button class="role-card" data-role="customer">
           <span class="role-icon"><svg class="icon"><use href="#i-user"/></svg></span>
           <span class="role-title">Cliente <svg class="icon"><use href="#i-arrow"/></svg></span>
-          <p>Explora el menú, arma un pedido y simula el pago en línea.</p>
-        </button>
-        <button class="role-card" data-role="staff">
-          <span class="role-icon"><svg class="icon"><use href="#i-store"/></svg></span>
-          <span class="role-title">Personal de cafetería <svg class="icon"><use href="#i-arrow"/></svg></span>
-          <p>Usa el punto de venta, atiende pedidos y realiza el corte de caja.</p>
+          <p>Explora el catálogo, programa la entrega y elige transferencia o efectivo.</p>
         </button>
         <button class="role-card" data-role="admin">
           <span class="role-icon"><svg class="icon"><use href="#i-chart"/></svg></span>
           <span class="role-title">Administración <svg class="icon"><use href="#i-arrow"/></svg></span>
-          <p>Revisa ventas, productos, proveedores, compras y reportes.</p>
+          <p>Gestiona pedidos, productos, existencias y mensajes de WhatsApp.</p>
         </button>
+      </div>
+      <div class="gate-links">
+        <a class="gate-link" href="./guide.html">Ver guía rápida</a>
+        <a class="gate-link" href="./quote.html">Ver alcance y precio</a>
       </div>
       <p class="gate-note"><svg class="icon"><use href="#i-info"/></svg> No necesitas usuario ni contraseña. Todo lo que hagas aquí es una simulación segura.</p>
     </div>
@@ -545,12 +547,14 @@
       <aside class="sidebar">
         <div class="side-brand">
           <img src="./assets/punto-cafe-icon.png" alt="">
-          <div><strong>Punto Café</strong><span>Demo interactiva</span></div>
+          <div><strong>Punto Café Lite</strong><span>Demo interactiva</span></div>
         </div>
         <div id="sideProfile" class="side-profile"></div>
         <p class="nav-label">Navegación</p>
         <nav id="sideNav" class="side-nav" aria-label="Secciones"></nav>
         <div class="side-actions">
+          <a class="side-action" href="./guide.html" style="text-decoration:none;"><svg class="icon"><use href="#i-info"/></svg> Guía rápida</a>
+          <a class="side-action" href="./quote.html" style="text-decoration:none;"><svg class="icon"><use href="#i-check"/></svg> Alcance y precio</a>
           <button class="side-action" data-action="reset"><svg class="icon"><use href="#i-reset"/></svg> Reiniciar demo</button>
           <button class="side-action primary" data-action="switch"><svg class="icon"><use href="#i-switch"/></svg> Cambiar perfil</button>
         </div>
@@ -592,16 +596,15 @@
       ];
 
       const INITIAL_ORDERS = [
-        { id: 1042, time: "12:18", customer: "Mariana R.", channel: "En línea", total: 175, status: "Preparando" },
-        { id: 1041, time: "12:04", customer: "Mesa 4", channel: "Punto de venta", total: 226, status: "Listo" },
-        { id: 1040, time: "11:51", customer: "Luis G.", channel: "En línea", total: 130, status: "Entregado" },
-        { id: 1039, time: "11:33", customer: "Mostrador", channel: "Punto de venta", total: 96, status: "Entregado" }
+        { id: 1042, time: "Mañana · 12:30", customer: "Mariana R.", phone: "5512345678", channel: "Entrega", total: 175, status: "Preparando", payment: "Transferencia" },
+        { id: 1041, time: "Mañana · 11:00", customer: "Sofía M.", phone: "5587654321", channel: "Recoger", total: 226, status: "Listo", payment: "Efectivo" },
+        { id: 1040, time: "Hoy · 16:00", customer: "Luis G.", phone: "5534567890", channel: "Entrega", total: 130, status: "Entregado", payment: "Transferencia" },
+        { id: 1039, time: "Mañana · 09:30", customer: "Ana P.", phone: "5556789012", channel: "Recoger", total: 96, status: "Pendiente de pago", payment: "Transferencia" }
       ];
 
       const ROLE_INFO = {
         customer: { name: "Cliente", short: "CL", detail: "Pedido en línea", start: "menu" },
-        staff: { name: "Personal de cafetería", short: "PC", detail: "Ventas y operación", start: "pos" },
-        admin: { name: "Administración", short: "AD", detail: "Control del negocio", start: "dashboard" }
+        admin: { name: "Administración", short: "AD", detail: "Pedidos y catálogo", start: "dashboard" }
       };
 
       const NAV = {
@@ -609,18 +612,10 @@
           ["menu", "Menú", "i-home"],
           ["my-order", "Mi pedido", "i-cart"]
         ],
-        staff: [
-          ["pos", "Punto de venta", "i-store"],
-          ["orders", "Pedidos", "i-orders"],
-          ["cash", "Caja", "i-cash"]
-        ],
         admin: [
           ["dashboard", "Resumen", "i-home"],
           ["orders", "Pedidos", "i-orders"],
-          ["products", "Productos", "i-box"],
-          ["suppliers", "Proveedores", "i-truck"],
-          ["cash", "Caja", "i-cash"],
-          ["reports", "Reportes", "i-chart"]
+          ["products", "Productos", "i-box"]
         ]
       };
 
@@ -633,7 +628,7 @@
           cart: {},
           ticket: {},
           delivery: "pickup",
-          payment: "Tarjeta",
+          payment: "Transferencia",
           orders: INITIAL_ORDERS.map(o => ({ ...o })),
           products: PRODUCTS.map((p, i) => ({ ...p, active: i !== 5, stock: [18, 35, 12, 9, 7, 0, 8, 6, 15][i] })),
           suppliers: [
@@ -653,7 +648,8 @@
           counted: "",
           cashOpen: true,
           productCategory: "Todos",
-          lastCustomerOrder: null
+          lastCustomerOrder: null,
+          customer: { name: "", phone: "", email: "", date: "", time: "" }
         };
       }
 
@@ -717,21 +713,16 @@
 
       function renderView() {
         const titleMap = {
-          menu: "Menú y pedido", "my-order": "Mi pedido", pos: "Punto de venta",
-          orders: "Pedidos", cash: "Caja", dashboard: "Resumen del negocio",
-          products: "Productos", suppliers: "Proveedores", reports: "Reportes"
+          menu: "Catálogo y pedido", "my-order": "Mi pedido",
+          orders: "Pedidos", dashboard: "Resumen del negocio", products: "Productos"
         };
         document.getElementById("topTitle").textContent = titleMap[currentView] || "Punto Café";
         const renderers = {
           menu: renderMenu,
           "my-order": renderMyOrder,
-          pos: renderPOS,
           orders: renderOrders,
-          cash: renderCash,
           dashboard: renderDashboard,
-          products: renderProducts,
-          suppliers: renderSuppliers,
-          reports: renderReports
+          products: renderProducts
         };
         document.getElementById("content").innerHTML = renderers[currentView]();
       }
@@ -744,7 +735,7 @@
         const cats = ["Todos", "Calientes", "Fríos", "Alimentos"];
         const shown = state.products.filter(p => p.active && (state.productCategory === "Todos" || p.cat === state.productCategory));
         return `
-          ${pageHead("Haz tu pedido", "Elige tus favoritos y revisa el total antes de simular el pago.")}
+          ${pageHead("Haz tu pedido", "Elige tus productos y prográmalos con al menos un día de anticipación.")}
           <div class="customer-layout">
             <section>
               <div class="category-row">${cats.map(c => `<button class="chip ${state.productCategory === c ? "active" : ""}" data-category="${c}">${c}</button>`).join("")}</div>
@@ -788,29 +779,30 @@
                 <div class="total-line"><span>Entrega</span><b>${delivery ? money(delivery) : "Sin costo"}</b></div>
                 <div class="total-line grand"><span>Total</span><span>${money(total)}</span></div>
               </div>
-              <button class="btn primary" style="width:100%;margin-top:.85rem" data-action="checkout" ${items.length ? "" : "disabled"}>${icon("i-check")} Simular pago</button>
-              <p class="pay-note">Demostración únicamente. No se realizará ningún cobro.</p>
+              <button class="btn primary" style="width:100%;margin-top:.85rem" data-action="checkout" ${items.length ? "" : "disabled"}>${icon("i-check")} Continuar pedido</button>
+              <p class="pay-note">El pedido se registra primero; la transferencia se confirma por WhatsApp.</p>
             </div>
           </aside>`;
       }
 
       function renderMyOrder() {
         const order = state.lastCustomerOrder;
-        if (!order) return `${pageHead("Mi pedido", "Aquí aparecerá el seguimiento de tu pedido de muestra.")}<div class="panel"><div class="empty">Todavía no has realizado un pedido. <button class="btn small" data-view="menu" style="margin-left:.5rem">Ver menú</button></div></div>`;
+        if (!order) return `${pageHead("Mi pedido", "Aquí aparecerá el seguimiento de tu pedido de muestra.")}<div class="panel"><div class="empty">Todavía no has realizado un pedido. <button class="btn small" data-view="menu" style="margin-left:.5rem">Ver catálogo</button></div></div>`;
         return `
           ${pageHead("Pedido #${order.id}", "Tu pedido de muestra fue recibido correctamente.")}
           <div class="grid-2">
-            <section class="panel"><div class="panel-head"><h3>Seguimiento</h3><span class="status amber">Preparando</span></div><div class="panel-body">
+            <section class="panel"><div class="panel-head"><h3>Seguimiento</h3><span class="status amber">${order.status}</span></div><div class="panel-body">
               <div style="display:grid;gap:1rem">
-                <div><strong>Pedido recibido</strong><p style="margin:.2rem 0;color:var(--muted)">La cafetería recibió los productos seleccionados.</p></div>
-                <div><strong>Preparando ahora</strong><p style="margin:.2rem 0;color:var(--muted)">Tiempo estimado: 12–18 minutos.</p></div>
-                <div style="opacity:.48"><strong>${state.delivery === "delivery" ? "En camino" : "Listo para recoger"}</strong></div>
+                <div><strong>Pedido recibido</strong><p style="margin:.2rem 0;color:var(--muted)">El negocio recibió los productos seleccionados.</p></div>
+                <div><strong>Programado</strong><p style="margin:.2rem 0;color:var(--muted)">${order.schedule} · ${order.fulfillment}</p></div>
+                <div style="opacity:.55"><strong>Recibirás actualizaciones por WhatsApp</strong></div>
               </div>
             </div></section>
             <aside class="panel"><div class="panel-head"><h3>Resumen</h3></div><div class="panel-body">
               <div class="total-line"><span>Forma de entrega</span><b>${state.delivery === "delivery" ? "Entrega" : "Recoger"}</b></div>
+              <div class="total-line"><span>Pago</span><b>${order.payment}</b></div>
               <div class="total-line grand" style="margin-top:.8rem"><span>Total</span><span>${money(order.total)}</span></div>
-              <p class="pay-note">Pago simulado · no hubo cargo real</p>
+              <p class="pay-note">Demostración · no se registró un pago real</p>
             </div></aside>
           </div>`;
       }
@@ -837,12 +829,12 @@
 
       function renderOrders() {
         return `
-          ${pageHead("Pedidos", currentRole === "customer" ? "Seguimiento de tu pedido." : "Atiende pedidos del mostrador y del sitio en un solo lugar.")}
+          ${pageHead("Pedidos", "Atiende los pedidos programados y avisa cada cambio por WhatsApp.")}
           <section class="panel">
-            <div class="panel-head"><h3>Pedidos de hoy</h3><span class="status green">${state.orders.filter(o=>o.status!=="Entregado").length} activos</span></div>
+            <div class="panel-head"><h3>Pedidos próximos</h3><span class="status green">${state.orders.filter(o=>o.status!=="Entregado").length} activos</span></div>
             <div class="table-wrap"><table>
-              <thead><tr><th>Pedido</th><th>Hora</th><th>Cliente</th><th>Canal</th><th>Total</th><th>Estado</th><th></th></tr></thead>
-              <tbody>${state.orders.map(o => `<tr><td><strong>#${o.id}</strong></td><td>${o.time}</td><td>${o.customer}</td><td>${o.channel}</td><td>${money(o.total)}</td><td><span class="status ${o.status==="Entregado"?"green":o.status==="Listo"?"wine":"amber"}">${o.status}</span></td><td>${o.status!=="Entregado" ? `<button class="btn small" data-advance-order="${o.id}">${o.status==="Preparando"?"Marcar listo":"Entregar"}</button>` : ""}</td></tr>`).join("")}</tbody>
+              <thead><tr><th>Pedido</th><th>Programado</th><th>Cliente</th><th>Entrega</th><th>Pago</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead>
+              <tbody>${state.orders.map(o => `<tr><td><strong>#${o.id}</strong></td><td>${o.time}</td><td>${o.customer}<br><span style="color:var(--muted);font-size:.72rem">${o.phone||""}</span></td><td>${o.channel}</td><td>${o.payment||"—"}</td><td>${money(o.total)}</td><td><span class="status ${o.status==="Entregado"?"green":o.status==="Listo"?"wine":"amber"}">${o.status}</span></td><td><div class="toolbar"><button class="btn small" data-whatsapp-order="${o.id}">WhatsApp</button>${o.status!=="Entregado" ? `<button class="btn small" data-advance-order="${o.id}">${nextStatusLabel(o.status)}</button>` : ""}</div></td></tr>`).join("")}</tbody>
             </table></div>
           </section>`;
       }
@@ -874,13 +866,16 @@
       }
 
       function renderDashboard() {
+        const active = state.orders.filter(o=>o.status!=="Entregado").length;
+        const pending = state.orders.filter(o=>o.status==="Pendiente de pago").length;
+        const revenue = state.orders.filter(o=>o.status!=="Pendiente de pago").reduce((sum,o)=>sum+o.total,0);
         return `
-          ${pageHead("Resumen del negocio", "Así se vería el día de una cafetería desde administración.")}
+          ${pageHead("Resumen del negocio", "Pedidos en línea, pagos y entregas desde un solo panel.")}
           <div class="metric-grid">
-            <div class="metric"><span class="label">Ventas hoy</span><div class="value">${money(5680)}</div><span class="detail">42 órdenes pagadas</span><span class="trend">+12% vs. ayer</span></div>
-            <div class="metric"><span class="label">Órdenes hoy</span><div class="value">42</div><span class="detail">3 en proceso</span><span class="trend">Hora pico 11:00</span></div>
-            <div class="metric"><span class="label">Ticket promedio</span><div class="value">${money(135)}</div><span class="detail">Incluye mostrador y pedidos web</span></div>
-            <div class="metric"><span class="label">En línea</span><div class="value">11</div><span class="detail">6 recoger · 5 entrega</span></div>
+            <div class="metric"><span class="label">Pedidos activos</span><div class="value">${active}</div><span class="detail">Programados para próximos días</span></div>
+            <div class="metric"><span class="label">Pendientes de pago</span><div class="value">${pending}</div><span class="detail">Comprobante por confirmar</span></div>
+            <div class="metric"><span class="label">Ventas confirmadas</span><div class="value">${money(revenue)}</div><span class="detail">Datos de demostración</span></div>
+            <div class="metric"><span class="label">Catálogo activo</span><div class="value">${state.products.filter(p=>p.active).length}</div><span class="detail">Productos visibles en línea</span></div>
           </div>
           <div class="grid-2">
             <section class="panel"><div class="panel-head"><h3>Ventas de la semana</h3><span class="status green">Semana actual</span></div><div class="panel-body">
@@ -894,7 +889,7 @@
 
       function renderProducts() {
         return `
-          ${pageHead("Productos", "Controla qué aparece disponible en el punto de venta y el menú en línea.", `<button class="btn rose" data-action="add-product">${icon("i-plus")} Agregar producto</button>`)}
+          ${pageHead("Productos", "Agrega productos y controla qué aparece disponible en el catálogo en línea.", `<button class="btn rose" data-action="add-product">${icon("i-plus")} Agregar producto</button>`)}
           <section class="panel"><div class="table-wrap"><table>
             <thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Existencia</th><th>Disponible</th></tr></thead>
             <tbody>${state.products.map(p=>`<tr><td><strong>${p.name}</strong></td><td>${p.cat}</td><td>${money(p.price)}</td><td><span class="status ${p.stock===0?"red":p.stock<8?"amber":"green"}">${p.stock===0?"Agotado":p.stock+" disponibles"}</span></td><td><button class="toggle ${p.active?"on":""}" data-toggle-product="${p.id}" aria-label="${p.active?"Desactivar":"Activar"} ${p.name}"></button></td></tr>`).join("")}</tbody>
@@ -933,15 +928,86 @@
       }
 
       function checkout() {
+        if (!cartEntries().length) return;
+        const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0,10);
+        modal("Programa tu pedido", `
+          <div class="form-grid">
+            <label>Nombre completo<input id="checkoutName" autocomplete="name" placeholder="Tu nombre"></label>
+            <label>WhatsApp<input id="checkoutPhone" inputmode="tel" autocomplete="tel" placeholder="55 0000 0000"></label>
+            <label>Correo<input id="checkoutEmail" type="email" autocomplete="email" placeholder="nombre@correo.com"></label>
+            <label>Fecha<input id="checkoutDate" type="date" min="${tomorrow}" value="${tomorrow}"></label>
+            <label>Horario<select id="checkoutTime"><option>09:00–11:00</option><option>11:00–13:00</option><option>13:00–15:00</option><option>15:00–17:00</option><option>17:00–19:00</option></select></label>
+            <label>Pago<select id="checkoutPayment"><option>Transferencia</option><option>Efectivo</option></select></label>
+          </div>
+          ${state.delivery === "delivery" ? `<label style="margin-top:.85rem">Dirección de entrega<input id="checkoutAddress" placeholder="Calle, número, colonia y referencias"></label>` : `<div class="cash-summary">Recogerás tu pedido en el establecimiento.</div>`}
+          <div class="cash-summary"><strong>Transferencia:</strong> el pedido queda pendiente hasta enviar el comprobante por WhatsApp.<br><strong>Efectivo:</strong> se paga al recoger o recibir, según la configuración del negocio.</div>
+        `, `<button class="btn" data-modal-close>Cancelar</button><button class="btn primary" data-confirm-order>Confirmar pedido</button>`);
+      }
+
+      function confirmOrder() {
+        const name = document.getElementById("checkoutName")?.value.trim();
+        const phone = document.getElementById("checkoutPhone")?.value.trim();
+        const email = document.getElementById("checkoutEmail")?.value.trim();
+        const date = document.getElementById("checkoutDate")?.value;
+        const time = document.getElementById("checkoutTime")?.value;
+        const payment = document.getElementById("checkoutPayment")?.value;
+        const address = document.getElementById("checkoutAddress")?.value.trim() || "Recoger en tienda";
+        if (!name || !phone || !email || !date || !time || (state.delivery === "delivery" && !document.getElementById("checkoutAddress")?.value.trim())) {
+          return toast("Faltan datos", "Completa contacto, fecha, horario y entrega.");
+        }
         const items = cartEntries();
-        if (!items.length) return;
-        const subtotal = items.reduce((s,i)=>s+i.subtotal,0);
+        const subtotal = items.reduce((sum,item)=>sum+item.subtotal,0);
         const total = subtotal + (state.delivery === "delivery" ? 35 : 0);
         const id = Math.max(...state.orders.map(o=>o.id)) + 1;
-        state.lastCustomerOrder = { id, total };
-        state.orders.unshift({ id, time: "Ahora", customer: "Cliente demo", channel: "En línea", total, status: "Preparando" });
+        const fulfillment = state.delivery === "delivery" ? "Entrega a domicilio" : "Recoger en tienda";
+        const status = payment === "Transferencia" ? "Pendiente de pago" : "Confirmado";
+        const schedule = `${formatDate(date)} · ${time}`;
+        const order = { id, total, items, customer:name, phone, email, address, payment, fulfillment, schedule, time:schedule, channel:state.delivery === "delivery" ? "Entrega" : "Recoger", status };
+        state.lastCustomerOrder = order;
+        state.orders.unshift(order);
         state.cart = {};
-        modal("Pago simulado", `<div style="display:grid;place-items:center;text-align:center;padding:1rem"><span class="role-icon" style="background:var(--green)">${icon("i-check")}</span><h3>Pedido #${id} recibido</h3><p>No se realizó ningún cobro. Puedes seguir el pedido desde “Mi pedido”.</p></div>`, `<button class="btn primary" data-modal-close data-view-after="my-order">Ver mi pedido</button>`);
+        closeModal();
+        const paymentContent = payment === "Transferencia"
+          ? `<div class="cash-summary"><strong>Datos de transferencia configurados por el negocio</strong><br>Banco: Banco de ejemplo<br>CLABE: •••• •••• •••• 4821<br>Referencia: Pedido ${id}</div><p>Después envía tu comprobante por WhatsApp para confirmar el pedido.</p>`
+          : `<div class="cash-summary"><strong>Pago en efectivo seleccionado</strong><br>Pagarás al ${state.delivery === "delivery" ? "recibir tu pedido" : "recogerlo"}.</div>`;
+        modal("Pedido recibido", `<div style="display:grid;place-items:center;text-align:center;padding:.5rem"><span class="role-icon" style="background:var(--green)">${icon("i-check")}</span><h3>Pedido #${id}</h3><p>${schedule} · ${money(total)}</p></div>${paymentContent}`, `<button class="btn" data-modal-close data-view-after="my-order">Ver seguimiento</button><button class="btn primary" data-customer-whatsapp="${id}">${payment === "Transferencia" ? "Enviar comprobante" : "Confirmar por WhatsApp"}</button>`);
+      }
+
+      function formatDate(value) {
+        return new Intl.DateTimeFormat("es-MX", { day:"numeric", month:"short", year:"numeric", timeZone:"UTC" }).format(new Date(`${value}T12:00:00Z`));
+      }
+
+      function nextStatus(status) {
+        return ({ "Pendiente de pago":"Pago confirmado", "Confirmado":"Preparando", "Pago confirmado":"Preparando", "Preparando":"Listo", "Listo":"Entregado" })[status] || "Entregado";
+      }
+
+      function nextStatusLabel(status) {
+        return ({ "Pendiente de pago":"Confirmar pago", "Confirmado":"Preparar", "Pago confirmado":"Preparar", "Preparando":"Marcar listo", "Listo":"Entregar" })[status] || "Actualizar";
+      }
+
+      function orderMessage(order, customerInitiated = false) {
+        if (customerInitiated) {
+          return order.payment === "Transferencia"
+            ? `Hola, envío mi comprobante del pedido #${order.id} por ${money(order.total)} a nombre de ${order.customer}. Está programado para ${order.schedule}.`
+            : `Hola, confirmo mi pedido #${order.id} por ${money(order.total)} a nombre de ${order.customer}. Pagaré en efectivo. Está programado para ${order.schedule}.`;
+        }
+        const messages = {
+          "Pendiente de pago": `Hola ${order.customer}, recibimos tu pedido #${order.id}. Falta tu comprobante de transferencia para confirmarlo.`,
+          "Pago confirmado": `Hola ${order.customer}, confirmamos el pago de tu pedido #${order.id}. Está programado para ${order.schedule}.`,
+          "Confirmado": `Hola ${order.customer}, confirmamos tu pedido #${order.id} con pago en efectivo. Está programado para ${order.schedule}.`,
+          "Preparando": `Hola ${order.customer}, ya estamos preparando tu pedido #${order.id}.`,
+          "Listo": `Hola ${order.customer}, tu pedido #${order.id} ya está listo${order.channel === "Recoger" ? " para recoger" : " para salir a entrega"}.`,
+          "Entregado": `Hola ${order.customer}, gracias por tu compra. El pedido #${order.id} quedó entregado.`
+        };
+        return messages[order.status] || `Hola ${order.customer}, te escribimos sobre tu pedido #${order.id}.`;
+      }
+
+      function openWhatsApp(id, customerInitiated = false) {
+        const order = state.orders.find(o=>o.id===Number(id));
+        if (!order) return;
+        const digits = (order.phone || "").replace(/\D/g, "");
+        const destination = customerInitiated ? "" : (digits.length === 10 ? `52${digits}` : digits);
+        window.open(`https://wa.me/${destination}?text=${encodeURIComponent(orderMessage(order, customerInitiated))}`, "_blank", "noopener");
       }
 
       function chargeTicket() {
@@ -958,7 +1024,7 @@
       function advanceOrder(id) {
         const order = state.orders.find(o=>o.id===Number(id));
         if (!order) return;
-        order.status = order.status === "Preparando" ? "Listo" : "Entregado";
+        order.status = nextStatus(order.status);
         renderView();
         toast("Pedido actualizado", `#${order.id} ahora está ${order.status.toLowerCase()}.`);
       }
@@ -1001,6 +1067,18 @@
         modal(title, fields, `<button class="btn" data-modal-close>Cancelar</button><button class="btn primary" data-generic-save="${onSave}">Guardar</button>`);
       }
 
+      function saveProduct() {
+        const name = document.getElementById("productName")?.value.trim();
+        const price = Number(document.getElementById("productPrice")?.value || 0);
+        const cat = document.getElementById("productCategory")?.value;
+        const stock = Number(document.getElementById("productStock")?.value || 0);
+        if (!name || price <= 0) return toast("Faltan datos", "Agrega nombre y precio del producto.");
+        state.products.push({ id: Math.max(...state.products.map(p=>p.id)) + 1, name, price, cat, stock, active:true, art:cat === "Alimentos" ? "food" : cat === "Fríos" ? "cold" : "", desc:"Producto agregado desde administración." });
+        closeModal();
+        renderView();
+        toast("Producto agregado", `${name} ya aparece en el catálogo.`);
+      }
+
       function modal(title, body, actions) {
         document.getElementById("modalRoot").innerHTML = `<div class="modal-backdrop" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><h2 id="modalTitle">${title}</h2><p>Los cambios se guardan solamente durante esta demostración.</p>${body}<div class="modal-actions">${actions}</div></section></div>`;
       }
@@ -1026,6 +1104,9 @@
         if (button.dataset.ticketQty) return updateQty("ticket", button.dataset.ticketQty, button.dataset.delta);
         if (button.dataset.payment) { state.payment = button.dataset.payment; return renderView(); }
         if (button.dataset.advanceOrder) return advanceOrder(button.dataset.advanceOrder);
+        if (button.dataset.whatsappOrder) return openWhatsApp(button.dataset.whatsappOrder, false);
+        if (button.dataset.customerWhatsapp) { openWhatsApp(button.dataset.customerWhatsapp, true); closeModal(); return setView("my-order"); }
+        if (button.hasAttribute("data-confirm-order")) return confirmOrder();
         if (button.dataset.toggleProduct) { const p=state.products.find(x=>x.id===Number(button.dataset.toggleProduct)); p.active=!p.active; renderView(); return toast("Disponibilidad actualizada", `${p.name}: ${p.active?"disponible":"oculto"}.`); }
         if (button.dataset.payPurchase) { const p=state.purchases.find(x=>x.id===button.dataset.payPurchase); p.status="Pagada"; renderView(); return toast("Compra actualizada", `${p.id} marcada como pagada.`); }
         if (button.hasAttribute("data-modal-close")) {
@@ -1035,6 +1116,7 @@
           return;
         }
         if (button.dataset.saveExpense !== undefined) return saveExpense();
+        if (button.dataset.genericSave === "product") return saveProduct();
         if (button.dataset.genericSave) { closeModal(); return toast("Guardado en la demo", "El registro de muestra fue agregado."); }
         const action = button.dataset.action;
         if (action === "switch") return switchRole();
@@ -1045,7 +1127,7 @@
         if (action === "save-cash") return saveCash(false);
         if (action === "close-cash") return saveCash(true);
         if (action === "expense") return showExpenseModal();
-        if (action === "add-product") return genericForm("Nuevo producto", `<div class="form-grid"><label>Nombre<input placeholder="Nombre del producto"></label><label>Precio<input type="number" placeholder="0.00"></label></div><label style="margin-top:.85rem">Categoría<select><option>Calientes</option><option>Fríos</option><option>Alimentos</option></select></label>`, "product");
+        if (action === "add-product") return genericForm("Nuevo producto", `<div class="form-grid"><label>Nombre<input id="productName" placeholder="Nombre del producto"></label><label>Precio<input id="productPrice" type="number" min="1" placeholder="0.00"></label><label>Categoría<select id="productCategory"><option>Calientes</option><option>Fríos</option><option>Alimentos</option></select></label><label>Existencia<input id="productStock" type="number" min="0" value="10"></label></div>`, "product");
         if (action === "add-supplier") return genericForm("Nuevo proveedor", `<label>Nombre<input placeholder="Nombre del proveedor"></label><label style="margin-top:.85rem">Productos que provee<input placeholder="Ej. Café, leche, pan…"></label><label style="margin-top:.85rem">Teléfono / contacto<input placeholder="55 0000 0000"></label>`, "supplier");
         if (action === "purchase") return genericForm("Nueva compra", `<div class="form-grid"><label>Proveedor<select>${state.suppliers.map(s=>`<option>${s.name}</option>`).join("")}</select></label><label>Monto<input type="number" placeholder="0.00"></label></div><label style="margin-top:.85rem">Estado<select><option>Pendiente</option><option>Pagada</option></select></label>`, "purchase");
       });
