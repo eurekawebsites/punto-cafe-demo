@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4d1826"/>
+      <stop offset="1" stop-color="#7b2d43"/>
+    </linearGradient>
+    <linearGradient id="coffee" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#faede3"/>
+      <stop offset="1" stop-color="#f2c9c0"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#250a12" flood-opacity=".28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1130" cy="-40" r="250" fill="#d98b7a" opacity=".22"/>
+  <circle cx="40" cy="650" r="250" fill="#d98b7a" opacity=".14"/>
+
+  <g transform="translate(70 62)">
+    <rect width="104" height="104" rx="24" fill="#fffaf6"/>
+    <image x="12" y="12" width="80" height="80" xlink:href="punto-cafe-logo.png" preserveAspectRatio="xMidYMid meet"/>
+    <text x="128" y="43" fill="#f2c9c0" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="700" letter-spacing="3">PEDIDOS EN LÍNEA</text>
+    <text x="128" y="82" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="800">Punto Café Lite</text>
+  </g>
+
+  <text x="70" y="250" fill="#ffffff" font-family="Georgia, serif" font-size="68" font-weight="700">Tu canal propio</text>
+  <text x="70" y="326" fill="#ffffff" font-family="Georgia, serif" font-size="68" font-weight="700">de pedidos.</text>
+  <text x="72" y="382" fill="#f2c9c0" font-family="DejaVu Sans, sans-serif" font-size="27">Catálogo, pedidos programados y WhatsApp</text>
+
+  <g transform="translate(70 444)">
+    <rect width="166" height="48" rx="24" fill="#fffaf6"/>
+    <text x="83" y="31" text-anchor="middle" fill="#6e2637" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="800">MARCA BLANCA</text>
+    <rect x="180" width="186" height="48" rx="24" fill="#ffffff" opacity=".12" stroke="#ffffff" stroke-opacity=".25"/>
+    <text x="273" y="31" text-anchor="middle" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="700">SIN COMISIÓN</text>
+  </g>
+  <text x="72" y="562" fill="#ffffff" opacity=".72" font-family="DejaVu Sans, sans-serif" font-size="20">Demo interactivo · Eureka Tech</text>
+
+  <g transform="translate(720 75) rotate(2 205 240)" filter="url(#shadow)">
+    <rect width="420" height="480" rx="34" fill="#fffaf6"/>
+    <rect x="18" y="18" width="384" height="54" rx="18" fill="#ffffff" stroke="#ead9dd"/>
+    <circle cx="46" cy="45" r="6" fill="#d98b7a"/>
+    <circle cx="66" cy="45" r="6" fill="#e5b451"/>
+    <circle cx="86" cy="45" r="6" fill="#5a9b76"/>
+    <rect x="18" y="88" width="384" height="88" rx="20" fill="#6e2637"/>
+    <text x="42" y="126" fill="#ffffff" font-family="Georgia, serif" font-size="26" font-weight="700">Café Magnolia</text>
+    <text x="42" y="151" fill="#f2c9c0" font-family="DejaVu Sans, sans-serif" font-size="13">Hecho con calma, listo para ti</text>
+
+    <g transform="translate(18 194)">
+      <rect width="180" height="118" rx="18" fill="#ffffff" stroke="#ead9dd"/>
+      <rect x="14" y="14" width="68" height="58" rx="12" fill="url(#coffee)"/>
+      <text x="95" y="37" fill="#4d1826" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="800">Latte</text>
+      <text x="95" y="57" fill="#78676b" font-family="DejaVu Sans, sans-serif" font-size="12">Vainilla</text>
+      <text x="14" y="99" fill="#6e2637" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="800">$78</text>
+      <circle cx="154" cy="93" r="17" fill="#6e2637"/>
+      <text x="154" y="100" text-anchor="middle" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="22">+</text>
+    </g>
+    <g transform="translate(216 194)">
+      <rect width="186" height="118" rx="18" fill="#ffffff" stroke="#ead9dd"/>
+      <rect x="14" y="14" width="68" height="58" rx="12" fill="url(#coffee)"/>
+      <text x="95" y="37" fill="#4d1826" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="800">Cold Brew</text>
+      <text x="14" y="99" fill="#6e2637" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="800">$72</text>
+      <circle cx="158" cy="93" r="17" fill="#6e2637"/>
+      <text x="158" y="100" text-anchor="middle" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="22">+</text>
+    </g>
+    <rect x="18" y="330" width="384" height="132" rx="20" fill="#ffffff" stroke="#ead9dd"/>
+    <text x="42" y="368" fill="#4d1826" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="800">Tu pedido</text>
+    <text x="42" y="395" fill="#78676b" font-family="DejaVu Sans, sans-serif" font-size="14">2 productos · Entrega mañana</text>
+    <rect x="250" y="352" width="128" height="68" rx="18" fill="#faede3"/>
+    <text x="314" y="379" text-anchor="middle" fill="#78676b" font-family="DejaVu Sans, sans-serif" font-size="12">TOTAL</text>
+    <text x="314" y="406" text-anchor="middle" fill="#6e2637" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="900">$150</text>
+  </g>
+</svg>
