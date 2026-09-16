@@ -27,6 +27,8 @@
       --red: #b64251;
       --shadow: 0 18px 50px rgba(77, 24, 38, .14);
       --radius: 22px;
+      --brand-heading: Georgia, "Times New Roman", serif;
+      --brand-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -38,7 +40,7 @@
       background:
         radial-gradient(circle at 12% 5%, rgba(217,139,122,.24), transparent 30rem),
         linear-gradient(145deg, #fff8f2 0%, var(--cream) 58%, #f6ded7 100%);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: var(--brand-body);
       font-size: 16px;
       line-height: 1.5;
     }
@@ -50,6 +52,7 @@
     .icon { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .eyebrow { margin: 0 0 .35rem; color: var(--rose); font-size: .78rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
     .serif { font-family: Georgia, "Times New Roman", serif; }
+    .app h1, .app h2, .app h3, .role-gate h1, .role-gate h2, .role-gate h3, .serif { font-family: var(--brand-heading) !important; }
 
     /* Role gate */
     .role-gate {
@@ -531,7 +534,7 @@
         <button class="role-card" data-role="admin">
           <span class="role-icon"><svg class="icon"><use href="#i-chart"/></svg></span>
           <span class="role-title">Administración <svg class="icon"><use href="#i-arrow"/></svg></span>
-          <p>Gestiona pedidos, productos, existencias y mensajes de WhatsApp.</p>
+          <p>Gestiona pedidos, productos, disponibilidad y mensajes de WhatsApp.</p>
         </button>
       </div>
       <div class="gate-links">
@@ -539,6 +542,7 @@
         <a class="gate-link" href="./quote.html">Ver alcance y precio</a>
       </div>
       <p class="gate-note"><svg class="icon"><use href="#i-info"/></svg> No necesitas usuario ni contraseña. Todo lo que hagas aquí es una simulación segura.</p>
+      <p class="gate-note" style="margin-top:.45rem"><svg class="icon"><use href="#i-info"/></svg> Esta identidad es solo una muestra. La tienda final usa exclusivamente la marca, colores y tipografías de cada negocio.</p>
     </div>
   </section>
 
@@ -546,8 +550,8 @@
     <div class="app-shell">
       <aside class="sidebar">
         <div class="side-brand">
-          <img src="./assets/punto-cafe-icon.png" alt="">
-          <div><strong>Punto Café Lite</strong><span>Demo interactiva</span></div>
+          <span id="sideBrandLogo" class="avatar" style="width:42px;height:42px;">CM</span>
+          <div><strong id="sideBrandName">Café Magnolia</strong><span id="sideBrandSubtitle">Pedidos en línea</span></div>
         </div>
         <div id="sideProfile" class="side-profile"></div>
         <p class="nav-label">Navegación</p>
@@ -615,7 +619,8 @@
         admin: [
           ["dashboard", "Resumen", "i-home"],
           ["orders", "Pedidos", "i-orders"],
-          ["products", "Productos", "i-box"]
+          ["products", "Productos", "i-box"],
+          ["business", "Mi negocio", "i-store"]
         ]
       };
 
@@ -649,7 +654,18 @@
           cashOpen: true,
           productCategory: "Todos",
           lastCustomerOrder: null,
-          customer: { name: "", phone: "", email: "", date: "", time: "" }
+          customer: { name: "", phone: "", email: "", date: "", time: "" },
+          business: {
+            name: "Café Magnolia",
+            initials: "CM",
+            address: "Av. Reforma 123, Col. Centro, CDMX",
+            whatsapp: "55 1234 5678",
+            hours: "Lun–Sáb · 9:00 a 19:00",
+            tagline: "Hecho con calma, listo para ti",
+            primary: "#6e2637",
+            accent: "#d98b7a",
+            typography: "Clásica"
+          }
         };
       }
 
@@ -688,6 +704,10 @@
 
       function renderShell() {
         const info = ROLE_INFO[currentRole];
+        applyBrand();
+        document.getElementById("sideBrandLogo").textContent = state.business.initials;
+        document.getElementById("sideBrandName").textContent = state.business.name;
+        document.getElementById("sideBrandSubtitle").textContent = currentRole === "admin" ? "Administración" : "Pedidos en línea";
         document.getElementById("sideProfile").innerHTML = `<span class="avatar">${info.short}</span><div><strong>${info.name}</strong><span>${info.detail}</span></div>`;
         document.getElementById("topRole").textContent = info.name;
         renderNav();
@@ -714,7 +734,7 @@
       function renderView() {
         const titleMap = {
           menu: "Catálogo y pedido", "my-order": "Mi pedido",
-          orders: "Pedidos", dashboard: "Resumen del negocio", products: "Productos"
+          orders: "Pedidos", dashboard: "Resumen del negocio", products: "Productos", business: "Mi negocio"
         };
         document.getElementById("topTitle").textContent = titleMap[currentView] || "Punto Café";
         const renderers = {
@@ -722,7 +742,8 @@
           "my-order": renderMyOrder,
           orders: renderOrders,
           dashboard: renderDashboard,
-          products: renderProducts
+          products: renderProducts,
+          business: renderBusiness
         };
         document.getElementById("content").innerHTML = renderers[currentView]();
       }
@@ -735,6 +756,7 @@
         const cats = ["Todos", "Calientes", "Fríos", "Alimentos"];
         const shown = state.products.filter(p => p.active && (state.productCategory === "Todos" || p.cat === state.productCategory));
         return `
+          <div class="panel" style="margin-bottom:1rem;"><div class="panel-body" style="display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;"><span class="avatar" style="width:58px;height:58px;font-size:1rem;">${state.business.initials}</span><div><p class="eyebrow" style="margin-bottom:.15rem;">${state.business.tagline}</p><h1 style="margin:0;color:var(--wine-deep);font-family:Georgia,serif;">${state.business.name}</h1><p style="margin:.25rem 0 0;color:var(--muted);font-size:.82rem;">${state.business.address} · ${state.business.hours}</p></div></div></div>
           ${pageHead("Haz tu pedido", "Elige tus productos y prográmalos con al menos un día de anticipación.")}
           <div class="customer-layout">
             <section>
@@ -889,11 +911,71 @@
 
       function renderProducts() {
         return `
-          ${pageHead("Productos", "Agrega productos y controla qué aparece disponible en el catálogo en línea.", `<button class="btn rose" data-action="add-product">${icon("i-plus")} Agregar producto</button>`)}
+          ${pageHead("Productos", "Agrega productos y apaga temporalmente lo que esté agotado.", `<button class="btn rose" data-action="add-product">${icon("i-plus")} Agregar producto</button>`)}
           <section class="panel"><div class="table-wrap"><table>
-            <thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Existencia</th><th>Disponible</th></tr></thead>
-            <tbody>${state.products.map(p=>`<tr><td><strong>${p.name}</strong></td><td>${p.cat}</td><td>${money(p.price)}</td><td><span class="status ${p.stock===0?"red":p.stock<8?"amber":"green"}">${p.stock===0?"Agotado":p.stock+" disponibles"}</span></td><td><button class="toggle ${p.active?"on":""}" data-toggle-product="${p.id}" aria-label="${p.active?"Desactivar":"Activar"} ${p.name}"></button></td></tr>`).join("")}</tbody>
+            <thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Estado</th><th>Disponible</th></tr></thead>
+            <tbody>${state.products.map(p=>`<tr><td><strong>${p.name}</strong></td><td>${p.cat}</td><td>${money(p.price)}</td><td><span class="status ${p.active?"green":"red"}">${p.active?"Disponible":"Agotado"}</span></td><td><button class="toggle ${p.active?"on":""}" data-toggle-product="${p.id}" aria-label="${p.active?"Marcar agotado":"Marcar disponible"} ${p.name}"></button></td></tr>`).join("")}</tbody>
           </table></div></section>`;
+      }
+
+      function renderBusiness() {
+        return `
+          ${pageHead("Mi negocio", "Estos datos y el logotipo se personalizan para cada marca.")}
+          <div class="grid-2">
+            <section class="panel"><div class="panel-head"><h3>Identidad y contacto</h3></div><div class="panel-body">
+              <div class="form-grid">
+                <label>Nombre del negocio<input id="businessName" value="${state.business.name}"></label>
+                <label>Iniciales del logotipo<input id="businessInitials" maxlength="3" value="${state.business.initials}"></label>
+                <label style="grid-column:1/-1">Frase de marca<input id="businessTagline" value="${state.business.tagline}"></label>
+                <label style="grid-column:1/-1">Dirección<input id="businessAddress" value="${state.business.address}"></label>
+                <label>WhatsApp<input id="businessWhatsapp" value="${state.business.whatsapp}"></label>
+                <label>Horario<input id="businessHours" value="${state.business.hours}"></label>
+                <label>Color principal<input id="businessPrimary" type="color" value="${state.business.primary}"></label>
+                <label>Color de acento<input id="businessAccent" type="color" value="${state.business.accent}"></label>
+                <label style="grid-column:1/-1">Tipografía<select id="businessTypography"><option${state.business.typography==="Clásica"?" selected":""}>Clásica</option><option${state.business.typography==="Moderna"?" selected":""}>Moderna</option><option${state.business.typography==="Editorial"?" selected":""}>Editorial</option></select></label>
+              </div>
+              <div class="cash-summary"><strong>Logotipo final</strong><br>En la implementación se carga el archivo real del negocio. Las iniciales funcionan como vista previa segura en esta demo.</div>
+              <button class="btn primary" style="margin-top:1rem" data-action="save-business">Guardar y previsualizar</button>
+            </div></section>
+            <aside class="panel"><div class="panel-head"><h3>Vista previa</h3></div><div class="panel-body" style="text-align:center;display:grid;place-items:center;min-height:300px;">
+              <span class="avatar" style="width:88px;height:88px;font-size:1.35rem;">${state.business.initials}</span>
+              <div><h2 style="margin:.8rem 0 .25rem;">${state.business.name}</h2><p style="margin:0;color:var(--muted);">${state.business.tagline}</p></div>
+              <div style="font-size:.82rem;color:var(--muted);">${state.business.address}<br>${state.business.whatsapp}<br>${state.business.hours}</div>
+            </div></aside>
+          </div>`;
+      }
+
+      function saveBusiness() {
+        const name = document.getElementById("businessName")?.value.trim();
+        if (!name) return toast("Falta el nombre", "Agrega el nombre que verá el cliente.");
+        state.business = {
+          name,
+          initials: (document.getElementById("businessInitials")?.value.trim() || name.slice(0,2)).toUpperCase().slice(0,3),
+          tagline: document.getElementById("businessTagline")?.value.trim() || "Pedidos en línea",
+          address: document.getElementById("businessAddress")?.value.trim() || "Dirección por configurar",
+          whatsapp: document.getElementById("businessWhatsapp")?.value.trim() || "WhatsApp por configurar",
+          hours: document.getElementById("businessHours")?.value.trim() || "Horario por configurar",
+          primary: document.getElementById("businessPrimary")?.value || "#6e2637",
+          accent: document.getElementById("businessAccent")?.value || "#d98b7a",
+          typography: document.getElementById("businessTypography")?.value || "Clásica"
+        };
+        renderShell();
+        toast("Marca actualizada", "La vista previa ya usa los datos del negocio.");
+      }
+
+      function applyBrand() {
+        const fonts = {
+          "Clásica": { heading:'Georgia, "Times New Roman", serif', body:'Inter, ui-sans-serif, system-ui, sans-serif' },
+          "Moderna": { heading:'Inter, ui-sans-serif, system-ui, sans-serif', body:'Inter, ui-sans-serif, system-ui, sans-serif' },
+          "Editorial": { heading:'"Times New Roman", Times, serif', body:'Arial, ui-sans-serif, system-ui, sans-serif' }
+        };
+        const selected = fonts[state.business.typography] || fonts["Clásica"];
+        const root = document.documentElement.style;
+        root.setProperty("--wine", state.business.primary);
+        root.setProperty("--wine-deep", state.business.primary);
+        root.setProperty("--rose", state.business.accent);
+        root.setProperty("--brand-heading", selected.heading);
+        root.setProperty("--brand-body", selected.body);
       }
 
       function renderSuppliers() {
@@ -939,7 +1021,7 @@
             <label>Horario<select id="checkoutTime"><option>09:00–11:00</option><option>11:00–13:00</option><option>13:00–15:00</option><option>15:00–17:00</option><option>17:00–19:00</option></select></label>
             <label>Pago<select id="checkoutPayment"><option>Transferencia</option><option>Efectivo</option></select></label>
           </div>
-          ${state.delivery === "delivery" ? `<label style="margin-top:.85rem">Dirección de entrega<input id="checkoutAddress" placeholder="Calle, número, colonia y referencias"></label>` : `<div class="cash-summary">Recogerás tu pedido en el establecimiento.</div>`}
+          ${state.delivery === "delivery" ? `<label style="margin-top:.85rem">Dirección de entrega<input id="checkoutAddress" placeholder="Calle, número, colonia y referencias"></label>` : `<div class="cash-summary">Recogerás tu pedido en <strong>${state.business.name}</strong><br>${state.business.address}</div>`}
           <div class="cash-summary"><strong>Transferencia:</strong> el pedido queda pendiente hasta enviar el comprobante por WhatsApp.<br><strong>Efectivo:</strong> se paga al recoger o recibir, según la configuración del negocio.</div>
         `, `<button class="btn" data-modal-close>Cancelar</button><button class="btn primary" data-confirm-order>Confirmar pedido</button>`);
       }
@@ -968,7 +1050,7 @@
         state.cart = {};
         closeModal();
         const paymentContent = payment === "Transferencia"
-          ? `<div class="cash-summary"><strong>Datos de transferencia configurados por el negocio</strong><br>Banco: Banco de ejemplo<br>CLABE: •••• •••• •••• 4821<br>Referencia: Pedido ${id}</div><p>Después envía tu comprobante por WhatsApp para confirmar el pedido.</p>`
+            ? `<div class="cash-summary"><strong>Datos de transferencia de ${state.business.name}</strong><br>Banco: Banco de ejemplo<br>CLABE: •••• •••• •••• 4821<br>Referencia: Pedido ${id}</div><p>Después envía tu comprobante al WhatsApp ${state.business.whatsapp} para confirmar el pedido.</p>`
           : `<div class="cash-summary"><strong>Pago en efectivo seleccionado</strong><br>Pagarás al ${state.delivery === "delivery" ? "recibir tu pedido" : "recogerlo"}.</div>`;
         modal("Pedido recibido", `<div style="display:grid;place-items:center;text-align:center;padding:.5rem"><span class="role-icon" style="background:var(--green)">${icon("i-check")}</span><h3>Pedido #${id}</h3><p>${schedule} · ${money(total)}</p></div>${paymentContent}`, `<button class="btn" data-modal-close data-view-after="my-order">Ver seguimiento</button><button class="btn primary" data-customer-whatsapp="${id}">${payment === "Transferencia" ? "Enviar comprobante" : "Confirmar por WhatsApp"}</button>`);
       }
@@ -1005,8 +1087,9 @@
       function openWhatsApp(id, customerInitiated = false) {
         const order = state.orders.find(o=>o.id===Number(id));
         if (!order) return;
-        const digits = (order.phone || "").replace(/\D/g, "");
-        const destination = customerInitiated ? "" : (digits.length === 10 ? `52${digits}` : digits);
+        const rawPhone = customerInitiated ? state.business.whatsapp : order.phone;
+        const digits = (rawPhone || "").replace(/\D/g, "");
+        const destination = digits.length === 10 ? `52${digits}` : digits;
         window.open(`https://wa.me/${destination}?text=${encodeURIComponent(orderMessage(order, customerInitiated))}`, "_blank", "noopener");
       }
 
@@ -1071,9 +1154,9 @@
         const name = document.getElementById("productName")?.value.trim();
         const price = Number(document.getElementById("productPrice")?.value || 0);
         const cat = document.getElementById("productCategory")?.value;
-        const stock = Number(document.getElementById("productStock")?.value || 0);
+        const active = document.getElementById("productAvailability")?.value !== "Agotado";
         if (!name || price <= 0) return toast("Faltan datos", "Agrega nombre y precio del producto.");
-        state.products.push({ id: Math.max(...state.products.map(p=>p.id)) + 1, name, price, cat, stock, active:true, art:cat === "Alimentos" ? "food" : cat === "Fríos" ? "cold" : "", desc:"Producto agregado desde administración." });
+        state.products.push({ id: Math.max(...state.products.map(p=>p.id)) + 1, name, price, cat, active, art:cat === "Alimentos" ? "food" : cat === "Fríos" ? "cold" : "", desc:"Producto agregado desde administración." });
         closeModal();
         renderView();
         toast("Producto agregado", `${name} ya aparece en el catálogo.`);
@@ -1127,7 +1210,8 @@
         if (action === "save-cash") return saveCash(false);
         if (action === "close-cash") return saveCash(true);
         if (action === "expense") return showExpenseModal();
-        if (action === "add-product") return genericForm("Nuevo producto", `<div class="form-grid"><label>Nombre<input id="productName" placeholder="Nombre del producto"></label><label>Precio<input id="productPrice" type="number" min="1" placeholder="0.00"></label><label>Categoría<select id="productCategory"><option>Calientes</option><option>Fríos</option><option>Alimentos</option></select></label><label>Existencia<input id="productStock" type="number" min="0" value="10"></label></div>`, "product");
+        if (action === "save-business") return saveBusiness();
+        if (action === "add-product") return genericForm("Nuevo producto", `<div class="form-grid"><label>Nombre<input id="productName" placeholder="Nombre del producto"></label><label>Precio<input id="productPrice" type="number" min="1" placeholder="0.00"></label><label>Categoría<select id="productCategory"><option>Calientes</option><option>Fríos</option><option>Alimentos</option></select></label><label>Disponibilidad<select id="productAvailability"><option>Disponible</option><option>Agotado</option></select></label></div>`, "product");
         if (action === "add-supplier") return genericForm("Nuevo proveedor", `<label>Nombre<input placeholder="Nombre del proveedor"></label><label style="margin-top:.85rem">Productos que provee<input placeholder="Ej. Café, leche, pan…"></label><label style="margin-top:.85rem">Teléfono / contacto<input placeholder="55 0000 0000"></label>`, "supplier");
         if (action === "purchase") return genericForm("Nueva compra", `<div class="form-grid"><label>Proveedor<select>${state.suppliers.map(s=>`<option>${s.name}</option>`).join("")}</select></label><label>Monto<input type="number" placeholder="0.00"></label></div><label style="margin-top:.85rem">Estado<select><option>Pendiente</option><option>Pagada</option></select></label>`, "purchase");
       });

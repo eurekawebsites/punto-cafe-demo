@@ -38,6 +38,10 @@ for required in (
     "data-whatsapp-order",
     "Pendiente de pago",
     "Agregar producto",
+    "Mi negocio",
+    "businessAddress",
+    "businessPrimary",
+    "businessTypography",
 ):
     assert required in index, f"index.html: missing required flow marker {required!r}"
 

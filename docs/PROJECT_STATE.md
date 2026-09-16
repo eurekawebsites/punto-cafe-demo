@@ -7,11 +7,15 @@
 
 ## Current scope
 
-The demo presents two roles: customer and administration. The customer can browse
+The product is white-label: each deployment uses the client's name, logo,
+colors, typography, photography, address, hours, and WhatsApp, while Punto Café Lite remains Eureka's
+internal product name. The demo presents two roles: customer and administration. The customer can browse
 an expandable catalog, build a cart, select pickup or delivery, schedule at least
 one day ahead, choose transfer or cash, receive an order number, and open a
 prewritten WhatsApp message. Administration can review orders, advance statuses,
-open status-specific WhatsApp messages, add products, and control availability.
+open status-specific WhatsApp messages, add products, and control availability
+with a simple Available/Sold-out switch. Numeric inventory and ingredient
+tracking are intentionally excluded unless a client requests them separately.
 
 The sales package also contains a quick guide and a scope/pricing page.
 
@@ -41,4 +45,4 @@ They require separate scope and pricing.
 Publish the demo, run desktop/mobile customer and admin walkthroughs, correct any
 visual or interaction issues, then prepare the final client outreach. Before
 client configuration, confirm transfer, cash, or both; pickup/delivery rules;
-bank details; and the WhatsApp destination number.
+bank details; the WhatsApp destination number; and the final brand assets.
