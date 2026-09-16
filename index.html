@@ -280,7 +280,7 @@
       max-width: 720px;
       margin: 0;
       color: #302b32;
-      font-size: clamp(3.8rem, 7.2vw, 7.9rem);
+      font-size: clamp(3.7rem, 6.1vw, 6.9rem);
       font-weight: 400;
       letter-spacing: -.045em;
       line-height: .82;
@@ -1014,6 +1014,7 @@
         currentView = ROLE_INFO[role].start;
         document.getElementById("roleGate").classList.add("hidden");
         document.getElementById("app").classList.remove("hidden");
+        window.scrollTo(0, 0);
         renderShell();
       }
 

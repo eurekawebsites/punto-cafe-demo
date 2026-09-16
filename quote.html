@@ -11,6 +11,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./sales.css">
+  <style>
+    .quote-hero{padding:clamp(3.5rem,7vw,6.5rem) 0;background:radial-gradient(circle at 88% 12%,rgba(186,169,191,.25),transparent 30%)}
+    .quote-hero-grid{display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;gap:clamp(2rem,6vw,5rem)}
+    .quote-hero h1{font-size:clamp(3rem,6vw,5.6rem)}
+    .proposal-visual{margin:0;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);transform:rotate(.5deg)}
+    .proposal-visual img{display:block;width:100%;height:auto}
+    .proposal-visual figcaption{padding:.65rem .85rem;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+    @media(max-width:840px){.quote-hero-grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
   <a class="eureka-credit" href="https://eurekawebsites.tech" target="_blank" rel="noopener" aria-label="Powered by Eureka Tech"><img src="https://eurekawebsites.tech/eureka-tech-favicon-32.png?v=20260912" alt=""> Powered by Eureka Tech</a>
@@ -19,11 +28,9 @@
     <div class="nav-links"><a class="btn hide-mobile" href="./guide.html">Guía rápida</a><a class="btn primary" href="./">Abrir demo</a></div>
   </div></nav>
 
-  <header class="hero"><div class="wrap">
-    <p class="eyebrow">Propuesta de implementación</p>
-    <h1>Tu canal propio de pedidos, listo para crecer.</h1>
-    <p class="lead">Una tienda personalizada para captar pedidos programados, confirmar pagos y organizar la operación sin pagar comisión por cada venta.</p>
-    <div class="hero-actions"><a class="btn primary" href="#inversion">Ver inversión</a><a class="btn" href="./guide.html">Cómo funciona</a></div>
+  <header class="quote-hero"><div class="wrap quote-hero-grid">
+    <div><p class="eyebrow">Propuesta de implementación</p><h1>Tu canal propio de pedidos, listo para crecer.</h1><p class="lead">Una tienda personalizada para captar pedidos programados, confirmar pagos y organizar la operación sin pagar comisión por cada venta.</p><div class="hero-actions"><a class="btn primary" href="#inversion">Ver inversión</a><a class="btn" href="./guide.html">Cómo funciona</a></div></div>
+    <figure class="proposal-visual"><img src="./assets/guide-storefront.jpg" alt="Ejemplo de tienda personalizada para Mignon Pâtisserie"><figcaption>Ejemplo de marca blanca · Mignon Pâtisserie</figcaption></figure>
   </div></header>
 
   <main>
