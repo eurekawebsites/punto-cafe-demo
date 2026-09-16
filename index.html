@@ -264,20 +264,10 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: clamp(3.5rem, 7vw, 8rem) clamp(1.5rem, 6vw, 6rem);
+      padding: clamp(2.75rem, 5vw, 5rem) clamp(1.5rem, 6vw, 6rem);
       position: relative;
     }
-    .mignon-hero-copy::after {
-      content: "m";
-      position: absolute;
-      right: 3%;
-      bottom: -5%;
-      color: rgba(117,103,121,.07);
-      font-family: var(--brand-heading);
-      font-size: clamp(12rem, 28vw, 27rem);
-      line-height: .7;
-      pointer-events: none;
-    }
+    .mignon-hero-copy::after { display: none; }
     .mignon-kicker {
       margin: 0 0 1.5rem;
       color: #817784;
@@ -547,7 +537,7 @@
     .status.wine { color: var(--wine); background: var(--cream); }
 
     .chart { height: 215px; display: flex; align-items: end; gap: .75rem; padding: 1.25rem .25rem .25rem; border-bottom: 1px solid var(--line); }
-    .bar-col { flex: 1; min-width: 0; display: grid; gap: .4rem; justify-items: center; }
+    .bar-col { flex: 1; min-width: 0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .4rem; }
     .bar { width: min(42px, 75%); min-height: 8px; border-radius: 8px 8px 3px 3px; background: linear-gradient(180deg, var(--rose), var(--wine)); }
     .bar-col span { color: var(--muted); font-size: .72rem; }
 
@@ -583,6 +573,24 @@
     .customer-mode .product-card:nth-child(even) .product-art { background-image: url('./assets/mignon-abricot.jpg'); }
     .customer-mode .mobile-nav { background: #fbfaf7; }
     .customer-mode .nav-btn.active { color: #fff; background: #5f5663; }
+    .admin-mode .sidebar { color: #f7f4f7; background: linear-gradient(180deg, #47404a 0%, #342f37 100%); }
+    .admin-mode .side-brand img { width: 46px; height: 46px; padding: 4px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: #f7f4f0; box-shadow: none; }
+    .admin-mode .side-brand strong { font-family: var(--brand-heading); font-size: 1.2rem; font-weight: 500; }
+    .admin-mode .side-brand span, .admin-mode .side-profile span { color: #cfc5d2; }
+    .admin-mode .side-profile { border-radius: 3px; background: rgba(255,255,255,.045); }
+    .admin-mode .side-profile .avatar { border-radius: 50%; color: #49404d; background: #e7dfea; }
+    .admin-mode .nav-label { color: #bdb2c0; }
+    .admin-mode .nav-btn { border-radius: 2px; color: #e7e0e9; font-weight: 600; }
+    .admin-mode .nav-btn.active { color: #39333c; background: #eee9f0; }
+    .admin-mode .side-action { border-radius: 2px; }
+    .admin-mode .side-action.primary { color: #39333c; background: #e2d8e5; }
+    .admin-mode .main, .admin-mode .content { background: #fbfaf7; }
+    .admin-mode .topbar { background: rgba(251,250,247,.95); }
+    .admin-mode .metric, .admin-mode .panel, .admin-mode .report-card { border-radius: 4px; box-shadow: none; }
+    .admin-mode .btn, .admin-mode input, .admin-mode select { border-radius: 2px; }
+    .admin-mode .status { border-radius: 2px; }
+    .admin-mode .metric .value { color: #5f5663; font-family: var(--brand-heading); font-weight: 400; }
+    .admin-mode .toggle, .admin-mode .toggle::after { border-radius: 2px; }
     .product-info { padding: .85rem; }
     .product-info h3 { margin: 0 0 .15rem; font-size: .95rem; }
     .product-info p { min-height: 36px; margin: 0 0 .7rem; color: var(--muted); font-size: .77rem; }
@@ -726,19 +734,22 @@
       border: 1px solid rgba(255,255,255,.55);
       border-radius: 999px;
       color: #fff;
-      background: rgba(77,24,38,.9);
-      box-shadow: 0 8px 24px rgba(25,4,10,.2);
+      background: rgba(63,57,66,.92);
+      box-shadow: 0 8px 24px rgba(45,41,48,.18);
       font-size: 12px;
       font-weight: 800;
       text-decoration: none;
       backdrop-filter: blur(10px);
     }
     .eureka-credit img { width: 20px; height: 20px; }
+    @media (max-width: 860px) {
+      body:has(#app:not(.hidden)) .eureka-credit { bottom: max(82px, calc(env(safe-area-inset-bottom) + 72px)); }
+    }
   </style>
 </head>
 <body>
-  <a id="eurekaCredit" class="eureka-credit hidden" href="https://eurekawebsites.tech" target="_blank" rel="noopener" aria-label="Eureka Tech">
-    <img src="https://eurekawebsites.tech/eureka-tech-favicon-32.png?v=20260912" alt=""> Eureka Tech
+  <a id="eurekaCredit" class="eureka-credit" href="https://eurekawebsites.tech" target="_blank" rel="noopener" aria-label="Powered by Eureka Tech">
+    <img src="https://eurekawebsites.tech/eureka-tech-favicon-32.png?v=20260912" alt=""> Powered by Eureka Tech
   </a>
 
   <svg aria-hidden="true" width="0" height="0" style="position:absolute">
@@ -1003,7 +1014,6 @@
         currentView = ROLE_INFO[role].start;
         document.getElementById("roleGate").classList.add("hidden");
         document.getElementById("app").classList.remove("hidden");
-        document.getElementById("eurekaCredit").classList.toggle("hidden", role !== "admin");
         renderShell();
       }
 
@@ -1012,7 +1022,6 @@
         currentView = null;
         document.getElementById("app").classList.add("hidden");
         document.getElementById("roleGate").classList.remove("hidden");
-        document.getElementById("eurekaCredit").classList.add("hidden");
         window.scrollTo(0, 0);
       }
 
