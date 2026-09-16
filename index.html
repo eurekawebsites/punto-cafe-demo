@@ -660,6 +660,7 @@
             initials: "CM",
             address: "Av. Reforma 123, Col. Centro, CDMX",
             whatsapp: "55 1234 5678",
+            socialLinks: "Instagram · Facebook · TikTok",
             hours: "Lun–Sáb · 9:00 a 19:00",
             tagline: "Hecho con calma, listo para ti",
             primary: "#6e2637",
@@ -778,7 +779,7 @@
             <div class="panel-head"><h3>Conoce ${state.business.name}</h3><span class="status green">Sitio público</span></div>
             <div class="panel-body grid-2">
               <div><p class="eyebrow">Hecho para disfrutar sin prisa</p><h2 style="margin:.15rem 0 .55rem;font-family:var(--brand-heading);color:var(--wine-deep);">Café, alimentos y momentos especiales</h2><p style="margin:0;color:var(--muted);">Aquí puede vivir la historia del negocio, sus productos destacados, las zonas de entrega y los enlaces a todas sus redes sociales.</p></div>
-              <div><p style="margin:0 0 .75rem;"><strong>Visítanos</strong><br>${state.business.address}<br>${state.business.hours}</p><p style="margin:0 0 .85rem;color:var(--muted);">WhatsApp: ${state.business.whatsapp}<br>Instagram · Facebook · TikTok</p><button class="btn primary" data-action="contact">Formulario de contacto</button></div>
+              <div><p style="margin:0 0 .75rem;"><strong>Visítanos</strong><br>${state.business.address}<br>${state.business.hours}</p><p style="margin:0 0 .85rem;color:var(--muted);">WhatsApp: ${state.business.whatsapp}<br>${state.business.socialLinks}</p><button class="btn primary" data-action="contact">Formulario de contacto</button></div>
             </div>
           </section>`;
       }
@@ -937,6 +938,7 @@
                 <label style="grid-column:1/-1">Dirección<input id="businessAddress" value="${state.business.address}"></label>
                 <label>WhatsApp<input id="businessWhatsapp" value="${state.business.whatsapp}"></label>
                 <label>Horario<input id="businessHours" value="${state.business.hours}"></label>
+                <label style="grid-column:1/-1">Redes sociales<input id="businessSocialLinks" value="${state.business.socialLinks}" placeholder="Instagram · Facebook · TikTok · YouTube"></label>
                 <label>Color principal<input id="businessPrimary" type="color" value="${state.business.primary}"></label>
                 <label>Color de acento<input id="businessAccent" type="color" value="${state.business.accent}"></label>
                 <label style="grid-column:1/-1">Tipografía<select id="businessTypography"><option${state.business.typography==="Clásica"?" selected":""}>Clásica</option><option${state.business.typography==="Moderna"?" selected":""}>Moderna</option><option${state.business.typography==="Editorial"?" selected":""}>Editorial</option></select></label>
@@ -947,7 +949,7 @@
             <aside class="panel"><div class="panel-head"><h3>Vista previa</h3></div><div class="panel-body" style="text-align:center;display:grid;place-items:center;min-height:300px;">
               <span class="avatar" style="width:88px;height:88px;font-size:1.35rem;">${state.business.initials}</span>
               <div><h2 style="margin:.8rem 0 .25rem;">${state.business.name}</h2><p style="margin:0;color:var(--muted);">${state.business.tagline}</p></div>
-              <div style="font-size:.82rem;color:var(--muted);">${state.business.address}<br>${state.business.whatsapp}<br>${state.business.hours}</div>
+              <div style="font-size:.82rem;color:var(--muted);">${state.business.address}<br>${state.business.whatsapp}<br>${state.business.hours}<br>${state.business.socialLinks}</div>
             </div></aside>
           </div>`;
       }
@@ -961,6 +963,7 @@
           tagline: document.getElementById("businessTagline")?.value.trim() || "Pedidos en línea",
           address: document.getElementById("businessAddress")?.value.trim() || "Dirección por configurar",
           whatsapp: document.getElementById("businessWhatsapp")?.value.trim() || "WhatsApp por configurar",
+          socialLinks: document.getElementById("businessSocialLinks")?.value.trim() || "Redes sociales por configurar",
           hours: document.getElementById("businessHours")?.value.trim() || "Horario por configurar",
           primary: document.getElementById("businessPrimary")?.value || "#6e2637",
           accent: document.getElementById("businessAccent")?.value || "#d98b7a",

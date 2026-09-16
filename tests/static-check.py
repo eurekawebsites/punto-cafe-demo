@@ -42,6 +42,7 @@ for required in (
     "businessAddress",
     "businessPrimary",
     "businessTypography",
+    "businessSocialLinks",
     "Formulario de contacto",
     "Instagram · Facebook · TikTok",
 ):
