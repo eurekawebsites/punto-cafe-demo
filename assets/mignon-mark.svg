@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mignon">
+  <rect width="64" height="64" rx="32" fill="#fbfaf7"/>
+  <circle cx="32" cy="32" r="29" fill="none" stroke="#b9aebd" stroke-width="1"/>
+  <text x="32" y="43" fill="#5f5663" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-style="italic" text-anchor="middle">m</text>
+</svg>

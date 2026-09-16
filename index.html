@@ -3,49 +3,51 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#6E2637">
+  <meta name="theme-color" content="#F3EFE9">
   <meta name="robots" content="noindex,nofollow">
-  <title>Punto Café Lite | Pedidos en línea</title>
-  <meta name="description" content="El demo de una tienda personalizada para recibir pedidos programados, organizar pagos y dar seguimiento por WhatsApp.">
+  <title>Mignon Pâtisserie | Pedidos en línea</title>
+  <meta name="description" content="Pâtisserie de inspiración francesa en la Ciudad de México. Explora la colección y programa tu pedido en línea.">
   <link rel="canonical" href="https://eurekawebsites.github.io/punto-cafe-demo/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
-  <meta property="og:site_name" content="Punto Café Lite">
-  <meta property="og:title" content="Punto Café Lite | Tu canal propio de pedidos">
-  <meta property="og:description" content="Explora el demo de una tienda personalizada con catálogo, pedidos programados y seguimiento por WhatsApp.">
+  <meta property="og:site_name" content="Mignon Pâtisserie">
+  <meta property="og:title" content="Mignon Pâtisserie | Un antojo bien hecho">
+  <meta property="og:description" content="Repostería francesa, sabores de México y pedidos programados en línea.">
   <meta property="og:url" content="https://eurekawebsites.github.io/punto-cafe-demo/?v=3">
-  <meta property="og:image" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/punto-cafe-share.png?v=3">
-  <meta property="og:image:secure_url" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/punto-cafe-share.png?v=3">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:image" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/mignon-share.jpg?v=1">
+  <meta property="og:image:secure_url" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/mignon-share.jpg?v=1">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Punto Café Lite, tu canal propio de pedidos">
+  <meta property="og:image:alt" content="Mignon Pâtisserie, un antojo bien hecho">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Punto Café Lite | Tu canal propio de pedidos">
-  <meta name="twitter:description" content="Catálogo, pedidos programados y seguimiento por WhatsApp.">
-  <meta name="twitter:image" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/punto-cafe-share.png?v=3">
-  <link rel="icon" type="image/png" href="./assets/punto-cafe-icon.png?v=1">
-  <link rel="shortcut icon" type="image/png" href="./assets/punto-cafe-icon.png?v=1">
-  <link rel="apple-touch-icon" href="./assets/punto-cafe-icon.png?v=1">
+  <meta name="twitter:title" content="Mignon Pâtisserie | Un antojo bien hecho">
+  <meta name="twitter:description" content="Repostería francesa, sabores de México y pedidos programados en línea.">
+  <meta name="twitter:image" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/mignon-share.jpg?v=1">
+  <link rel="icon" type="image/svg+xml" href="./assets/mignon-mark.svg?v=1">
+  <link rel="shortcut icon" href="./assets/mignon-mark.svg?v=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --wine: #6e2637;
-      --wine-deep: #4d1826;
-      --wine-soft: #8e3f52;
-      --rose: #d98b7a;
-      --rose-soft: #f2c9c0;
-      --cream: #faede3;
-      --paper: #fffaf6;
-      --ink: #2f2024;
-      --muted: #78676b;
-      --line: rgba(110, 38, 55, .14);
+      --wine: #756779;
+      --wine-deep: #3c3540;
+      --wine-soft: #94879a;
+      --rose: #baa9bf;
+      --rose-soft: #eee9f0;
+      --cream: #f3efe9;
+      --paper: #fffdf9;
+      --ink: #29252a;
+      --muted: #746e75;
+      --line: rgba(60, 53, 64, .14);
       --green: #2f7d5c;
       --amber: #bd7a24;
       --red: #b64251;
       --shadow: 0 18px 50px rgba(77, 24, 38, .14);
       --radius: 22px;
-      --brand-heading: Georgia, "Times New Roman", serif;
-      --brand-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --brand-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --brand-body: Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -167,6 +169,217 @@
       margin: 1.2rem 0 0;
       color: var(--muted);
       font-size: .86rem;
+    }
+
+    /* Public white-label storefront — Mignon sample identity */
+    html { scroll-behavior: smooth; }
+    .role-gate {
+      display: block;
+      padding: 0;
+      color: #2d2930;
+      background: #fbfaf7;
+      overflow: visible;
+    }
+    .role-gate::before, .role-gate::after { display: none; }
+    .landing-nav {
+      min-height: 76px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 clamp(1.1rem, 4vw, 4.5rem);
+      border-bottom: 1px solid rgba(45,41,48,.1);
+      background: rgba(251,250,247,.92);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+    .landing-wordmark {
+      color: #504a55;
+      font-family: var(--brand-heading);
+      font-size: clamp(1.8rem, 3vw, 2.45rem);
+      font-weight: 400;
+      letter-spacing: .08em;
+      line-height: 1;
+      text-decoration: none;
+    }
+    .landing-wordmark small {
+      display: block;
+      margin-top: .12rem;
+      color: #908795;
+      font-family: var(--brand-body);
+      font-size: .54rem;
+      font-weight: 600;
+      letter-spacing: .26em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .landing-links { display: flex; align-items: center; justify-content: flex-start; gap: clamp(1rem, 2.5vw, 2.2rem); }
+    .landing-links a {
+      color: #625c65;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .landing-links a:hover { color: #2d2930; }
+    .landing-nav-actions { display: flex; align-items: center; justify-content: flex-end; gap: .75rem; }
+    .landing-admin {
+      border: 0;
+      color: #847b87;
+      background: transparent;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .landing-order, .landing-outline {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .75rem 1.25rem;
+      border: 1px solid #3f3942;
+      border-radius: 0;
+      color: #fff;
+      background: #3f3942;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .13em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .landing-outline { color: #3f3942; background: transparent; }
+    .landing-order:hover { background: #62596a; }
+    .landing-outline:hover { color: #fff; background: #3f3942; }
+    .mignon-hero {
+      min-height: min(760px, calc(100vh - 76px));
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(520px, 1.18fr);
+      background: #f4f0ea;
+    }
+    .mignon-hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3.5rem, 7vw, 8rem) clamp(1.5rem, 6vw, 6rem);
+      position: relative;
+    }
+    .mignon-hero-copy::after {
+      content: "m";
+      position: absolute;
+      right: 3%;
+      bottom: -5%;
+      color: rgba(117,103,121,.07);
+      font-family: var(--brand-heading);
+      font-size: clamp(12rem, 28vw, 27rem);
+      line-height: .7;
+      pointer-events: none;
+    }
+    .mignon-kicker {
+      margin: 0 0 1.5rem;
+      color: #817784;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+    .mignon-hero h1 {
+      max-width: 720px;
+      margin: 0;
+      color: #302b32;
+      font-size: clamp(3.8rem, 7.2vw, 7.9rem);
+      font-weight: 400;
+      letter-spacing: -.045em;
+      line-height: .82;
+      position: relative;
+      z-index: 1;
+    }
+    .mignon-hero h1 em { color: #8e8193; font-weight: 400; }
+    .mignon-hero-lead {
+      max-width: 520px;
+      margin: 2rem 0 2.25rem;
+      color: #69626c;
+      font-size: clamp(.96rem, 1.3vw, 1.08rem);
+      line-height: 1.85;
+      position: relative;
+      z-index: 1;
+    }
+    .mignon-actions { display: flex; flex-wrap: wrap; gap: .8rem; position: relative; z-index: 1; }
+    .mignon-hero-image { min-height: 560px; overflow: hidden; }
+    .mignon-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .landing-section { padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 5vw, 5rem); }
+    .landing-section-head { max-width: 720px; margin-bottom: clamp(2.2rem, 4vw, 4rem); }
+    .landing-section-head.center { margin-inline: auto; text-align: center; }
+    .landing-section-head h2 {
+      margin: .35rem 0 0;
+      color: #302b32;
+      font-size: clamp(2.8rem, 5.3vw, 5.2rem);
+      font-weight: 400;
+      letter-spacing: -.035em;
+      line-height: .92;
+    }
+    .landing-section-head p:not(.mignon-kicker) { color: #777079; line-height: 1.8; }
+    .collection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.6vw, 2.5rem); }
+    .collection-card { margin: 0; }
+    .collection-card img { width: 100%; aspect-ratio: 1; object-fit: cover; background: #ede8e1; }
+    .collection-card figcaption { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; padding: 1.15rem 0; border-bottom: 1px solid rgba(45,41,48,.14); }
+    .collection-card h3 { margin: 0; color: #342f36; font-size: clamp(1.55rem, 3vw, 2.35rem); font-weight: 400; }
+    .collection-card span { color: #8c838f; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; }
+    .story-band { display: grid; grid-template-columns: .9fr 1.1fr; background: #5f5663; color: #f9f7f3; }
+    .story-mark { min-height: 500px; display: grid; place-items: center; border-right: 1px solid rgba(255,255,255,.15); font-family: var(--brand-heading); font-size: clamp(12rem, 27vw, 27rem); line-height: .6; color: rgba(255,255,255,.12); }
+    .story-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(3.5rem, 8vw, 8rem); }
+    .story-copy .mignon-kicker { color: #d6cbd9; }
+    .story-copy h2 { max-width: 780px; margin: 0 0 1.5rem; font-size: clamp(2.8rem, 5vw, 5.6rem); font-weight: 400; letter-spacing: -.035em; line-height: .92; }
+    .story-copy p { max-width: 600px; margin: 0; color: #e1dbe3; line-height: 1.9; }
+    .order-steps { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(45,41,48,.14); border-bottom: 1px solid rgba(45,41,48,.14); }
+    .order-step { padding: clamp(1.5rem, 3vw, 2.7rem); border-right: 1px solid rgba(45,41,48,.14); }
+    .order-step:last-child { border-right: 0; }
+    .order-step b { display: block; margin-bottom: 2.5rem; color: #a497a8; font-family: var(--brand-heading); font-size: 2.1rem; font-weight: 400; }
+    .order-step h3 { margin: 0 0 .6rem; color: #39333b; font-size: 1.7rem; font-weight: 400; }
+    .order-step p { margin: 0; color: #7a727d; font-size: .9rem; line-height: 1.75; }
+    .contact-section { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(3rem, 8vw, 8rem); background: #efebe6; }
+    .contact-copy h2 { margin: .35rem 0 1rem; font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 400; line-height: .88; }
+    .contact-copy p { color: #746d76; line-height: 1.8; }
+    .contact-meta { display: grid; gap: .75rem; margin-top: 2rem; color: #514a53; font-size: .9rem; }
+    .contact-socials { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1.5rem; }
+    .contact-socials a { color: #5f5663; font-size: .72rem; font-weight: 600; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; }
+    .mignon-form { display: grid; gap: 1.25rem; padding: clamp(1.4rem, 4vw, 3.5rem); background: #fbfaf7; }
+    .mignon-form .form-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .mignon-form label { display: grid; gap: .45rem; color: #6f6772; font-size: .65rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+    .mignon-form input, .mignon-form textarea { width: 100%; border: 0; border-bottom: 1px solid #bdb4c0; border-radius: 0; padding: .8rem 0; color: #302b32; background: transparent; outline: 0; }
+    .mignon-form textarea { min-height: 110px; resize: vertical; }
+    .mignon-form input:focus, .mignon-form textarea:focus { border-bottom-color: #4a424d; }
+    .landing-footer { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 2rem; padding: 3rem clamp(1.2rem, 5vw, 5rem); color: #bdb4c0; background: #2e2930; }
+    .landing-footer .landing-wordmark { color: #f6f3ef; }
+    .landing-footer p { margin: 0; font-size: .72rem; line-height: 1.7; }
+    .landing-footer a { color: #d6cfd8; text-decoration: none; }
+    .landing-footer p:last-child { text-align: right; }
+
+    @media (max-width: 900px) {
+      .landing-nav { grid-template-columns: 1fr auto; min-height: 68px; }
+      .landing-links { display: none; }
+      .landing-wordmark { text-align: left; }
+      .landing-wordmark small { text-align: left; }
+      .landing-admin { display: none; }
+      .mignon-hero { grid-template-columns: 1fr; }
+      .mignon-hero-copy { min-height: 560px; }
+      .mignon-hero-image { min-height: 55vw; }
+      .story-band, .contact-section { grid-template-columns: 1fr; }
+      .story-mark { display: none; }
+    }
+    @media (max-width: 620px) {
+      .landing-order { padding-inline: .85rem; }
+      .mignon-hero-copy { min-height: 510px; }
+      .mignon-hero h1 { font-size: clamp(3.5rem, 18vw, 5.6rem); }
+      .mignon-hero-image { min-height: 72vw; }
+      .collection-grid, .order-steps, .mignon-form .form-pair { grid-template-columns: 1fr; }
+      .order-step { border-right: 0; border-bottom: 1px solid rgba(45,41,48,.14); }
+      .order-step:last-child { border-bottom: 0; }
+      .landing-footer { grid-template-columns: 1fr; align-items: start; }
+      .landing-footer p:last-child { text-align: left; }
     }
 
     /* App shell */
@@ -352,6 +565,24 @@
     .product-art.food { background: linear-gradient(145deg, #fff2d7, #e8b979); }
     .product-art.food::before { width: 96px; height: 58px; border-radius: 50%; background: #c78635; transform: rotate(-5deg); }
     .product-art.food::after { display: none; }
+    .customer-mode .sidebar { display: none; }
+    .customer-mode .app-shell { grid-template-columns: minmax(0, 1fr); }
+    .customer-mode .main { background: #fbfaf7; }
+    .customer-mode .topbar { min-height: 82px; padding-inline: clamp(1.2rem, 5vw, 5rem); background: rgba(251,250,247,.94); }
+    .customer-mode .topbar .eyebrow { color: #8f8492; }
+    .customer-mode .topbar h2 { color: #39333b; font-size: 1.8rem; font-weight: 400; }
+    .customer-mode .content { width: min(100%, 1480px); margin: 0 auto; padding: clamp(1.25rem, 4vw, 4rem); }
+    .customer-mode .panel { border-radius: 0; box-shadow: none; }
+    .customer-mode .product-grid { gap: 1.2rem; }
+    .customer-mode .product-card { border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+    .customer-mode .product-info { padding: 1rem 0 1.4rem; }
+    .customer-mode .product-info h3 { font-size: 1.55rem; font-weight: 400; }
+    .customer-mode .product-art { height: auto; aspect-ratio: 1; background-color: #eee9e3; background-position: center; background-size: cover; }
+    .customer-mode .product-art::before, .customer-mode .product-art::after { display: none; }
+    .customer-mode .product-card:nth-child(odd) .product-art { background-image: url('./assets/mignon-framboise.jpg'); }
+    .customer-mode .product-card:nth-child(even) .product-art { background-image: url('./assets/mignon-abricot.jpg'); }
+    .customer-mode .mobile-nav { background: #fbfaf7; }
+    .customer-mode .nav-btn.active { color: #fff; background: #5f5663; }
     .product-info { padding: .85rem; }
     .product-info h3 { margin: 0 0 .15rem; font-size: .95rem; }
     .product-info p { min-height: 36px; margin: 0 0 .7rem; color: var(--muted); font-size: .77rem; }
@@ -506,7 +737,7 @@
   </style>
 </head>
 <body>
-  <a class="eureka-credit" href="https://eurekawebsites.tech" target="_blank" rel="noopener" aria-label="Eureka Tech">
+  <a id="eurekaCredit" class="eureka-credit hidden" href="https://eurekawebsites.tech" target="_blank" rel="noopener" aria-label="Eureka Tech">
     <img src="https://eurekawebsites.tech/eureka-tech-favicon-32.png?v=20260912" alt=""> Eureka Tech
   </a>
 
@@ -531,44 +762,116 @@
   </svg>
 
   <section id="roleGate" class="role-gate">
-    <div class="gate-card">
-      <div class="gate-brand">
-        <img class="gate-logo" src="./assets/punto-cafe-logo.png" alt="Punto Café">
-        <div>
-          <p class="eyebrow">Pedidos en línea para negocios de alimentos</p>
-          <h1 class="serif">Punto Café Lite</h1>
-          <p>Catálogo, pedidos y seguimiento por WhatsApp en un solo lugar.</p>
+    <nav class="landing-nav" aria-label="Navegación principal">
+      <div class="landing-links">
+        <a href="#coleccion">Colección</a>
+        <a href="#historia">Nuestra historia</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <a class="landing-wordmark" href="#inicio" aria-label="Mignon, inicio">mignon<small>pâtisserie</small></a>
+      <div class="landing-nav-actions">
+        <button class="landing-admin" data-role="admin">Administración</button>
+        <button class="landing-order" data-role="customer">Hacer pedido</button>
+      </div>
+    </nav>
+
+    <main>
+      <section id="inicio" class="mignon-hero">
+        <div class="mignon-hero-copy">
+          <p class="mignon-kicker">Repostería francesa · sabores de México</p>
+          <h1>Un antojo<br><em>bien hecho.</em></h1>
+          <p class="mignon-hero-lead">Pâtisserie de inspiración francesa, creada a mano en la Ciudad de México con ingredientes de temporada y una mirada muy nuestra.</p>
+          <div class="mignon-actions">
+            <button class="landing-order" data-role="customer">Ver menú y pedir</button>
+            <a class="landing-outline" href="#contacto">Visítanos</a>
+          </div>
         </div>
-        <span class="demo-pill">Datos de muestra</span>
-      </div>
-      <p class="gate-intro">Elige qué experiencia quieres conocer:</p>
-      <div class="role-grid">
-        <button class="role-card" data-role="customer">
-          <span class="role-icon"><svg class="icon"><use href="#i-user"/></svg></span>
-          <span class="role-title">Cliente <svg class="icon"><use href="#i-arrow"/></svg></span>
-          <p>Explora el catálogo, programa la entrega y elige transferencia o efectivo.</p>
-        </button>
-        <button class="role-card" data-role="admin">
-          <span class="role-icon"><svg class="icon"><use href="#i-chart"/></svg></span>
-          <span class="role-title">Administración <svg class="icon"><use href="#i-arrow"/></svg></span>
-          <p>Gestiona pedidos, productos, disponibilidad y mensajes de WhatsApp.</p>
-        </button>
-      </div>
-      <div class="gate-links">
-        <a class="gate-link" href="./guide.html">Ver guía rápida</a>
-        <a class="gate-link" href="./quote.html">Ver alcance y precio</a>
-      </div>
-      <p class="gate-note"><svg class="icon"><use href="#i-info"/></svg> No necesitas usuario ni contraseña. Todo lo que hagas aquí es una simulación segura.</p>
-      <p class="gate-note" style="margin-top:.45rem"><svg class="icon"><use href="#i-info"/></svg> Esta identidad es solo una muestra. La tienda final usa exclusivamente la marca, colores y tipografías de cada negocio.</p>
-    </div>
+        <div class="mignon-hero-image">
+          <img src="./assets/mignon-hero.jpg" alt="Pieza de hojaldre artesanal con frutos rojos" width="1672" height="941">
+        </div>
+      </section>
+
+      <section id="coleccion" class="landing-section">
+        <div class="landing-section-head">
+          <p class="mignon-kicker">La colección</p>
+          <h2>Hojaldres, pasteles y panes para compartir.</h2>
+          <p>Una selección breve que cambia con la temporada. Cada pieza se prepara en pequeños lotes.</p>
+        </div>
+        <div class="collection-grid">
+          <figure class="collection-card">
+            <img src="./assets/mignon-framboise.jpg" alt="Hojaldre de frambuesa" width="1254" height="1254" loading="lazy">
+            <figcaption><h3>Framboise</h3><span>Hojaldre · frambuesa</span></figcaption>
+          </figure>
+          <figure class="collection-card">
+            <img src="./assets/mignon-abricot.jpg" alt="Tarta de chabacano" width="1254" height="1254" loading="lazy">
+            <figcaption><h3>Abricot</h3><span>Temporada · chabacano</span></figcaption>
+          </figure>
+        </div>
+        <div style="display:flex;justify-content:center;margin-top:2.3rem;"><button class="landing-outline" data-role="customer">Explorar el menú completo</button></div>
+      </section>
+
+      <section id="historia" class="story-band">
+        <div class="story-mark" aria-hidden="true">m</div>
+        <div class="story-copy">
+          <p class="mignon-kicker">Entre Francia y México</p>
+          <h2>Técnica francesa. Memoria, temporada y sabor mexicano.</h2>
+          <p>En Mignon, cada receta nace del oficio de la chef pâtissière y de la curiosidad por los ingredientes que nos rodean. Hacemos repostería para celebrar lo cotidiano: delicada, generosa y sin prisas.</p>
+        </div>
+      </section>
+
+      <section class="landing-section" aria-labelledby="como-pedir">
+        <div class="landing-section-head center">
+          <p class="mignon-kicker">Del horno a tu mesa</p>
+          <h2 id="como-pedir">Pedir es muy sencillo.</h2>
+        </div>
+        <div class="order-steps">
+          <article class="order-step"><b>01</b><h3>Elige</h3><p>Explora la colección y agrega tus piezas favoritas al pedido.</p></article>
+          <article class="order-step"><b>02</b><h3>Programa</h3><p>Selecciona el día y horario disponible para recoger o recibir.</p></article>
+          <article class="order-step"><b>03</b><h3>Confirma</h3><p>Elige transferencia o efectivo y recibe el seguimiento por WhatsApp.</p></article>
+        </div>
+      </section>
+
+      <section id="contacto" class="landing-section contact-section">
+        <div class="contact-copy">
+          <p class="mignon-kicker">Contacto</p>
+          <h2>Bonjour,<br>hablemos.</h2>
+          <p>¿Tienes una celebración, un pedido especial o quieres saber qué salió del horno hoy? Escríbenos.</p>
+          <div class="contact-meta">
+            <span>Río Nazas 100 · Cuauhtémoc, CDMX</span>
+            <span>WhatsApp · 55 0000 0000</span>
+            <span>Martes a domingo · 9:00–19:00</span>
+          </div>
+          <div class="contact-socials">
+            <a href="https://instagram.com/mignon_patisserie" target="_blank" rel="noopener">Instagram</a>
+            <a href="#" aria-label="Facebook de Mignon">Facebook</a>
+            <a href="#" aria-label="TikTok de Mignon">TikTok</a>
+          </div>
+        </div>
+        <form class="mignon-form" onsubmit="return false;">
+          <div class="form-pair">
+            <label>Nombre<input type="text" placeholder="Tu nombre" autocomplete="name"></label>
+            <label>Teléfono<input type="tel" placeholder="55 0000 0000" autocomplete="tel"></label>
+          </div>
+          <label>Correo<input type="email" placeholder="hola@ejemplo.com" autocomplete="email"></label>
+          <label>Mensaje<textarea placeholder="¿Cómo podemos ayudarte?"></textarea></label>
+          <button class="landing-order" type="button" data-action="landing-contact">Enviar mensaje</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="landing-footer">
+      <p>Río Nazas 100<br>Ciudad de México</p>
+      <a class="landing-wordmark" href="#inicio">mignon<small>pâtisserie</small></a>
+      <p><a href="./guide.html">Guía del demo</a> · <a href="./quote.html">Alcance y precio</a><br>Sitio de muestra · Fotografías conceptuales</p>
+    </footer>
   </section>
 
   <section id="app" class="app hidden">
     <div class="app-shell">
       <aside class="sidebar">
         <div class="side-brand">
-          <span id="sideBrandLogo" class="avatar" style="width:42px;height:42px;">CM</span>
-          <div><strong id="sideBrandName">Café Magnolia</strong><span id="sideBrandSubtitle">Pedidos en línea</span></div>
+          <img src="./assets/punto-cafe-icon.png" alt="Punto Café Lite">
+          <div><strong id="sideBrandName">Punto Café Lite</strong><span id="sideBrandSubtitle">Administración</span></div>
         </div>
         <div id="sideProfile" class="side-profile"></div>
         <p class="nav-label">Navegación</p>
@@ -605,15 +908,15 @@
       "use strict";
 
       const PRODUCTS = [
-        { id: 1, name: "Latte Vainilla", desc: "Espresso, leche y un toque de vainilla.", price: 68, cat: "Calientes", art: "" },
-        { id: 2, name: "Americano", desc: "Café de especialidad, intenso y balanceado.", price: 45, cat: "Calientes", art: "" },
-        { id: 3, name: "Capuchino", desc: "Espresso con leche cremosa y espuma.", price: 62, cat: "Calientes", art: "" },
-        { id: 4, name: "Moka Frío", desc: "Café, chocolate, leche y hielo.", price: 72, cat: "Fríos", art: "cold" },
-        { id: 5, name: "Cold Brew", desc: "Extracción en frío por 18 horas.", price: 65, cat: "Fríos", art: "cold" },
-        { id: 6, name: "Té Rosa", desc: "Infusión frutal con notas florales.", price: 55, cat: "Fríos", art: "cold" },
-        { id: 7, name: "Croissant Almendra", desc: "Horneado del día con crema de almendra.", price: 58, cat: "Alimentos", art: "food" },
-        { id: 8, name: "Panini Caprese", desc: "Mozzarella, jitomate y pesto.", price: 96, cat: "Alimentos", art: "food" },
-        { id: 9, name: "Galleta Chocolate", desc: "Galleta suave con chocolate amargo.", price: 38, cat: "Alimentos", art: "food" }
+        { id: 1, name: "Framboise", desc: "Hojaldre crujiente, crema ligera y frambuesa.", price: 125, cat: "Temporada", art: "berry" },
+        { id: 2, name: "Tarte Abricot", desc: "Chabacano de temporada, almendra y mantequilla.", price: 145, cat: "Temporada", art: "apricot" },
+        { id: 3, name: "Croissant Classique", desc: "Mantequilla francesa y laminado de tres días.", price: 68, cat: "Panadería", art: "plain" },
+        { id: 4, name: "Pain au Chocolat", desc: "Hojaldre de mantequilla y chocolate oscuro.", price: 78, cat: "Panadería", art: "plain" },
+        { id: 5, name: "Paris–Brest", desc: "Praliné de avellana y pâte à choux.", price: 135, cat: "Pastelería", art: "berry" },
+        { id: 6, name: "Fraisier", desc: "Fresa fresca, vainilla y bizcocho ligero.", price: 680, cat: "Pastelería", art: "berry" },
+        { id: 7, name: "Tarte Citron", desc: "Limón, merengue suave y masa sablée.", price: 120, cat: "Pastelería", art: "apricot" },
+        { id: 8, name: "Brioche Canela", desc: "Brioche suave, canela y azúcar mascabado.", price: 82, cat: "Panadería", art: "plain" },
+        { id: 9, name: "Gâteau Chocolat", desc: "Chocolate mexicano, cacao y flor de sal.", price: 720, cat: "Pastelería", art: "berry" }
       ];
 
       const INITIAL_ORDERS = [
@@ -673,15 +976,15 @@
           lastCustomerOrder: null,
           customer: { name: "", phone: "", email: "", date: "", time: "" },
           business: {
-            name: "Café Magnolia",
-            initials: "CM",
-            address: "Av. Reforma 123, Col. Centro, CDMX",
-            whatsapp: "55 1234 5678",
+            name: "Mignon Pâtisserie",
+            initials: "MP",
+            address: "Río Nazas 100, Cuauhtémoc, CDMX",
+            whatsapp: "55 0000 0000",
             socialLinks: "Instagram · Facebook · TikTok",
             hours: "Lun–Sáb · 9:00 a 19:00",
-            tagline: "Hecho con calma, listo para ti",
-            primary: "#6e2637",
-            accent: "#d98b7a",
+            tagline: "Repostería francesa · sabores de México",
+            primary: "#5f5663",
+            accent: "#baa9bf",
             typography: "Clásica"
           }
         };
@@ -700,6 +1003,7 @@
         currentView = ROLE_INFO[role].start;
         document.getElementById("roleGate").classList.add("hidden");
         document.getElementById("app").classList.remove("hidden");
+        document.getElementById("eurekaCredit").classList.toggle("hidden", role !== "admin");
         renderShell();
       }
 
@@ -708,6 +1012,7 @@
         currentView = null;
         document.getElementById("app").classList.add("hidden");
         document.getElementById("roleGate").classList.remove("hidden");
+        document.getElementById("eurekaCredit").classList.add("hidden");
         window.scrollTo(0, 0);
       }
 
@@ -716,16 +1021,16 @@
         if (currentRole) {
           currentView = ROLE_INFO[currentRole].start;
           renderShell();
-          toast("Demo reiniciada", "Los datos de muestra volvieron a su estado inicial.");
+          toast("Demo reiniciado", "Los datos de muestra volvieron a su estado inicial.");
         }
       }
 
       function renderShell() {
         const info = ROLE_INFO[currentRole];
+        document.getElementById("app").className = `app ${currentRole}-mode`;
         applyBrand();
-        document.getElementById("sideBrandLogo").textContent = state.business.initials;
-        document.getElementById("sideBrandName").textContent = state.business.name;
-        document.getElementById("sideBrandSubtitle").textContent = currentRole === "admin" ? "Administración" : "Pedidos en línea";
+        document.getElementById("sideBrandName").textContent = "Punto Café Lite";
+        document.getElementById("sideBrandSubtitle").textContent = `${state.business.name} · Administración`;
         document.getElementById("sideProfile").innerHTML = `<span class="avatar">${info.short}</span><div><strong>${info.name}</strong><span>${info.detail}</span></div>`;
         document.getElementById("topRole").textContent = info.name;
         renderNav();
@@ -771,7 +1076,7 @@
       }
 
       function renderMenu() {
-        const cats = ["Todos", "Calientes", "Fríos", "Alimentos"];
+        const cats = ["Todos", "Temporada", "Panadería", "Pastelería"];
         const shown = state.products.filter(p => p.active && (state.productCategory === "Todos" || p.cat === state.productCategory));
         return `
           <div class="panel" style="margin-bottom:1rem;"><div class="panel-body" style="display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;"><span class="avatar" style="width:58px;height:58px;font-size:1rem;">${state.business.initials}</span><div><p class="eyebrow" style="margin-bottom:.15rem;">${state.business.tagline}</p><h1 style="margin:0;color:var(--wine-deep);font-family:Georgia,serif;">${state.business.name}</h1><p style="margin:.25rem 0 0;color:var(--muted);font-size:.82rem;">${state.business.address} · ${state.business.hours}</p></div></div></div>
@@ -795,7 +1100,7 @@
           <section class="panel" style="margin-top:1rem;">
             <div class="panel-head"><h3>Conoce ${state.business.name}</h3><span class="status green">Sitio público</span></div>
             <div class="panel-body grid-2">
-              <div><p class="eyebrow">Hecho para disfrutar sin prisa</p><h2 style="margin:.15rem 0 .55rem;font-family:var(--brand-heading);color:var(--wine-deep);">Café, alimentos y momentos especiales</h2><p style="margin:0;color:var(--muted);">Aquí puede vivir la historia del negocio, sus productos destacados, las zonas de entrega y los enlaces a todas sus redes sociales.</p></div>
+              <div><p class="eyebrow">Hecho para disfrutar sin prisa</p><h2 style="margin:.15rem 0 .55rem;font-family:var(--brand-heading);color:var(--wine-deep);">Pâtisserie, panadería y piezas de temporada</h2><p style="margin:0;color:var(--muted);">Conoce la historia de Mignon, explora los productos destacados y encuentra todos sus canales de contacto.</p></div>
               <div><p style="margin:0 0 .75rem;"><strong>Visítanos</strong><br>${state.business.address}<br>${state.business.hours}</p><p style="margin:0 0 .85rem;color:var(--muted);">WhatsApp: ${state.business.whatsapp}<br>${state.business.socialLinks}</p><button class="btn primary" data-action="contact">Formulario de contacto</button></div>
             </div>
           </section>`;
@@ -929,7 +1234,7 @@
               <div class="chart">${[58,74,61,88,96,77,42].map((h,i)=>`<div class="bar-col"><div class="bar" style="height:${h}%"></div><span>${["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"][i]}</span></div>`).join("")}</div>
             </div></section>
             <section class="panel"><div class="panel-head"><h3>Más vendidos</h3></div><div class="panel-body">
-              ${[["Latte Vainilla",34],["Americano",28],["Croissant Almendra",19],["Cold Brew",15]].map(([n,v],i)=>`<div style="display:grid;grid-template-columns:24px 1fr auto;gap:.65rem;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--line)"><b style="color:var(--rose)">${i+1}</b><span>${n}</span><strong>${v}</strong></div>`).join("")}
+              ${[["Framboise",34],["Croissant Classique",28],["Tarte Abricot",19],["Pain au Chocolat",15]].map(([n,v],i)=>`<div style="display:grid;grid-template-columns:24px 1fr auto;gap:.65rem;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--line)"><b style="color:var(--rose)">${i+1}</b><span>${n}</span><strong>${v}</strong></div>`).join("")}
             </div></section>
           </div>`;
       }
@@ -960,7 +1265,7 @@
                 <label>Color de acento<input id="businessAccent" type="color" value="${state.business.accent}"></label>
                 <label style="grid-column:1/-1">Tipografía<select id="businessTypography"><option${state.business.typography==="Clásica"?" selected":""}>Clásica</option><option${state.business.typography==="Moderna"?" selected":""}>Moderna</option><option${state.business.typography==="Editorial"?" selected":""}>Editorial</option></select></label>
               </div>
-              <div class="cash-summary"><strong>Logotipo final</strong><br>En la implementación se carga el archivo real del negocio. Las iniciales funcionan como vista previa segura en esta demo.</div>
+              <div class="cash-summary"><strong>Logotipo final</strong><br>En la implementación se carga el archivo real del negocio. Las iniciales funcionan como vista previa segura en este demo.</div>
               <button class="btn primary" style="margin-top:1rem" data-action="save-business">Guardar y previsualizar</button>
             </div></section>
             <aside class="panel"><div class="panel-head"><h3>Vista previa</h3></div><div class="panel-body" style="text-align:center;display:grid;place-items:center;min-height:300px;">
@@ -982,8 +1287,8 @@
           whatsapp: document.getElementById("businessWhatsapp")?.value.trim() || "WhatsApp por configurar",
           socialLinks: document.getElementById("businessSocialLinks")?.value.trim() || "Redes sociales por configurar",
           hours: document.getElementById("businessHours")?.value.trim() || "Horario por configurar",
-          primary: document.getElementById("businessPrimary")?.value || "#6e2637",
-          accent: document.getElementById("businessAccent")?.value || "#d98b7a",
+          primary: document.getElementById("businessPrimary")?.value || "#5f5663",
+          accent: document.getElementById("businessAccent")?.value || "#baa9bf",
           typography: document.getElementById("businessTypography")?.value || "Clásica"
         };
         renderShell();
@@ -992,9 +1297,9 @@
 
       function applyBrand() {
         const fonts = {
-          "Clásica": { heading:'Georgia, "Times New Roman", serif', body:'Inter, ui-sans-serif, system-ui, sans-serif' },
-          "Moderna": { heading:'Inter, ui-sans-serif, system-ui, sans-serif', body:'Inter, ui-sans-serif, system-ui, sans-serif' },
-          "Editorial": { heading:'"Times New Roman", Times, serif', body:'Arial, ui-sans-serif, system-ui, sans-serif' }
+          "Clásica": { heading:'"Cormorant Garamond", Georgia, "Times New Roman", serif', body:'Manrope, ui-sans-serif, system-ui, sans-serif' },
+          "Moderna": { heading:'Manrope, ui-sans-serif, system-ui, sans-serif', body:'Manrope, ui-sans-serif, system-ui, sans-serif' },
+          "Editorial": { heading:'"Cormorant Garamond", Georgia, serif', body:'Manrope, ui-sans-serif, system-ui, sans-serif' }
         };
         const selected = fonts[state.business.typography] || fonts["Clásica"];
         const root = document.documentElement.style;
@@ -1025,7 +1330,7 @@
             <div class="report-card"><h3>Gastos del mes</h3><strong>${money(28640)}</strong><span style="color:var(--muted)">23 movimientos</span><div class="progress"><span style="width:44%"></span></div></div>
             <div class="report-card"><h3>Resultado operativo</h3><strong>${money(97840)}</strong><span style="color:var(--muted)">Ventas + propinas − gastos</span></div>
             <div class="report-card"><h3>Ventas en línea</h3><strong>27%</strong><span style="color:var(--muted)">Recoger y entrega</span></div>
-            <div class="report-card"><h3>Producto líder</h3><strong style="font-size:1.4rem">Latte Vainilla</strong><span style="color:var(--muted)">214 vendidos este mes</span></div>
+            <div class="report-card"><h3>Producto líder</h3><strong style="font-size:1.4rem">Framboise</strong><span style="color:var(--muted)">214 vendidos este mes</span></div>
           </div>
           <section class="panel" style="margin-top:1rem"><div class="panel-head"><h3>Ventas por día</h3><span class="status wine">Septiembre</span></div><div class="panel-body"><div class="chart">${[44,67,82,59,91,73,86,51,78,63].map((h,i)=>`<div class="bar-col"><div class="bar" style="height:${h}%"></div><span>${i+1}</span></div>`).join("")}</div></div></section>`;
       }
@@ -1183,7 +1488,7 @@
         const cat = document.getElementById("productCategory")?.value;
         const active = document.getElementById("productAvailability")?.value !== "Agotado";
         if (!name || price <= 0) return toast("Faltan datos", "Agrega nombre y precio del producto.");
-        state.products.push({ id: Math.max(...state.products.map(p=>p.id)) + 1, name, price, cat, active, art:cat === "Alimentos" ? "food" : cat === "Fríos" ? "cold" : "", desc:"Producto agregado desde administración." });
+        state.products.push({ id: Math.max(...state.products.map(p=>p.id)) + 1, name, price, cat, active, art:"plain", desc:"Producto agregado desde administración." });
         closeModal();
         renderView();
         toast("Producto agregado", `${name} ya aparece en el catálogo.`);
@@ -1228,7 +1533,7 @@
         if (button.dataset.saveExpense !== undefined) return saveExpense();
         if (button.dataset.genericSave === "product") return saveProduct();
         if (button.dataset.genericSave === "contact") { closeModal(); return toast("Mensaje recibido", "En la versión final se envía al canal configurado por el negocio."); }
-        if (button.dataset.genericSave) { closeModal(); return toast("Guardado en la demo", "El registro de muestra fue agregado."); }
+        if (button.dataset.genericSave) { closeModal(); return toast("Guardado en el demo", "El registro de muestra fue agregado."); }
         const action = button.dataset.action;
         if (action === "switch") return switchRole();
         if (action === "reset") return resetDemo();
@@ -1239,8 +1544,9 @@
         if (action === "close-cash") return saveCash(true);
         if (action === "expense") return showExpenseModal();
         if (action === "save-business") return saveBusiness();
+        if (action === "landing-contact") return toast("Mensaje enviado", "En el sitio final llegará al canal configurado por Mignon.");
         if (action === "contact") return genericForm(`Contactar a ${state.business.name}`, `<div class="form-grid"><label>Nombre<input placeholder="Tu nombre" autocomplete="name"></label><label>Teléfono<input placeholder="55 0000 0000" inputmode="tel" autocomplete="tel"></label><label>Correo<input type="email" placeholder="correo@ejemplo.com" autocomplete="email"></label></div><label style="margin-top:.85rem">Mensaje<textarea rows="4" placeholder="¿Cómo podemos ayudarte?"></textarea></label>`, "contact");
-        if (action === "add-product") return genericForm("Nuevo producto", `<div class="form-grid"><label>Nombre<input id="productName" placeholder="Nombre del producto"></label><label>Precio<input id="productPrice" type="number" min="1" placeholder="0.00"></label><label>Categoría<select id="productCategory"><option>Calientes</option><option>Fríos</option><option>Alimentos</option></select></label><label>Disponibilidad<select id="productAvailability"><option>Disponible</option><option>Agotado</option></select></label></div>`, "product");
+        if (action === "add-product") return genericForm("Nuevo producto", `<div class="form-grid"><label>Nombre<input id="productName" placeholder="Nombre del producto"></label><label>Precio<input id="productPrice" type="number" min="1" placeholder="0.00"></label><label>Categoría<select id="productCategory"><option>Temporada</option><option>Panadería</option><option>Pastelería</option></select></label><label>Disponibilidad<select id="productAvailability"><option>Disponible</option><option>Agotado</option></select></label></div>`, "product");
         if (action === "add-supplier") return genericForm("Nuevo proveedor", `<label>Nombre<input placeholder="Nombre del proveedor"></label><label style="margin-top:.85rem">Productos que provee<input placeholder="Ej. Café, leche, pan…"></label><label style="margin-top:.85rem">Teléfono / contacto<input placeholder="55 0000 0000"></label>`, "supplier");
         if (action === "purchase") return genericForm("Nueva compra", `<div class="form-grid"><label>Proveedor<select>${state.suppliers.map(s=>`<option>${s.name}</option>`).join("")}</select></label><label>Monto<input type="number" placeholder="0.00"></label></div><label style="margin-top:.85rem">Estado<select><option>Pendiente</option><option>Pagada</option></select></label>`, "purchase");
       });
