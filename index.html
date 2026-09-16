@@ -736,6 +736,27 @@
     }
     .eureka-credit img { width: 18px; height: 18px; }
     .app-footer { display: flex; justify-content: center; padding: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); background: #f5f1ec; }
+
+    /* Editorial cover: live text and controls over the same social-card photograph. */
+    .mignon-hero { position: relative; display: block; min-height: 690px; background: #f8f5f0; overflow: hidden; }
+    .mignon-hero-image { position: absolute; inset: 0; min-height: 0; }
+    .mignon-hero-image img { object-fit: cover; object-position: center; }
+    .mignon-hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg,rgba(248,245,240,.98),rgba(248,245,240,.93) 43%,rgba(248,245,240,.2) 62%,transparent 78%); }
+    .mignon-hero-copy { width: 54%; min-height: 690px; z-index: 2; padding: 3rem 6vw; }
+    .hero-signature { margin-bottom: 2rem; width: fit-content; padding-bottom: 1.5rem; border-bottom: 1px solid #c9becb; }
+    .hero-signature .landing-wordmark { display: block; font-size: clamp(2.7rem,5vw,4.5rem); }
+    .mignon-hero h1 { font-size: clamp(3.7rem,5.6vw,6rem); line-height: .98; }
+    .mignon-hero-copy > .mignon-kicker { order: 2; margin: 1.8rem 0 0; font-size: .62rem; }
+    .mignon-hero-lead { order: 3; margin: .8rem 0 1.5rem; font-size: 1rem; line-height: 1.6; }
+    .mignon-actions { order: 4; }
+    @media(max-width:860px) {
+      .mignon-hero { display: flex; flex-direction: column; min-height: 0; }
+      .mignon-hero::before { display: none; }
+      .mignon-hero-copy { width: 100%; min-height: 0; padding: 2.5rem 1.5rem; }
+      .mignon-hero-image { position: relative; height: 65vw; min-height: 0; }
+      .hero-signature { margin-bottom: 1.8rem; }
+      .mignon-hero h1 { font-size: clamp(3.5rem,12vw,5.6rem); }
+    }
   </style>
 </head>
 <body>
@@ -776,16 +797,17 @@
     <main>
       <section id="inicio" class="mignon-hero">
         <div class="mignon-hero-copy">
+          <div class="hero-signature"><span class="landing-wordmark">mignon<small>pâtisserie</small></span></div>
           <p class="mignon-kicker">Repostería francesa · sabores de México</p>
           <h1>Un antojo<br><em>bien hecho.</em></h1>
-          <p class="mignon-hero-lead">Pâtisserie de inspiración francesa, creada a mano en la Ciudad de México con ingredientes de temporada y una mirada muy nuestra.</p>
+          <p class="mignon-hero-lead">Colección y pedidos programados en línea. Hechos a mano en la Ciudad de México.</p>
           <div class="mignon-actions">
             <button class="landing-order" data-role="customer">Ver menú y pedir</button>
             <a class="landing-outline" href="#contacto">Visítanos</a>
           </div>
         </div>
         <div class="mignon-hero-image">
-          <img src="./assets/mignon-hero.jpg" alt="Pieza de hojaldre artesanal con frutos rojos" width="1672" height="941">
+          <img src="./assets/mignon-share.jpg" alt="Pieza de hojaldre artesanal con frutos rojos" width="1672" height="941">
         </div>
       </section>
 
