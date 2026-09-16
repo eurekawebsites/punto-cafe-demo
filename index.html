@@ -13,9 +13,9 @@
   <meta property="og:site_name" content="Mignon Pâtisserie">
   <meta property="og:title" content="Mignon Pâtisserie | Un antojo bien hecho">
   <meta property="og:description" content="Repostería francesa, sabores de México y pedidos programados en línea.">
-  <meta property="og:url" content="https://eurekawebsites.github.io/punto-cafe-demo/?v=3">
-  <meta property="og:image" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/mignon-share.jpg?v=1">
-  <meta property="og:image:secure_url" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/mignon-share.jpg?v=1">
+  <meta property="og:url" content="https://eurekawebsites.github.io/punto-cafe-demo/">
+  <meta property="og:image" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/mignon-social-card.jpg?v=1">
+  <meta property="og:image:secure_url" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/mignon-social-card.jpg?v=1">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mignon Pâtisserie | Un antojo bien hecho">
   <meta name="twitter:description" content="Repostería francesa, sabores de México y pedidos programados en línea.">
-  <meta name="twitter:image" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/mignon-share.jpg?v=1">
+  <meta name="twitter:image" content="https://eurekawebsites.github.io/punto-cafe-demo/assets/mignon-social-card.jpg?v=1">
   <link rel="icon" type="image/svg+xml" href="./assets/mignon-mark.svg?v=1">
   <link rel="shortcut icon" href="./assets/mignon-mark.svg?v=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -393,17 +393,18 @@
     }
     .sidebar::-webkit-scrollbar { display: none; }
     .side-brand { display: flex; align-items: center; gap: .75rem; padding: .25rem .3rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,.12); }
-    .side-brand img {
+    .side-brand-mark {
+      position: relative;
       width: 54px;
       height: 54px;
       flex: 0 0 auto;
-      object-fit: contain;
-      padding: 5px;
+      overflow: hidden;
       border: 1px solid rgba(217,139,122,.48);
       border-radius: 15px;
       background: var(--cream);
       box-shadow: 0 6px 18px rgba(25,4,10,.24);
     }
+    .side-brand-mark img { position: absolute; top: -3px; left: -8px; width: 68px; height: 68px; max-width: none; object-fit: contain; }
     .side-brand strong { display: block; font-family: Georgia, serif; font-size: 1.08rem; }
     .side-brand span { display: block; color: var(--rose-soft); font-size: .74rem; }
     .side-profile {
@@ -575,7 +576,8 @@
     .customer-mode .mobile-nav { background: #fbfaf7; }
     .customer-mode .nav-btn.active { color: #fff; background: #5f5663; }
     .admin-mode .sidebar { color: #f7f4f7; background: linear-gradient(180deg, #47404a 0%, #342f37 100%); }
-    .admin-mode .side-brand img { width: 46px; height: 46px; padding: 4px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: #f7f4f0; box-shadow: none; }
+    .admin-mode .side-brand-mark { width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: #f7f4f0; box-shadow: none; }
+    .admin-mode .side-brand-mark img { top: -3px; left: -7px; width: 59px; height: 59px; }
     .admin-mode .side-brand strong { font-family: var(--brand-heading); font-size: 1.2rem; font-weight: 500; }
     .admin-mode .side-brand span, .admin-mode .side-profile span { color: #cfc5d2; }
     .admin-mode .side-profile { border-radius: 3px; background: rgba(255,255,255,.045); }
@@ -882,7 +884,7 @@
     <div class="app-shell">
       <aside class="sidebar">
         <div class="side-brand">
-          <img src="./assets/punto-cafe-icon.png" alt="Punto Café Lite">
+          <span class="side-brand-mark"><img src="./assets/punto-cafe-icon.png" alt=""></span>
           <div><strong id="sideBrandName">Punto Café Lite</strong><span id="sideBrandSubtitle">Administración</span></div>
         </div>
         <div id="sideProfile" class="side-profile"></div>
