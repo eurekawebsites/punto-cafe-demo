@@ -2,7 +2,7 @@
 
 - Last updated: 2026-09-16
 - Lifecycle state: active
-- Workflow status: implementation QA
+- Workflow status: sales package ready
 - Product: reusable online-ordering package for small food businesses
 
 ## Current scope
@@ -38,11 +38,14 @@ They require separate scope and pricing.
 - HTML parses with unique IDs and valid local asset paths.
 - Inline JavaScript passes syntax compilation.
 - `tests/static-check.py` asserts the required ordering and commercial markers.
-- Full browser QA and public URL verification remain required after deployment.
+- Public customer QA passed: catalog, cart, delivery selection, next-day date,
+  transfer selection, order creation, transfer instructions, and tracking.
+- Public admin QA passed: order visibility, payment-status transition, product
+  availability, product creation, business identity, color, and typography.
+- Public guide and quote pages load correctly from GitHub Pages.
 
 ## Next
 
-Publish the demo, run desktop/mobile customer and admin walkthroughs, correct any
-visual or interaction issues, then prepare the final client outreach. Before
-client configuration, confirm transfer, cash, or both; pickup/delivery rules;
-bank details; the WhatsApp destination number; and the final brand assets.
+Review the proposed price internally, then send the prepared client outreach.
+Before client configuration, confirm transfer, cash, or both; pickup/delivery
+rules; bank details; the WhatsApp destination number; and final brand assets.
