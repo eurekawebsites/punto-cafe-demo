@@ -14,7 +14,9 @@ Punto Café Lite is white-label and includes configurable business identity,
 logo space, colors, typography, address, hours, and WhatsApp. The client-facing
 site does not display Punto Café Lite branding. It also includes an expandable catalog with a simple available/sold-out switch, cart, scheduled pickup/delivery,
 transfer or cash selection, order management, product availability, and
-WhatsApp-assisted customer messages. It deliberately excludes POS, cash drawer,
+WhatsApp-assisted customer messages. The public site includes standard business
+content, a contact form, links to every social profile supplied by the client,
+and basic technical/local SEO. It deliberately excludes POS, cash drawer,
 suppliers, automated WhatsApp Business API messaging, card processing, and
 Uber Direct from the base package.
 

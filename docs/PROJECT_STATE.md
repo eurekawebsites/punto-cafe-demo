@@ -9,7 +9,11 @@
 
 The product is white-label: each deployment uses the client's name, logo,
 colors, typography, photography, address, hours, and WhatsApp, while Punto Café Lite remains Eureka's
-internal product name. The demo presents two roles: customer and administration. The customer can browse
+internal product name. The public storefront also includes business information,
+featured content, hours, location, all supplied social profiles, a contact form,
+and basic technical/local SEO (metadata, social previews, local-business structured
+data, sitemap/robots, image alt text, and mobile performance). Ongoing SEO campaigns,
+recurring content, and ranking guarantees are excluded. The demo presents two roles: customer and administration. The customer can browse
 an expandable catalog, build a cart, select pickup or delivery, schedule at least
 one day ahead, choose transfer or cash, receive an order number, and open a
 prewritten WhatsApp message. Administration can review orders, advance statuses,
@@ -40,6 +44,7 @@ They require separate scope and pricing.
 - `tests/static-check.py` asserts the required ordering and commercial markers.
 - Public customer QA passed: catalog, cart, delivery selection, next-day date,
   transfer selection, order creation, transfer instructions, and tracking.
+- Public-site demo includes business information, social links, and a simulated contact form.
 - Public admin QA passed: order visibility, payment-status transition, product
   availability, product creation, business identity, color, and typography.
 - Public guide and quote pages load correctly from GitHub Pages.

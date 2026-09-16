@@ -773,7 +773,14 @@
               </div>
             </section>
             ${renderCart()}
-          </div>`;
+          </div>
+          <section class="panel" style="margin-top:1rem;">
+            <div class="panel-head"><h3>Conoce ${state.business.name}</h3><span class="status green">Sitio público</span></div>
+            <div class="panel-body grid-2">
+              <div><p class="eyebrow">Hecho para disfrutar sin prisa</p><h2 style="margin:.15rem 0 .55rem;font-family:var(--brand-heading);color:var(--wine-deep);">Café, alimentos y momentos especiales</h2><p style="margin:0;color:var(--muted);">Aquí puede vivir la historia del negocio, sus productos destacados, las zonas de entrega y los enlaces a todas sus redes sociales.</p></div>
+              <div><p style="margin:0 0 .75rem;"><strong>Visítanos</strong><br>${state.business.address}<br>${state.business.hours}</p><p style="margin:0 0 .85rem;color:var(--muted);">WhatsApp: ${state.business.whatsapp}<br>Instagram · Facebook · TikTok</p><button class="btn primary" data-action="contact">Formulario de contacto</button></div>
+            </div>
+          </section>`;
       }
 
       function cartEntries(source = "cart") {
@@ -1200,6 +1207,7 @@
         }
         if (button.dataset.saveExpense !== undefined) return saveExpense();
         if (button.dataset.genericSave === "product") return saveProduct();
+        if (button.dataset.genericSave === "contact") { closeModal(); return toast("Mensaje recibido", "En la versión final se envía al canal configurado por el negocio."); }
         if (button.dataset.genericSave) { closeModal(); return toast("Guardado en la demo", "El registro de muestra fue agregado."); }
         const action = button.dataset.action;
         if (action === "switch") return switchRole();
@@ -1211,6 +1219,7 @@
         if (action === "close-cash") return saveCash(true);
         if (action === "expense") return showExpenseModal();
         if (action === "save-business") return saveBusiness();
+        if (action === "contact") return genericForm(`Contactar a ${state.business.name}`, `<div class="form-grid"><label>Nombre<input placeholder="Tu nombre" autocomplete="name"></label><label>Teléfono<input placeholder="55 0000 0000" inputmode="tel" autocomplete="tel"></label><label>Correo<input type="email" placeholder="correo@ejemplo.com" autocomplete="email"></label></div><label style="margin-top:.85rem">Mensaje<textarea rows="4" placeholder="¿Cómo podemos ayudarte?"></textarea></label>`, "contact");
         if (action === "add-product") return genericForm("Nuevo producto", `<div class="form-grid"><label>Nombre<input id="productName" placeholder="Nombre del producto"></label><label>Precio<input id="productPrice" type="number" min="1" placeholder="0.00"></label><label>Categoría<select id="productCategory"><option>Calientes</option><option>Fríos</option><option>Alimentos</option></select></label><label>Disponibilidad<select id="productAvailability"><option>Disponible</option><option>Agotado</option></select></label></div>`, "product");
         if (action === "add-supplier") return genericForm("Nuevo proveedor", `<label>Nombre<input placeholder="Nombre del proveedor"></label><label style="margin-top:.85rem">Productos que provee<input placeholder="Ej. Café, leche, pan…"></label><label style="margin-top:.85rem">Teléfono / contacto<input placeholder="55 0000 0000"></label>`, "supplier");
         if (action === "purchase") return genericForm("Nueva compra", `<div class="form-grid"><label>Proveedor<select>${state.suppliers.map(s=>`<option>${s.name}</option>`).join("")}</select></label><label>Monto<input type="number" placeholder="0.00"></label></div><label style="margin-top:.85rem">Estado<select><option>Pendiente</option><option>Pagada</option></select></label>`, "purchase");

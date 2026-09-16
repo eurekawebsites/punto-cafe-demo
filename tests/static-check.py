@@ -42,11 +42,13 @@ for required in (
     "businessAddress",
     "businessPrimary",
     "businessTypography",
+    "Formulario de contacto",
+    "Instagram · Facebook · TikTok",
 ):
     assert required in index, f"index.html: missing required flow marker {required!r}"
 
 quote = (ROOT / "quote.html").read_text(encoding="utf-8")
-for required in ("$6,900 MXN", "$590 MXN", "$1,490 MXN", "Uber Direct", "WhatsApp Business API"):
+for required in ("$6,900 MXN", "$590 MXN", "$1,490 MXN", "Uber Direct", "WhatsApp Business API", "Formulario de contacto", "Redes sociales", "SEO técnico local"):
     assert required in quote, f"quote.html: missing commercial marker {required!r}"
 
 print("Static checks passed for Punto Café Lite.")

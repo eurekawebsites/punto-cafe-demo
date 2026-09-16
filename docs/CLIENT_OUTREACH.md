@@ -19,7 +19,9 @@ Es una tienda de pedidos completamente personalizada con la marca de su
 negocio: nombre, logo, colores, tipografías, fotografías, dirección y WhatsApp.
 Incluye catálogo ampliable, carrito, pedidos programados para recoger o entregar,
 pago por transferencia y/o efectivo, panel administrativo y mensajes preparados
-de WhatsApp para comprobantes y actualizaciones del pedido.
+de WhatsApp para comprobantes y actualizaciones del pedido. El sitio público
+también incluye información del negocio, formulario de contacto, enlaces a todas
+sus redes sociales y SEO técnico básico.
 
 Pueden revisar aquí la demo, la guía rápida y la propuesta:
 
