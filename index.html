@@ -204,9 +204,11 @@
       line-height: 1;
       text-decoration: none;
     }
+    .landing-wordmark { display: inline-flex; flex-direction: column; align-items: center; gap: .22em; }
+    .wordmark-name { display: block; line-height: 1.2; }
     .landing-wordmark small {
       display: block;
-      margin-top: .38rem;
+      margin-top: 0;
       color: #908795;
       font-family: var(--brand-body);
       font-size: .54rem;
@@ -744,7 +746,7 @@
     .mignon-hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg,rgba(248,245,240,.98),rgba(248,245,240,.93) 43%,rgba(248,245,240,.2) 62%,transparent 78%); }
     .mignon-hero-copy { width: 54%; min-height: 690px; z-index: 2; padding: 3rem 6vw; }
     .hero-signature { margin-bottom: 2rem; width: fit-content; padding-bottom: 1.5rem; border-bottom: 1px solid #c9becb; }
-    .hero-signature .landing-wordmark { display: block; font-size: clamp(2.7rem,5vw,4.5rem); }
+    .hero-signature .landing-wordmark { display: inline-flex; font-size: clamp(2.7rem,5vw,4.5rem); }
     .mignon-hero h1 { font-size: clamp(3.7rem,5.6vw,6rem); line-height: .98; }
     .mignon-hero-copy > .mignon-kicker { order: 2; margin: 1.8rem 0 0; font-size: .62rem; }
     .mignon-hero-lead { order: 3; margin: .8rem 0 1.5rem; font-size: 1rem; line-height: 1.6; }
@@ -787,7 +789,7 @@
         <a href="#historia">Nuestra historia</a>
         <a href="#contacto">Contacto</a>
       </div>
-      <a class="landing-wordmark" href="#inicio" aria-label="Mignon, inicio">mignon<small>pâtisserie</small></a>
+      <a class="landing-wordmark" href="#inicio" aria-label="Mignon, inicio"><span class="wordmark-name">mignon</span><small>pâtisserie</small></a>
       <div class="landing-nav-actions">
         <button class="landing-admin" data-role="admin">Administración</button>
         <button class="landing-order" data-role="customer">Hacer pedido</button>
@@ -797,7 +799,7 @@
     <main>
       <section id="inicio" class="mignon-hero">
         <div class="mignon-hero-copy">
-          <div class="hero-signature"><span class="landing-wordmark">mignon<small>pâtisserie</small></span></div>
+          <div class="hero-signature"><span class="landing-wordmark"><span class="wordmark-name">mignon</span><small>pâtisserie</small></span></div>
           <p class="mignon-kicker">Repostería francesa · sabores de México</p>
           <h1>Un antojo<br><em>bien hecho.</em></h1>
           <p class="mignon-hero-lead">Colección y pedidos programados en línea. Hechos a mano en la Ciudad de México.</p>
@@ -881,7 +883,7 @@
 
     <footer class="landing-footer">
       <p>Río Nazas 100<br>Ciudad de México</p>
-      <a class="landing-wordmark" href="#inicio">mignon<small>pâtisserie</small></a>
+      <a class="landing-wordmark" href="#inicio"><span class="wordmark-name">mignon</span><small>pâtisserie</small></a>
       <p><a href="./guide.html">Guía del demo</a> · <a href="./quote.html">Alcance y precio</a><br>Sitio de muestra · Fotografías conceptuales<br><a class="eureka-credit" href="https://eurekawebsites.tech" target="_blank" rel="noopener"><img src="https://eurekawebsites.tech/eureka-tech-favicon-32.png?v=20260912" alt=""> Powered by Eureka Websites</a></p>
     </footer>
   </section>
