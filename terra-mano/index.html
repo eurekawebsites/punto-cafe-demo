@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f0e8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Terra Mano Café | Ordena y recoge</title>
+  <meta name="description" content="Muestra privada de una página móvil de pedidos directos para recoger en Terra Mano Café.">
+  <link rel="preconnect" href="https://terra-mano.com">
+  <link rel="preconnect" href="https://cn-geo1.uber.com">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="demo-note" role="note">Muestra privada · Flujo de pedido demostrativo</div>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Terra Mano, inicio">
+      <img src="https://terra-mano.com/cdn/shop/files/logotipo_negro_4.png?v=1789155382&width=360" alt="Terra Mano Café">
+    </a>
+    <nav aria-label="Acciones principales">
+      <a href="https://terra-mano.com/" target="_blank" rel="noopener">Café en grano</a>
+      <button class="cart-trigger" type="button" data-open-cart aria-label="Abrir pedido">
+        Pedido <span data-cart-count>0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Ordena directo · Recoge en tienda</p>
+        <h1 id="hero-title">Tu café y desayuno,<br><em>listos cuando llegues.</em></h1>
+        <p>Explora el menú de la casa, elige tu hora y arma tu pedido desde el celular.</p>
+        <a class="primary-link" href="#menu">Ver menú</a>
+      </div>
+      <div class="hero-image" role="img" aria-label="Terra Mano, casa tostadora de café"></div>
+    </section>
+
+    <section class="order-setup" aria-labelledby="setup-title">
+      <div class="section-heading compact">
+        <p class="eyebrow">Antes de elegir</p>
+        <h2 id="setup-title">¿Dónde y cuándo recoges?</h2>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-card location-card">
+          <span class="step-number">01</span>
+          <div>
+            <span class="field-label">Ubicación disponible</span>
+            <strong>Terra Mano Café · Plaza Master</strong>
+            <p>Camino Real de Carretas 167, Local 8<br>Milenio 3ra Sección, Querétaro</p>
+          </div>
+          <span class="verified-chip">Ubicación verificada</span>
+        </div>
+        <label class="setup-card" for="pickup-time">
+          <span class="step-number">02</span>
+          <span>
+            <span class="field-label">Hora para recoger</span>
+            <select id="pickup-time" aria-label="Hora para recoger">
+              <option value="Lo antes posible · 20–30 min">Lo antes posible · 20–30 min</option>
+              <option value="Hoy · 3:30 p.m.">Hoy · 3:30 p.m.</option>
+              <option value="Hoy · 4:00 p.m.">Hoy · 4:00 p.m.</option>
+              <option value="Hoy · 4:30 p.m.">Hoy · 4:30 p.m.</option>
+              <option value="Hoy · 5:00 p.m.">Hoy · 5:00 p.m.</option>
+            </select>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu" aria-labelledby="menu-title">
+      <div class="section-heading">
+        <p class="eyebrow">Menú de la casa</p>
+        <h2 id="menu-title">Algo para cada momento.</h2>
+        <p>Precios de referencia del menú público consultado. Terra Mano confirma disponibilidad y precio final.</p>
+      </div>
+
+      <div class="category-tabs" role="tablist" aria-label="Categorías del menú">
+        <button class="active" role="tab" aria-selected="true" data-category="todos">Todo</button>
+        <button role="tab" aria-selected="false" data-category="espresso">Con espresso</button>
+        <button role="tab" aria-selected="false" data-category="sin-cafe">Sin café</button>
+        <button role="tab" aria-selected="false" data-category="desayunos">Desayunos</button>
+        <button role="tab" aria-selected="false" data-category="sandwiches">Sandwiches</button>
+      </div>
+
+      <div class="shop-layout">
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+
+        <aside class="cart-panel" aria-labelledby="cart-title">
+          <div class="cart-panel-head">
+            <div>
+              <span class="eyebrow">Tu selección</span>
+              <h2 id="cart-title">Tu pedido</h2>
+            </div>
+            <button class="icon-button mobile-only" type="button" data-close-cart aria-label="Cerrar pedido">×</button>
+          </div>
+          <div class="cart-empty" data-cart-empty>
+            <span class="empty-icon">☕</span>
+            <p>Tu pedido está vacío.</p>
+            <small>Agrega una bebida o algo para comer.</small>
+          </div>
+          <div class="cart-items" data-cart-items></div>
+          <div class="cart-checkout" data-cart-checkout hidden>
+            <div class="pickup-summary">
+              <span>Recoge en</span>
+              <strong>Plaza Master</strong>
+              <small data-summary-time>Lo antes posible · 20–30 min</small>
+            </div>
+            <div class="totals">
+              <span>Subtotal</span><strong data-subtotal>$0</strong>
+              <span>Total estimado</span><strong data-total>$0 MXN</strong>
+            </div>
+            <button class="checkout-button" type="button" data-checkout>Continuar pedido</button>
+            <small class="fine-print">Muestra: no se procesa ningún pago ni se envía ningún pedido.</small>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="store-bridge" aria-labelledby="store-title">
+      <div>
+        <p class="eyebrow">Café para tu casa</p>
+        <h2 id="store-title">¿Buscas bolsas de café o una suscripción?</h2>
+        <p>La tienda actual de Terra Mano sigue disponible para comprar café en grano, productos y membresías con envío a todo México.</p>
+        <a class="secondary-link" href="https://terra-mano.com/" target="_blank" rel="noopener">Ir a la tienda de café <span>↗</span></a>
+      </div>
+      <img src="https://terra-mano.com/cdn/shop/files/bolsa_sticker_10.webp?v=1742372932&width=700" alt="Bolsa de café Terra Mano">
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <img src="https://terra-mano.com/cdn/shop/files/logotipo_negro_4.png?v=1789155382&width=240" alt="Terra Mano Café">
+      <p>Casa tostadora de café de especialidad · Querétaro, México</p>
+    </div>
+    <p class="footer-note">Muestra privada de canal directo para recoger. No reemplaza la tienda en línea ni otros canales actuales.</p>
+    <a class="powered" href="https://eurekawebsites.tech/" target="_blank" rel="noopener">
+      <img src="https://eurekawebsites.tech/eureka-tech-secondary-bird-512.png" alt="" aria-hidden="true">
+      <span>Powered by Eureka Websites</span>
+    </a>
+  </footer>
+
+  <button class="mobile-cart-bar" type="button" data-open-cart hidden>
+    <span>Ver pedido · <b data-cart-count>0</b> artículos</span>
+    <strong data-mobile-total>$0 MXN</strong>
+  </button>
+  <div class="scrim" data-scrim hidden></div>
+
+  <dialog class="checkout-dialog" id="checkout-dialog">
+    <form method="dialog">
+      <button class="dialog-close" value="cancel" aria-label="Cerrar">×</button>
+      <p class="eyebrow">Último paso</p>
+      <h2>¿Cómo prefieres pagar?</h2>
+      <p class="dialog-intro">En una implementación real, Terra Mano puede ofrecer pago en línea o pago al recoger.</p>
+      <label class="payment-option selected">
+        <input type="radio" name="payment" value="online" checked>
+        <span class="payment-icon">▰</span>
+        <span><strong>Pago en línea</strong><small>Tarjeta mediante pasarela segura</small></span>
+        <span class="check">✓</span>
+      </label>
+      <label class="payment-option">
+        <input type="radio" name="payment" value="pickup">
+        <span class="payment-icon">⌂</span>
+        <span><strong>Pago al recoger</strong><small>Sujeto a configuración del negocio</small></span>
+        <span class="check">✓</span>
+      </label>
+      <div class="dialog-order-total"><span>Total estimado</span><strong data-dialog-total>$0 MXN</strong></div>
+      <button class="demo-finish" type="button" data-finish>Simular confirmación</button>
+      <small class="fine-print">Esta demostración no solicita datos de tarjeta.</small>
+    </form>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+  <script src="app.js"></script>
+</body>
+</html>
