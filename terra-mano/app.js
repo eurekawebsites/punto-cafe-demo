@@ -22,7 +22,7 @@ const products = [
   {
     id: "coldbrew", name: "Cold brew Orange", price: 110, category: "espresso", label: "Cold brew",
     description: "Café de la casa infusionado en frío y servido con hielos.",
-    image: "https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC9pbWFnZS1wcm9jL3Byb2Nlc3NlZF9pbWFnZXMvMmIxMmViY2QwOWI5N2NhMGYwZDdjZTI3YjkyMmRhMzAvYTE2ODFkNjdlYmU1NWM3NmMzYWY1ZjQwMTYxOWMyNzguanBlZw=="
+    image: "https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC9pbWFnZS1wcm9jL3Byb2Nlc3NlZF9pbWFnZXMvMmYwYTVhM2QxMmVmZWY4ZTE1NWRkNDU1MzE3ZDUzOTkvYTE2ODFkNjdlYmU1NWM3NmMzYWY1ZjQwMTYxOWMyNzguanBlZw=="
   },
   {
     id: "chilaquiles", name: "Chilaquiles", price: 190, category: "desayunos", label: "Desayunos",
