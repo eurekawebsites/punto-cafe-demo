@@ -759,6 +759,66 @@
       .hero-signature { margin-bottom: 1.8rem; }
       .mignon-hero h1 { font-size: clamp(3.5rem,12vw,5.6rem); }
     }
+    /* Mobile viewport containment fix */
+    @media (max-width: 860px) {
+      html, body, .app, .app-shell, .main {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      html, body { overflow-x: hidden; }
+      .app-shell, .main { overflow-x: clip; }
+
+      .customer-mode .main {
+        width: 100%;
+        max-width: 100vw;
+        min-width: 0;
+      }
+      .customer-mode .topbar {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      .customer-mode .content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin-inline: 0;
+      }
+      .customer-mode .customer-layout,
+      .customer-mode .customer-layout > *,
+      .customer-mode .category-row,
+      .customer-mode .product-grid,
+      .customer-mode .product-card {
+        min-width: 0;
+        max-width: 100%;
+      }
+      .customer-mode .customer-layout,
+      .customer-mode .category-row,
+      .customer-mode .product-grid {
+        width: 100%;
+      }
+      .customer-mode .category-row {
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+      .customer-mode .mobile-nav {
+        max-width: calc(100vw - 1.3rem);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .customer-mode .content {
+        padding-left: max(.8rem, env(safe-area-inset-left));
+        padding-right: max(.8rem, env(safe-area-inset-right));
+      }
+      .customer-mode .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
   </style>
 </head>
 <body>
